@@ -5,7 +5,6 @@ import static guru.nidi.graphviz.model.Factory.*;
 import java.io.File;
 import java.io.IOException;
 
-import guru.nidi.graphviz.*;
 import guru.nidi.graphviz.attribute.Color;
 import guru.nidi.graphviz.engine.Format;
 import guru.nidi.graphviz.engine.Graphviz;
@@ -15,12 +14,22 @@ import guru.nidi.graphviz.model.MutableGraph;
 public class GraphTest {
 
     public static void main(String[] args) throws IOException {
+        printGraph();
+    }
+
+    public static void exampleGraph() throws IOException {
         MutableGraph g = mutGraph("example1").setDirected(true).use((gr, ctx) -> {
             mutNode("b");
             nodeAttrs().add(Color.RED);
             mutNode("a").addLink(mutNode("b"));
         });
         Graphviz.fromGraph(g).width(200).render(Format.PNG).toFile(new File("example/ex1i.png"));
+    }
+
+    public static void printGraph() throws IOException {
+        Graph g = graph("test").with(node("a").with(Color.RED).link(node("b")),
+                node("b").link(to(node("c")).with("label", 5)));
+        Graphviz.fromGraph(g).width(200).render(Format.PNG).toFile(new File("example/test.png"));
     }
     /*
      * @Test public void testConnectNodes() { Graph g = new Graph();

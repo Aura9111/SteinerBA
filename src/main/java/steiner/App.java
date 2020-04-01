@@ -1,6 +1,5 @@
 package steiner;
 
-import java.util.Iterator;
 import java.util.Random;
 
 /* import org.graphstream.graph.Edge;
@@ -10,7 +9,8 @@ import org.graphstream.graph.implementations.SingleGraph; */
 public class App {
 
     public static void main(String[] args) throws Exception {
-        //createRandom50N100E();
+        MyGraph g= createRandom50N100E();
+        g.printGraph();
     }
 
     /* public static void mini(){
@@ -21,25 +21,20 @@ public class App {
         System.out.println(g.printGraph());
     } */
 
-/*     public static void createRandom50N100E(){
-        Graph g= new SingleGraph("test1");
+    public static MyGraph createRandom50N100E(){
+        MyGraph g= new MyGraph();
         Random RNGesus = new Random();
         for (int i = 0; i < 50; i++) {
-            g.addNode(""+i);
+            g.addNode(""+i, RNGesus.nextBoolean());
         }
         for (int i = 0; i < 100; i++) {
-            int n1 = RNGesus.nextInt(50);
-            int n2 = RNGesus.nextInt(50);
-            if (g.getEdge(""+n1+"<>"+n2)==null&&g.getEdge(""+n2+"<>"+n1)==null)
-            g.addEdge(""+n1+"<>"+n2, ""+n1,""+n2);
+            String n1 = ""+RNGesus.nextInt(50);
+            String n2 = ""+RNGesus.nextInt(50);
+            if (!g.getEdge(n1,n2).isPresent())
+            g.addEdge(n1, n2, RNGesus.nextInt(25)+RNGesus.nextDouble());
         }
-        Iterator<? extends Edge> i=g.getEachEdge().iterator();
-        while(i.hasNext()){
-            Edge e=i.next();
-            e.addAttribute("ui.label", RNGesus.nextInt(25));;
-        }
-        g.display();
-    } */
+        return g;
+    }
 
     /* public static void createRandomGraph() {
         Graph g = new Graph();
