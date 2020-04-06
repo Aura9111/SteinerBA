@@ -8,7 +8,7 @@ public class Edge {
     private double weight;
 
     public Edge(String name, Node n1, Node n2, double weight) {
-        this.name=name;
+        this.name = name;
         this.first = n1;
         this.second = n2;
         this.weight = weight;
@@ -18,7 +18,7 @@ public class Edge {
         return name;
     }
 
-    public double getWeight(){
+    public double getWeight() {
         return weight;
     }
 
@@ -36,4 +36,12 @@ public class Edge {
     public boolean contains(Node n) {
         return n == this.first || n == this.second;
     }
+
+    public String getName() {
+        return name;
+    }
+
+	public Node opposite(Node node) {
+		return first.equals(node)?second:first;
+	}
 }

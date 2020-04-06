@@ -8,8 +8,9 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Optional;
-
 import guru.nidi.graphviz.engine.Format;
 import guru.nidi.graphviz.engine.Graphviz;
 import guru.nidi.graphviz.model.MutableGraph;
@@ -94,8 +95,12 @@ public class MyGraph {
         try (BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path + ".dot")))) {
             out.write("graph {");
             out.newLine();
-            for (String e : edges.keySet()) {
-                out.write(e);
+            for (Node n : nodes.values()) {
+                out.write(n.getName() + (n.isTerminal() ? "[color=red]" : "[color=blue]"));
+            }
+
+            for (Edge e : edges.values()) {
+                out.write(e.getName() + "[label=" + String.format("%.2f", e.getWeight()) + "]");
                 out.newLine();
             }
             out.write("}");
@@ -107,7 +112,40 @@ public class MyGraph {
         writeDot();
         try (InputStream dot = new FileInputStream(path + ".dot")) {
             MutableGraph g = new Parser().read(dot);
-            Graphviz.fromGraph(g).width(1920).render(Format.PNG).toFile(new File(path + ".png"));
+            Graphviz.fromGraph(g).width(800).render(Format.SVG).toFile(new File(path + ".svg"));
         }
+    }
+
+    public boolean inSameComponent(String node1, String node2) {
+        if (!nodes.containsKey(node1) || !nodes.containsKey(node2))
+            return false;
+        return nodes.get(node1).isInSameComponent(nodes.get(node2));
+    }
+
+    public int numberOfComponents() {
+        int i = 0;
+        HashSet<Node> tmp = new HashSet<Node>(nodes.values());
+        while (!tmp.isEmpty()) {
+            Iterator<Node> it = tmp.iterator();
+            tmp.removeAll(it.next().getNodesInComponent(new HashSet<Node>()));
+            i++;
+        }
+        return i;
+    }
+
+    public HashSet<Node> getNodesinComponent(String node) {
+        return nodes.get(node).getNodesInComponent(new HashSet<Node>());
+    }
+
+    public HashSet<Node> getNodesNotinComponent(String node) {
+        HashSet<Node> tmp = new HashSet<Node>(nodes.values());
+        tmp.removeAll(nodes.get(node).getNodesInComponent(new HashSet<Node>()));
+        return tmp;
+    }
+
+    public HashSet<Node> getNodesNotConnected(String node) {
+        HashSet<Node> tmp = new HashSet<Node>(nodes.values());
+        tmp.removeAll(nodes.get(node).getNeighbors());
+        return tmp;
     }
 }
