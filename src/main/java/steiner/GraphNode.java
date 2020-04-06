@@ -4,18 +4,18 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 
-public class Node {
+public class GraphNode {
     private String name;
-    private ArrayList<Edge> edges;
+    private ArrayList<GraphEdge> edges;
     private boolean terminal;
 
-    public Node(String name, boolean isTerminal) {
+    public GraphNode(String name, boolean isTerminal) {
         this.name = name;
         this.terminal = isTerminal;
         this.edges = new ArrayList<>();
     }
 
-    public boolean addEdge(Edge e) {
+    public boolean addEdge(GraphEdge e) {
         if (!e.contains(this)) {
             return false;
         }
@@ -32,7 +32,7 @@ public class Node {
     }
 
     public String printEdges() {
-        Iterator<Edge> it = edges.iterator();
+        Iterator<GraphEdge> it = edges.iterator();
         String s = "";
         while (it.hasNext()) {
             s += it.next() + "\n";
@@ -40,7 +40,7 @@ public class Node {
         return s;
     }
 
-    public void removeEdge(Edge e) {
+    public void removeEdge(GraphEdge e) {
         edges.remove(e);
     }
 
@@ -48,53 +48,53 @@ public class Node {
         return terminal;
     }
 
-    public boolean isNeighborTo(Node n) {
-        for (Edge e : edges) {
+    public boolean isNeighborTo(GraphNode n) {
+        for (GraphEdge e : edges) {
             if (e.contains(n))
                 return true;
         }
         return false;
     }
 
-    public boolean isInSameComponent(Node find) {
+    public boolean isInSameComponent(GraphNode find) {
         if (this.equals(find))
             return true;
         boolean output = false;
-        for (Edge e : edges) {
-            Node n = e.opposite(this);
+        for (GraphEdge e : edges) {
+            GraphNode n = e.opposite(this);
             output = output || n.isInSameComponent(this, find);
         }
         return output;
     }
 
-    private boolean isInSameComponent(Node start, Node find) {
+    private boolean isInSameComponent(GraphNode start, GraphNode find) {
         if (this.equals(start))
             return false;
         if (this.equals(find))
             return true;
         boolean output = false;
-        for (Edge e : edges) {
-            Node n = e.opposite(this);
+        for (GraphEdge e : edges) {
+            GraphNode n = e.opposite(this);
             output = output || n.isInSameComponent(start, find);
         }
         return output;
     }
 
-    public HashSet<Node> getNodesInComponent(HashSet<Node> set) {
+    public HashSet<GraphNode> getGraphNodesInComponent(HashSet<GraphNode> set) {
         if (set.contains(this))
-            return new HashSet<Node>();
+            return new HashSet<GraphNode>();
         set.add(this);
-        for (Edge e : edges) {
-            e.opposite(this).getNodesInComponent(set);
+        for (GraphEdge e : edges) {
+            e.opposite(this).getGraphNodesInComponent(set);
         }
         return set;
     }
 
-	public HashSet<Node> getNeighbors() {
-        HashSet<Node> set= new HashSet<Node>();
-        for (Edge e: edges){
+    public HashSet<GraphNode> getNeighbors() {
+        HashSet<GraphNode> set = new HashSet<GraphNode>();
+        for (GraphEdge e : edges) {
             set.add(e.opposite(this));
         }
         return set;
-	}
+    }
 }

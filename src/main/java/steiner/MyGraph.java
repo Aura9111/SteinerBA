@@ -19,44 +19,45 @@ import guru.nidi.graphviz.parse.Parser;
 public class MyGraph {
 
     public String path;
-    public HashMap<String, Node> nodes;
-    public HashMap<String, Edge> edges;
+    public HashMap<String, GraphNode> GraphNodes;
+    public HashMap<String, GraphEdge> edges;
     public int edgeCount;
-    public int nodeCount;
+    public int GraphNodeCount;
 
     public MyGraph(String name) {
-        this.path = "example/"+name;
-        this.nodes = new HashMap<>();
+        this.path = "example/" + name;
+        this.GraphNodes = new HashMap<>();
         this.edges = new HashMap<>();
         this.edgeCount = 0;
-        this.nodeCount = 0;
+        this.GraphNodeCount = 0;
     }
 
-    public MyGraph(HashMap<String, Node> nodes, HashMap<String, Edge> edges, String name) {
-        this.path = "example/"+ name;
-        this.nodes = nodes;
+    public MyGraph(HashMap<String, GraphNode> GraphNodes, HashMap<String, GraphEdge> edges, String name) {
+        this.path = "example/" + name;
+        this.GraphNodes = GraphNodes;
         this.edges = edges;
-        this.nodeCount = nodes.size();
+        this.GraphNodeCount = GraphNodes.size();
         this.edgeCount = edges.size();
     }
 
-    public void removeNode(String node) {
+    public void removeGraphNode(String GraphNode) {
 
     }
 
-    public void addNode(String node, boolean isTerminal) {
-        Node n = new Node(node, isTerminal);
-        nodes.put(node, n);
-        nodeCount++;
+    public void addNode(String GraphNode, boolean isTerminal) {
+        GraphNode n = new GraphNode(GraphNode, isTerminal);
+        GraphNodes.put(GraphNode, n);
+        GraphNodeCount++;
     }
 
-    public boolean addEdge(String node1, String node2, double weight) {
-        if (nodes.containsKey(node1) && nodes.containsKey(node2) && !edges.containsKey(node1 + "--" + node2)
-                && !edges.containsKey(node2 + "--" + node1)&&!node1.equals(node2)) {
-            Node n1 = nodes.get(node1);
-            Node n2 = nodes.get(node2);
-            String edgeName = node1 + "--" + node2;
-            Edge e = new Edge(edgeName, n1, n2, weight);
+    public boolean addEdge(String GraphNode1, String GraphNode2, double weight) {
+        if (GraphNodes.containsKey(GraphNode1) && GraphNodes.containsKey(GraphNode2)
+                && !edges.containsKey(GraphNode1 + "--" + GraphNode2)
+                && !edges.containsKey(GraphNode2 + "--" + GraphNode1) && !GraphNode1.equals(GraphNode2)) {
+            GraphNode n1 = GraphNodes.get(GraphNode1);
+            GraphNode n2 = GraphNodes.get(GraphNode2);
+            String edgeName = GraphNode1 + "--" + GraphNode2;
+            GraphEdge e = new GraphEdge(edgeName, n1, n2, weight);
             n1.addEdge(e);
             n2.addEdge(e);
             edges.put(edgeName, e);
@@ -65,41 +66,41 @@ public class MyGraph {
         return false;
     }
 
-    public Optional<Edge> removeEdge(String node1, String node2) {
-        if (edges.containsKey(node1 + "--" + node2)) {
+    public Optional<GraphEdge> removeEdge(String GraphNode1, String GraphNode2) {
+        if (edges.containsKey(GraphNode1 + "--" + GraphNode2)) {
             edgeCount--;
-            return Optional.of(edges.remove(node1 + "--" + node2));
+            return Optional.of(edges.remove(GraphNode1 + "--" + GraphNode2));
         }
-        if (edges.containsKey(node2 + "--" + node1)) {
+        if (edges.containsKey(GraphNode2 + "--" + GraphNode1)) {
             edgeCount--;
-            return Optional.of(edges.remove(node2 + "--" + node1));
+            return Optional.of(edges.remove(GraphNode2 + "--" + GraphNode1));
         }
         return Optional.empty();
     }
 
-    public Optional<Edge> getEdge(String node1, String node2) {
-        if (edges.containsKey(node1 + "--" + node2)) {
-            return Optional.of(edges.get(node1 + "--" + node2));
+    public Optional<GraphEdge> getEdge(String GraphNode1, String GraphNode2) {
+        if (edges.containsKey(GraphNode1 + "--" + GraphNode2)) {
+            return Optional.of(edges.get(GraphNode1 + "--" + GraphNode2));
         }
-        if (edges.containsKey(node2 + "--" + node1)) {
-            return Optional.of(edges.get(node2 + "--" + node1));
+        if (edges.containsKey(GraphNode2 + "--" + GraphNode1)) {
+            return Optional.of(edges.get(GraphNode2 + "--" + GraphNode1));
         }
         return Optional.empty();
     }
 
     public String toString() {
-        return "Hi I'm a Graph with " + edgeCount + " Edges and " + nodeCount + " Nodes\n";
+        return "Hi I'm a Graph with " + edgeCount + " Edges and " + GraphNodeCount + " GraphNodes\n";
     }
 
     public void writeDot() throws IOException {
         try (BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path + ".dot")))) {
             out.write("graph {");
             out.newLine();
-            for (Node n : nodes.values()) {
+            for (GraphNode n : GraphNodes.values()) {
                 out.write(n.getName() + (n.isTerminal() ? "[color=red]" : "[color=blue]"));
             }
 
-            for (Edge e : edges.values()) {
+            for (GraphEdge e : edges.values()) {
                 out.write(e.getName() + "[label=" + String.format("%.2f", e.getWeight()) + "]");
                 out.newLine();
             }
@@ -116,36 +117,36 @@ public class MyGraph {
         }
     }
 
-    public boolean inSameComponent(String node1, String node2) {
-        if (!nodes.containsKey(node1) || !nodes.containsKey(node2))
+    public boolean inSameComponent(String GraphNode1, String GraphNode2) {
+        if (!GraphNodes.containsKey(GraphNode1) || !GraphNodes.containsKey(GraphNode2))
             return false;
-        return nodes.get(node1).isInSameComponent(nodes.get(node2));
+        return GraphNodes.get(GraphNode1).isInSameComponent(GraphNodes.get(GraphNode2));
     }
 
     public int numberOfComponents() {
         int i = 0;
-        HashSet<Node> tmp = new HashSet<Node>(nodes.values());
+        HashSet<GraphNode> tmp = new HashSet<GraphNode>(GraphNodes.values());
         while (!tmp.isEmpty()) {
-            Iterator<Node> it = tmp.iterator();
-            tmp.removeAll(it.next().getNodesInComponent(new HashSet<Node>()));
+            Iterator<GraphNode> it = tmp.iterator();
+            tmp.removeAll(it.next().getGraphNodesInComponent(new HashSet<GraphNode>()));
             i++;
         }
         return i;
     }
 
-    public HashSet<Node> getNodesinComponent(String node) {
-        return nodes.get(node).getNodesInComponent(new HashSet<Node>());
+    public HashSet<GraphNode> getNodesinComponent(String GraphNode) {
+        return GraphNodes.get(GraphNode).getGraphNodesInComponent(new HashSet<GraphNode>());
     }
 
-    public HashSet<Node> getNodesNotinComponent(String node) {
-        HashSet<Node> tmp = new HashSet<Node>(nodes.values());
-        tmp.removeAll(nodes.get(node).getNodesInComponent(new HashSet<Node>()));
+    public HashSet<GraphNode> getNodesNotinComponent(String GraphNode) {
+        HashSet<GraphNode> tmp = new HashSet<GraphNode>(GraphNodes.values());
+        tmp.removeAll(GraphNodes.get(GraphNode).getGraphNodesInComponent(new HashSet<GraphNode>()));
         return tmp;
     }
 
-    public HashSet<Node> getNodesNotConnected(String node) {
-        HashSet<Node> tmp = new HashSet<Node>(nodes.values());
-        tmp.removeAll(nodes.get(node).getNeighbors());
+    public HashSet<GraphNode> getNodesNotConnected(String GraphNode) {
+        HashSet<GraphNode> tmp = new HashSet<GraphNode>(GraphNodes.values());
+        tmp.removeAll(GraphNodes.get(GraphNode).getNeighbors());
         return tmp;
     }
 }

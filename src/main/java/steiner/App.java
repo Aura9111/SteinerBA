@@ -57,9 +57,9 @@ public class App {
         }
         while (g.numberOfComponents() > 1) {
             String node1 = "" + RNGesus.nextInt(25);
-            HashSet<Node> set = g.getNodesNotinComponent(node1);
+            HashSet<GraphNode> set = g.getNodesNotinComponent(node1);
             int i = RNGesus.nextInt(set.size());
-            Iterator<Node> it = set.iterator();
+            Iterator<GraphNode> it = set.iterator();
             String node2 = it.next().getName();
             for (int j = 0; j < i - 1; j++) {
                 node2 = it.next().getName();
@@ -77,9 +77,9 @@ public class App {
         }
         while (g.numberOfComponents() > 1) {
             String node1 = "" + RNGesus.nextInt(25);
-            HashSet<Node> set = g.getNodesNotinComponent(node1);
+            HashSet<GraphNode> set = g.getNodesNotinComponent(node1);
             int i = RNGesus.nextInt(set.size());
-            Iterator<Node> it = set.iterator();
+            Iterator<GraphNode> it = set.iterator();
             String node2 = it.next().getName();
             for (int j = 0; j < i - 1; j++) {
                 node2 = it.next().getName();
@@ -88,7 +88,7 @@ public class App {
         }
         for (int i = 0; i < RNGesus.nextInt(25); i++) {
             String node1 = "" + RNGesus.nextInt(25);
-            HashSet<Node> set = g.getNodesNotConnected(node1);
+            HashSet<GraphNode> set = g.getNodesNotConnected(node1);
             String node2 = set.iterator().next().getName();
             g.addEdge(node1, node2, RNGesus.nextInt(25) + RNGesus.nextDouble());
         }
