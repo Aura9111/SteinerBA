@@ -24,16 +24,16 @@ public class MyGraph {
     public int edgeCount;
     public int nodeCount;
 
-    public MyGraph() {
-        this.path = "example/graph";
+    public MyGraph(String name) {
+        this.path = "example/"+name;
         this.nodes = new HashMap<>();
         this.edges = new HashMap<>();
         this.edgeCount = 0;
         this.nodeCount = 0;
     }
 
-    public MyGraph(HashMap<String, Node> nodes, HashMap<String, Edge> edges) {
-        this.path = "example/graph";
+    public MyGraph(HashMap<String, Node> nodes, HashMap<String, Edge> edges, String name) {
+        this.path = "example/"+ name;
         this.nodes = nodes;
         this.edges = edges;
         this.nodeCount = nodes.size();
@@ -52,7 +52,7 @@ public class MyGraph {
 
     public boolean addEdge(String node1, String node2, double weight) {
         if (nodes.containsKey(node1) && nodes.containsKey(node2) && !edges.containsKey(node1 + "--" + node2)
-                && !edges.containsKey(node2 + "--" + node1)) {
+                && !edges.containsKey(node2 + "--" + node1)&&!node1.equals(node2)) {
             Node n1 = nodes.get(node1);
             Node n2 = nodes.get(node2);
             String edgeName = node1 + "--" + node2;
@@ -112,7 +112,7 @@ public class MyGraph {
         writeDot();
         try (InputStream dot = new FileInputStream(path + ".dot")) {
             MutableGraph g = new Parser().read(dot);
-            Graphviz.fromGraph(g).width(800).render(Format.SVG).toFile(new File(path + ".svg"));
+            Graphviz.fromGraph(g).width(1920).render(Format.SVG).toFile(new File(path + ".svg"));
         }
     }
 
