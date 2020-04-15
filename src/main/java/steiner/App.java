@@ -7,8 +7,10 @@ import java.util.Random;
 public class App {
 
     public static void main(String[] args) throws Exception {
-        MyGraph g = createConnectedGraph25N();
+        Graph g = createConnectedGraph25N();
         g.printGraph();
+        Tree t= new Tree(g.getHighestDegreeNode());
+        t.printGraph();
         g = createConnectedGraphWithCircles25N();
         g.printGraph();
         g = createMaximumGraph10N();
@@ -19,8 +21,8 @@ public class App {
         g.printGraph();
     }
 
-    public static MyGraph createRandom50N() {
-        MyGraph g = new MyGraph("Random50N");
+    public static Graph createRandom50N() {
+        Graph g = new Graph("Random50N");
         Random RNGesus = new Random();
         for (int i = 0; i < 50; i++) {
             g.addNode("" + i, RNGesus.nextBoolean());
@@ -34,8 +36,8 @@ public class App {
         return g;
     }
 
-    public static MyGraph createRandom25N() {
-        MyGraph g = new MyGraph("Random25N");
+    public static Graph createRandom25N() {
+        Graph g = new Graph("Random25N");
         Random RNGesus = new Random();
         for (int i = 0; i < 25; i++) {
             g.addNode("" + i, RNGesus.nextBoolean());
@@ -49,17 +51,17 @@ public class App {
         return g;
     }
 
-    public static MyGraph createConnectedGraph25N() {
-        MyGraph g = new MyGraph("ConnectedGraph25N");
+    public static Graph createConnectedGraph25N() {
+        Graph g = new Graph("ConnectedGraph25N");
         Random RNGesus = new Random();
         for (int i = 0; i < 25; i++) {
             g.addNode("" + i, RNGesus.nextBoolean());
         }
         while (g.numberOfComponents() > 1) {
             String node1 = "" + RNGesus.nextInt(25);
-            HashSet<GraphNode> set = g.getNodesNotinComponent(node1);
+            HashSet<Node> set = g.getNodesNotinComponent(node1);
             int i = RNGesus.nextInt(set.size());
-            Iterator<GraphNode> it = set.iterator();
+            Iterator<Node> it = set.iterator();
             String node2 = it.next().getName();
             for (int j = 0; j < i - 1; j++) {
                 node2 = it.next().getName();
@@ -69,17 +71,17 @@ public class App {
         return g;
     }
 
-    public static MyGraph createConnectedGraphWithCircles25N() {
-        MyGraph g = new MyGraph("ConnectedGraphWithCircles25N");
+    public static Graph createConnectedGraphWithCircles25N() {
+        Graph g = new Graph("ConnectedGraphWithCircles25N");
         Random RNGesus = new Random();
         for (int i = 0; i < 25; i++) {
             g.addNode("" + i, RNGesus.nextBoolean());
         }
         while (g.numberOfComponents() > 1) {
             String node1 = "" + RNGesus.nextInt(25);
-            HashSet<GraphNode> set = g.getNodesNotinComponent(node1);
+            HashSet<Node> set = g.getNodesNotinComponent(node1);
             int i = RNGesus.nextInt(set.size());
-            Iterator<GraphNode> it = set.iterator();
+            Iterator<Node> it = set.iterator();
             String node2 = it.next().getName();
             for (int j = 0; j < i - 1; j++) {
                 node2 = it.next().getName();
@@ -88,15 +90,15 @@ public class App {
         }
         for (int i = 0; i < RNGesus.nextInt(25); i++) {
             String node1 = "" + RNGesus.nextInt(25);
-            HashSet<GraphNode> set = g.getNodesNotConnected(node1);
+            HashSet<Node> set = g.getNonNeighborNodes(node1);
             String node2 = set.iterator().next().getName();
             g.addEdge(node1, node2, RNGesus.nextInt(25) + RNGesus.nextDouble());
         }
         return g;
     }
 
-    public static MyGraph createMaximumGraph10N() {
-        MyGraph g = new MyGraph("MaximumGraph10N");
+    public static Graph createMaximumGraph10N() {
+        Graph g = new Graph("MaximumGraph10N");
         Random RNGesus = new Random();
         for (int i = 0; i < 10; i++) {
             g.addNode("" + i, RNGesus.nextBoolean());

@@ -1,13 +1,13 @@
 package steiner;
 
-public class GraphEdge {
+public class Edge {
 
     private String name;
-    private GraphNode first;
-    private GraphNode second;
+    public Node first;
+    public Node second;
     private double weight;
 
-    public GraphEdge(String name, GraphNode n1, GraphNode n2, double weight) {
+    public Edge(String name, Node n1, Node n2, double weight) {
         this.name = name;
         this.first = n1;
         this.second = n2;
@@ -22,18 +22,17 @@ public class GraphEdge {
         return weight;
     }
 
-    @Override
     public boolean equals(Object o) {
         if (o == this)
             return true;
         if (o.getClass() != this.getClass())
             return false;
-        GraphEdge other = (GraphEdge) o;
+        Edge other = (Edge) o;
         return ((this.first == other.first && this.second == other.second)
                 || (this.first == other.second && this.second == other.first));
     }
 
-    public boolean contains(GraphNode n) {
+    public boolean contains(Node n) {
         return n == this.first || n == this.second;
     }
 
@@ -41,7 +40,7 @@ public class GraphEdge {
         return name;
     }
 
-    public GraphNode opposite(GraphNode GraphNode) {
-        return first.equals(GraphNode) ? second : first;
+    public Node opposite(Node node) {
+        return first.equals(node) ? second : first;
     }
 }

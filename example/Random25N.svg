@@ -1,433 +1,415 @@
-<svg width="1920px" height="4377px"
- viewBox="0.00 0.00 690.00 1572.80" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(4 1568.8)">
+<svg width="1920px" height="2148px"
+ viewBox="0.00 0.00 849.50 951.20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(4 947.2)">
 <title>%0</title>
-<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-1568.8 686,-1568.8 686,4 -4,4"/>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-947.2 845.5,-947.2 845.5,4 -4,4"/>
 <!-- 22 -->
 <g id="node1" class="node">
 <title>22</title>
-<ellipse fill="none" stroke="#0000ff" cx="174" cy="-1546.8" rx="27" ry="18"/>
-<text text-anchor="middle" x="174" y="-1542.6" font-family="Times,serif" font-size="14.00" fill="#000000">22</text>
-</g>
-<!-- 8 -->
-<g id="node2" class="node">
-<title>8</title>
-<ellipse fill="none" stroke="#ff0000" cx="174" cy="-1458" rx="27" ry="18"/>
-<text text-anchor="middle" x="174" y="-1453.8" font-family="Times,serif" font-size="14.00" fill="#000000">8</text>
-</g>
-<!-- 22&#45;&#45;8 -->
-<g id="edge1" class="edge">
-<title>22&#45;&#45;8</title>
-<path fill="none" stroke="#000000" d="M174,-1528.4006C174,-1513.0587 174,-1491.322 174,-1476.072"/>
-<text text-anchor="middle" x="186.25" y="-1498.2" font-family="Times,serif" font-size="14.00" fill="#000000">1.54</text>
+<ellipse fill="none" stroke="#0000ff" cx="314" cy="-462" rx="27" ry="18"/>
+<text text-anchor="middle" x="314" y="-457.8" font-family="Times,serif" font-size="14.00" fill="#000000">22</text>
 </g>
 <!-- 18 -->
-<g id="node4" class="node">
+<g id="node2" class="node">
 <title>18</title>
-<ellipse fill="none" stroke="#ff0000" cx="586" cy="-1280.4" rx="27" ry="18"/>
-<text text-anchor="middle" x="586" y="-1276.2" font-family="Times,serif" font-size="14.00" fill="#000000">18</text>
+<ellipse fill="none" stroke="#0000ff" cx="572" cy="-373.2" rx="27" ry="18"/>
+<text text-anchor="middle" x="572" y="-369" font-family="Times,serif" font-size="14.00" fill="#000000">18</text>
 </g>
 <!-- 22&#45;&#45;18 -->
-<g id="edge3" class="edge">
+<g id="edge1" class="edge">
 <title>22&#45;&#45;18</title>
-<path fill="none" stroke="#000000" d="M193.5944,-1534.1302C262.9984,-1489.2534 496.6927,-1338.1463 566.2856,-1293.1474"/>
-<text text-anchor="middle" x="402.25" y="-1409.4" font-family="Times,serif" font-size="14.00" fill="#000000">5.34</text>
-</g>
-<!-- 13 -->
-<g id="node14" class="node">
-<title>13</title>
-<ellipse fill="none" stroke="#0000ff" cx="276" cy="-550.8" rx="27" ry="18"/>
-<text text-anchor="middle" x="276" y="-546.6" font-family="Times,serif" font-size="14.00" fill="#000000">13</text>
-</g>
-<!-- 22&#45;&#45;13 -->
-<g id="edge2" class="edge">
-<title>22&#45;&#45;13</title>
-<path fill="none" stroke="#000000" d="M155.2024,-1533.2723C128.4975,-1512.7557 80.7391,-1470.9372 62,-1422 45.2166,-1378.1702 54.2909,-1362.6959 62,-1316.4 77.0939,-1225.7562 103.8782,-1209.1913 129,-1120.8 161.2995,-1007.1541 188,-979.7467 188,-861.6 188,-861.6 188,-861.6 188,-684 188,-633.2797 232.9681,-587.0082 258.614,-564.7432"/>
-<text text-anchor="middle" x="174.75" y="-1044.6" font-family="Times,serif" font-size="14.00" fill="#000000">15.57</text>
+<path fill="none" stroke="#000000" d="M338.272,-453.6459C387.5701,-436.6782 498.8949,-398.3618 547.9804,-381.4672"/>
+<text text-anchor="middle" x="478.25" y="-413.4" font-family="Times,serif" font-size="14.00" fill="#000000">8.79</text>
 </g>
 <!-- 3 -->
 <g id="node3" class="node">
 <title>3</title>
-<ellipse fill="none" stroke="#ff0000" cx="143" cy="-1369.2" rx="27" ry="18"/>
-<text text-anchor="middle" x="143" y="-1365" font-family="Times,serif" font-size="14.00" fill="#000000">3</text>
+<ellipse fill="none" stroke="#0000ff" cx="587" cy="-106.8" rx="27" ry="18"/>
+<text text-anchor="middle" x="587" y="-102.6" font-family="Times,serif" font-size="14.00" fill="#000000">3</text>
 </g>
-<!-- 8&#45;&#45;3 -->
-<g id="edge4" class="edge">
-<title>8&#45;&#45;3</title>
-<path fill="none" stroke="#000000" d="M162.3981,-1441.423C158.7381,-1435.523 155.0011,-1428.6814 152.5,-1422 148.3204,-1410.8349 145.9454,-1397.6349 144.6153,-1387.2262"/>
-<text text-anchor="middle" x="168.75" y="-1409.4" font-family="Times,serif" font-size="14.00" fill="#000000">12.19</text>
+<!-- 18&#45;&#45;3 -->
+<g id="edge2" class="edge">
+<title>18&#45;&#45;3</title>
+<path fill="none" stroke="#000000" d="M573.031,-354.8892C575.7779,-306.1046 583.2493,-173.4132 585.9816,-124.8866"/>
+<text text-anchor="middle" x="591.25" y="-235.8" font-family="Times,serif" font-size="14.00" fill="#000000">5.37</text>
 </g>
-<!-- 20 -->
-<g id="node5" class="node">
-<title>20</title>
-<ellipse fill="none" stroke="#0000ff" cx="655" cy="-1191.6" rx="27" ry="18"/>
-<text text-anchor="middle" x="655" y="-1187.4" font-family="Times,serif" font-size="14.00" fill="#000000">20</text>
+<!-- 4 -->
+<g id="node4" class="node">
+<title>4</title>
+<ellipse fill="none" stroke="#0000ff" cx="496" cy="-284.4" rx="27" ry="18"/>
+<text text-anchor="middle" x="496" y="-280.2" font-family="Times,serif" font-size="14.00" fill="#000000">4</text>
 </g>
-<!-- 8&#45;&#45;20 -->
-<g id="edge7" class="edge">
-<title>8&#45;&#45;20</title>
-<path fill="none" stroke="#000000" d="M201.0512,-1455.7969C277.2621,-1448.207 496.3495,-1416.6788 622,-1298.4 646.7289,-1275.1219 653.0697,-1233.7616 654.6065,-1209.9188"/>
-<text text-anchor="middle" x="612.25" y="-1320.6" font-family="Times,serif" font-size="14.00" fill="#000000">1.80</text>
-</g>
-<!-- 0 -->
-<g id="node9" class="node">
-<title>0</title>
-<ellipse fill="none" stroke="#0000ff" cx="389" cy="-906" rx="27" ry="18"/>
-<text text-anchor="middle" x="389" y="-901.8" font-family="Times,serif" font-size="14.00" fill="#000000">0</text>
-</g>
-<!-- 8&#45;&#45;0 -->
-<g id="edge5" class="edge">
-<title>8&#45;&#45;0</title>
-<path fill="none" stroke="#000000" d="M181.5938,-1440.6827C188.625,-1423.0513 198,-1394.7517 198,-1369.2 198,-1369.2 198,-1369.2 198,-1147.2 198,-1037.9678 319.8821,-949.335 368.9207,-918.0948"/>
-<text text-anchor="middle" x="213.75" y="-1187.4" font-family="Times,serif" font-size="14.00" fill="#000000">15.56</text>
-</g>
-<!-- 16 -->
-<g id="node23" class="node">
-<title>16</title>
-<ellipse fill="none" stroke="#0000ff" cx="405" cy="-18" rx="27" ry="18"/>
-<text text-anchor="middle" x="405" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">16</text>
-</g>
-<!-- 8&#45;&#45;16 -->
-<g id="edge6" class="edge">
-<title>8&#45;&#45;16</title>
-<path fill="none" stroke="#000000" d="M148.6989,-1451.4428C100.4404,-1437.241 0,-1398.7946 0,-1324.8 0,-1324.8 0,-1324.8 0,-106.8 0,-67.9743 287.6582,-31.5194 378.1132,-21.0158"/>
-<text text-anchor="middle" x="15.75" y="-724.2" font-family="Times,serif" font-size="14.00" fill="#000000">24.68</text>
-</g>
-<!-- 3&#45;&#45;18 -->
-<g id="edge8" class="edge">
-<title>3&#45;&#45;18</title>
-<path fill="none" stroke="#000000" d="M169.0578,-1363.9767C247.6035,-1348.2321 481.4725,-1301.3527 559.975,-1285.6167"/>
-<text text-anchor="middle" x="417.25" y="-1320.6" font-family="Times,serif" font-size="14.00" fill="#000000">9.32</text>
-</g>
-<!-- 18&#45;&#45;20 -->
-<g id="edge9" class="edge">
-<title>18&#45;&#45;20</title>
-<path fill="none" stroke="#000000" d="M596.1125,-1263.2022C602.6164,-1252.6006 611.5079,-1238.9164 620.5,-1227.6 626.3163,-1220.2803 633.3654,-1212.7294 639.5719,-1206.4451"/>
-<text text-anchor="middle" x="633.25" y="-1231.8" font-family="Times,serif" font-size="14.00" fill="#000000">9.87</text>
-</g>
-<!-- 2 -->
-<g id="node6" class="node">
-<title>2</title>
-<ellipse fill="none" stroke="#ff0000" cx="463" cy="-1191.6" rx="27" ry="18"/>
-<text text-anchor="middle" x="463" y="-1187.4" font-family="Times,serif" font-size="14.00" fill="#000000">2</text>
-</g>
-<!-- 18&#45;&#45;2 -->
-<g id="edge10" class="edge">
-<title>18&#45;&#45;2</title>
-<path fill="none" stroke="#000000" d="M567.5857,-1267.1057C544.3977,-1250.3651 504.7875,-1221.7685 481.5402,-1204.9851"/>
-<text text-anchor="middle" x="551.75" y="-1231.8" font-family="Times,serif" font-size="14.00" fill="#000000">11.04</text>
-</g>
-<!-- 24 -->
-<g id="node7" class="node">
-<title>24</title>
-<ellipse fill="none" stroke="#0000ff" cx="434" cy="-1102.8" rx="27" ry="18"/>
-<text text-anchor="middle" x="434" y="-1098.6" font-family="Times,serif" font-size="14.00" fill="#000000">24</text>
-</g>
-<!-- 2&#45;&#45;24 -->
-<g id="edge11" class="edge">
-<title>2&#45;&#45;24</title>
-<path fill="none" stroke="#000000" d="M457.1314,-1173.63C452.0669,-1158.1222 444.7937,-1135.8511 439.7609,-1120.4402"/>
-<text text-anchor="middle" x="467.75" y="-1143" font-family="Times,serif" font-size="14.00" fill="#000000">15.40</text>
-</g>
-<!-- 23 -->
-<g id="node16" class="node">
-<title>23</title>
-<ellipse fill="none" stroke="#0000ff" cx="205" cy="-373.2" rx="27" ry="18"/>
-<text text-anchor="middle" x="205" y="-369" font-family="Times,serif" font-size="14.00" fill="#000000">23</text>
-</g>
-<!-- 2&#45;&#45;23 -->
-<g id="edge12" class="edge">
-<title>2&#45;&#45;23</title>
-<path fill="none" stroke="#000000" d="M439.6464,-1182.0812C425.631,-1175.7427 407.8884,-1166.5731 394,-1155.6 353.0118,-1123.2157 338.8129,-1114.2655 317,-1066.8 243.605,-907.09 287.3411,-849.0673 259,-675.6 257.8311,-668.4452 219.6693,-455.1648 208.2173,-391.1758"/>
-<text text-anchor="middle" x="282.25" y="-768.6" font-family="Times,serif" font-size="14.00" fill="#000000">4.25</text>
-</g>
-<!-- 17 -->
-<g id="node18" class="node">
-<title>17</title>
-<ellipse fill="none" stroke="#ff0000" cx="411" cy="-373.2" rx="27" ry="18"/>
-<text text-anchor="middle" x="411" y="-369" font-family="Times,serif" font-size="14.00" fill="#000000">17</text>
-</g>
-<!-- 2&#45;&#45;17 -->
-<g id="edge14" class="edge">
-<title>2&#45;&#45;17</title>
-<path fill="none" stroke="#000000" d="M478.3017,-1176.4303C493.3241,-1159.8553 514,-1131.7787 514,-1102.8 514,-1102.8 514,-1102.8 514,-861.6 514,-800.1705 552.7561,-647.6022 544,-586.8 534.5704,-521.3207 539.2351,-498.681 502,-444 483.9736,-417.5275 452.9333,-396.4894 432.1881,-384.4335"/>
-<text text-anchor="middle" x="541.75" y="-768.6" font-family="Times,serif" font-size="14.00" fill="#000000">19.94</text>
-</g>
-<!-- 12 -->
-<g id="node20" class="node">
-<title>12</title>
-<ellipse fill="none" stroke="#0000ff" cx="425" cy="-195.6" rx="27" ry="18"/>
-<text text-anchor="middle" x="425" y="-191.4" font-family="Times,serif" font-size="14.00" fill="#000000">12</text>
-</g>
-<!-- 2&#45;&#45;12 -->
-<g id="edge13" class="edge">
-<title>2&#45;&#45;12</title>
-<path fill="none" stroke="#000000" d="M438.205,-1184.2301C418.7451,-1177.9499 391.3081,-1167.9819 369,-1155.6 346.5854,-1143.159 339.0868,-1140.7601 323,-1120.8 306.4039,-1100.2081 307.5461,-1091.4643 298,-1066.8 238.7876,-913.8134 257.7242,-864.6913 202,-710.4 153.1959,-575.2693 65,-561.2737 65,-417.6 65,-417.6 65,-417.6 65,-284.4 65,-215.8424 314.2194,-199.8948 397.9415,-196.4717"/>
-<text text-anchor="middle" x="210.75" y="-679.8" font-family="Times,serif" font-size="14.00" fill="#000000">13.61</text>
+<!-- 18&#45;&#45;4 -->
+<g id="edge3" class="edge">
+<title>18&#45;&#45;4</title>
+<path fill="none" stroke="#000000" d="M555.1798,-358.8238C548.1639,-352.4918 540.1241,-344.7793 533.5,-337.2 523.5855,-325.8558 513.7757,-311.9211 506.6775,-301.2159"/>
+<text text-anchor="middle" x="545.25" y="-324.6" font-family="Times,serif" font-size="14.00" fill="#000000">3.16</text>
 </g>
 <!-- 9 -->
-<g id="node22" class="node">
+<g id="node9" class="node">
 <title>9</title>
-<ellipse fill="none" stroke="#ff0000" cx="605" cy="-18" rx="27" ry="18"/>
-<text text-anchor="middle" x="605" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">9</text>
+<ellipse fill="none" stroke="#0000ff" cx="654" cy="-284.4" rx="27" ry="18"/>
+<text text-anchor="middle" x="654" y="-280.2" font-family="Times,serif" font-size="14.00" fill="#000000">9</text>
 </g>
-<!-- 2&#45;&#45;9 -->
-<g id="edge15" class="edge">
-<title>2&#45;&#45;9</title>
-<path fill="none" stroke="#000000" d="M489.0425,-1186.2226C507.983,-1181.1403 533.1554,-1171.8065 550,-1155.6 562.2673,-1143.7975 560.9103,-1137.0444 566,-1120.8 589.4857,-1045.842 628,-851.3511 628,-772.8 628,-772.8 628,-772.8 628,-106.8 628,-81.3194 619.0156,-53.002 612.2773,-35.3472"/>
-<text text-anchor="middle" x="643.75" y="-591" font-family="Times,serif" font-size="14.00" fill="#000000">20.35</text>
+<!-- 18&#45;&#45;9 -->
+<g id="edge4" class="edge">
+<title>18&#45;&#45;9</title>
+<path fill="none" stroke="#000000" d="M581.2197,-355.9663C587.5093,-345.0944 596.4928,-331.1309 606.5,-320.4 614.6862,-311.6218 625.2064,-303.4072 634.2647,-297.0479"/>
+<text text-anchor="middle" x="621.75" y="-324.6" font-family="Times,serif" font-size="14.00" fill="#000000">18.70</text>
 </g>
-<!-- 7 -->
-<g id="node24" class="node">
-<title>7</title>
-<ellipse fill="none" stroke="#0000ff" cx="353" cy="-1048.8" rx="27" ry="18"/>
-<text text-anchor="middle" x="353" y="-1044.6" font-family="Times,serif" font-size="14.00" fill="#000000">7</text>
+<!-- 23 -->
+<g id="node5" class="node">
+<title>23</title>
+<ellipse fill="none" stroke="#0000ff" cx="477" cy="-195.6" rx="27" ry="18"/>
+<text text-anchor="middle" x="477" y="-191.4" font-family="Times,serif" font-size="14.00" fill="#000000">23</text>
 </g>
-<!-- 2&#45;&#45;7 -->
-<g id="edge16" class="edge">
-<title>2&#45;&#45;7</title>
-<path fill="none" stroke="#000000" d="M441.7954,-1180.2684C431.4513,-1173.9933 419.3618,-1165.4665 410.5,-1155.6 386.1566,-1128.4967 368.4557,-1089.2517 359.5367,-1066.6529"/>
-<text text-anchor="middle" x="426.75" y="-1143" font-family="Times,serif" font-size="14.00" fill="#000000">20.14</text>
+<!-- 4&#45;&#45;23 -->
+<g id="edge5" class="edge">
+<title>4&#45;&#45;23</title>
+<path fill="none" stroke="#000000" d="M490.9808,-266.5236C489.4441,-260.7618 487.8142,-254.3323 486.5,-248.4 483.9617,-236.9423 481.6207,-223.9726 479.8977,-213.7548"/>
+<text text-anchor="middle" x="501.75" y="-235.8" font-family="Times,serif" font-size="14.00" fill="#000000">18.83</text>
 </g>
-<!-- 15 -->
-<g id="node8" class="node">
-<title>15</title>
-<ellipse fill="none" stroke="#0000ff" cx="389" cy="-994.8" rx="27" ry="18"/>
-<text text-anchor="middle" x="389" y="-990.6" font-family="Times,serif" font-size="14.00" fill="#000000">15</text>
+<!-- 23&#45;&#45;3 -->
+<g id="edge6" class="edge">
+<title>23&#45;&#45;3</title>
+<path fill="none" stroke="#000000" d="M472.7012,-177.7733C471.1,-166.665 471.1673,-152.6607 478.5,-142.8 488.4481,-129.4223 532.0664,-118.0989 560.8784,-111.8949"/>
+<text text-anchor="middle" x="493.75" y="-147" font-family="Times,serif" font-size="14.00" fill="#000000">16.89</text>
 </g>
-<!-- 24&#45;&#45;15 -->
-<g id="edge17" class="edge">
-<title>24&#45;&#45;15</title>
-<path fill="none" stroke="#000000" d="M426.77,-1085.4479C418.4222,-1065.4132 404.7647,-1032.6353 396.3616,-1012.4678"/>
-<text text-anchor="middle" x="434.75" y="-1044.6" font-family="Times,serif" font-size="14.00" fill="#000000">20.53</text>
+<!-- 5 -->
+<g id="node6" class="node">
+<title>5</title>
+<ellipse fill="none" stroke="#0000ff" cx="219" cy="-106.8" rx="27" ry="18"/>
+<text text-anchor="middle" x="219" y="-102.6" font-family="Times,serif" font-size="14.00" fill="#000000">5</text>
 </g>
-<!-- 15&#45;&#45;8 -->
-<g id="edge19" class="edge">
-<title>15&#45;&#45;8</title>
-<path fill="none" stroke="#000000" d="M364.6502,-1002.6127C349.4863,-1008.4546 330.3867,-1017.7043 317,-1030.8 249.166,-1097.1595 258,-1141.1051 258,-1236 258,-1369.2 258,-1369.2 258,-1369.2 258,-1405.4886 220.5207,-1432.9189 195.6321,-1447.1337"/>
-<text text-anchor="middle" x="273.75" y="-1231.8" font-family="Times,serif" font-size="14.00" fill="#000000">24.51</text>
+<!-- 23&#45;&#45;5 -->
+<g id="edge7" class="edge">
+<title>23&#45;&#45;5</title>
+<path fill="none" stroke="#000000" d="M455.8579,-184.2063C433.5358,-172.5406 397.0686,-154.5063 364,-142.8 323.4113,-128.4316 274.4927,-117.5603 245.1135,-111.6922"/>
+<text text-anchor="middle" x="420.75" y="-147" font-family="Times,serif" font-size="14.00" fill="#000000">14.15</text>
 </g>
-<!-- 15&#45;&#45;0 -->
-<g id="edge18" class="edge">
-<title>15&#45;&#45;0</title>
-<path fill="none" stroke="#000000" d="M389,-976.4006C389,-961.0587 389,-939.322 389,-924.072"/>
-<text text-anchor="middle" x="404.75" y="-946.2" font-family="Times,serif" font-size="14.00" fill="#000000">13.24</text>
+<!-- 5&#45;&#45;22 -->
+<g id="edge8" class="edge">
+<title>5&#45;&#45;22</title>
+<path fill="none" stroke="#000000" d="M236.0652,-120.9076C253.4902,-136.9984 278,-165.0597 278,-195.6 278,-373.2 278,-373.2 278,-373.2 278,-399.983 292.2388,-428.2004 302.8067,-445.4548"/>
+<text text-anchor="middle" x="290.25" y="-280.2" font-family="Times,serif" font-size="14.00" fill="#000000">8.91</text>
 </g>
-<!-- 14 -->
-<g id="node10" class="node">
-<title>14</title>
-<ellipse fill="none" stroke="#0000ff" cx="444" cy="-817.2" rx="27" ry="18"/>
-<text text-anchor="middle" x="444" y="-813" font-family="Times,serif" font-size="14.00" fill="#000000">14</text>
-</g>
-<!-- 0&#45;&#45;14 -->
-<g id="edge20" class="edge">
-<title>0&#45;&#45;14</title>
-<path fill="none" stroke="#000000" d="M399.3451,-889.2974C409.116,-873.5218 423.6976,-849.9792 433.5143,-834.1296"/>
-<text text-anchor="middle" x="437.75" y="-857.4" font-family="Times,serif" font-size="14.00" fill="#000000">18.84</text>
-</g>
-<!-- 1 -->
-<g id="node11" class="node">
-<title>1</title>
-<ellipse fill="none" stroke="#0000ff" cx="573" cy="-728.4" rx="27" ry="18"/>
-<text text-anchor="middle" x="573" y="-724.2" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
-</g>
-<!-- 14&#45;&#45;1 -->
-<g id="edge21" class="edge">
-<title>14&#45;&#45;1</title>
-<path fill="none" stroke="#000000" d="M449.4707,-799.3516C453.7947,-787.9484 460.893,-773.6232 471.5,-764.4 492.8047,-745.8747 524.29,-736.6785 546.5337,-732.2512"/>
-<text text-anchor="middle" x="484.25" y="-768.6" font-family="Times,serif" font-size="14.00" fill="#000000">1.96</text>
-</g>
-<!-- 11 -->
-<g id="node12" class="node">
-<title>11</title>
-<ellipse fill="none" stroke="#0000ff" cx="447" cy="-728.4" rx="27" ry="18"/>
-<text text-anchor="middle" x="447" y="-724.2" font-family="Times,serif" font-size="14.00" fill="#000000">11</text>
-</g>
-<!-- 14&#45;&#45;11 -->
-<g id="edge22" class="edge">
-<title>14&#45;&#45;11</title>
-<path fill="none" stroke="#000000" d="M431.6252,-800.7939C425.3647,-790.4902 419.7988,-776.8411 423.5,-764.4 425.6283,-757.2461 429.6797,-750.188 433.827,-744.2425"/>
-<text text-anchor="middle" x="436.25" y="-768.6" font-family="Times,serif" font-size="14.00" fill="#000000">9.47</text>
-</g>
-<!-- 1&#45;&#45;18 -->
-<g id="edge24" class="edge">
-<title>1&#45;&#45;18</title>
-<path fill="none" stroke="#000000" d="M577.5039,-746.2451C586.4499,-782.7166 606.1826,-868.5576 613,-942 621.7807,-1036.5932 614.0923,-1061.0362 605,-1155.6 601.3292,-1193.7775 593.7984,-1238.0783 589.4003,-1262.2903"/>
-<text text-anchor="middle" x="632.75" y="-990.6" font-family="Times,serif" font-size="14.00" fill="#000000">18.71</text>
-</g>
-<!-- 1&#45;&#45;2 -->
-<g id="edge23" class="edge">
-<title>1&#45;&#45;2</title>
-<path fill="none" stroke="#000000" d="M568.3394,-746.3559C562.1526,-771.81 552,-819.9291 552,-861.6 552,-1102.8 552,-1102.8 552,-1102.8 552,-1128.5772 545.4917,-1136.6658 528,-1155.6 516.708,-1167.8233 500.2913,-1176.869 486.7819,-1182.8357"/>
-<text text-anchor="middle" x="567.75" y="-946.2" font-family="Times,serif" font-size="14.00" fill="#000000">17.85</text>
+<!-- 5&#45;&#45;4 -->
+<g id="edge10" class="edge">
+<title>5&#45;&#45;4</title>
+<path fill="none" stroke="#000000" d="M241.4934,-116.8343C256.1624,-123.6339 275.5642,-133.1156 292,-142.8 363.8736,-185.1498 443.6445,-244.378 478.3111,-270.7738"/>
+<text text-anchor="middle" x="411.25" y="-191.4" font-family="Times,serif" font-size="14.00" fill="#000000">6.72</text>
 </g>
 <!-- 6 -->
-<g id="node13" class="node">
+<g id="node7" class="node">
 <title>6</title>
-<ellipse fill="none" stroke="#ff0000" cx="465" cy="-639.6" rx="27" ry="18"/>
-<text text-anchor="middle" x="465" y="-635.4" font-family="Times,serif" font-size="14.00" fill="#000000">6</text>
+<ellipse fill="none" stroke="#ff0000" cx="219" cy="-18" rx="27" ry="18"/>
+<text text-anchor="middle" x="219" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">6</text>
 </g>
-<!-- 11&#45;&#45;6 -->
-<g id="edge25" class="edge">
-<title>11&#45;&#45;6</title>
-<path fill="none" stroke="#000000" d="M450.6426,-710.43C453.7655,-695.0236 458.2415,-672.942 461.3628,-657.5433"/>
-<text text-anchor="middle" x="473.75" y="-679.8" font-family="Times,serif" font-size="14.00" fill="#000000">15.46</text>
+<!-- 5&#45;&#45;6 -->
+<g id="edge9" class="edge">
+<title>5&#45;&#45;6</title>
+<path fill="none" stroke="#000000" d="M219,-88.4006C219,-73.0587 219,-51.322 219,-36.072"/>
+<text text-anchor="middle" x="234.75" y="-58.2" font-family="Times,serif" font-size="14.00" fill="#000000">17.53</text>
 </g>
-<!-- 6&#45;&#45;13 -->
-<g id="edge26" class="edge">
-<title>6&#45;&#45;13</title>
-<path fill="none" stroke="#000000" d="M439.534,-633.0327C417.2958,-626.8424 384.4512,-616.5858 357.5,-603.6 334.4142,-592.4766 310.0108,-575.9482 293.9932,-564.3546"/>
-<text text-anchor="middle" x="373.75" y="-591" font-family="Times,serif" font-size="14.00" fill="#000000">10.49</text>
+<!-- 13 -->
+<g id="node8" class="node">
+<title>13</title>
+<ellipse fill="none" stroke="#ff0000" cx="27" cy="-18" rx="27" ry="18"/>
+<text text-anchor="middle" x="27" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">13</text>
 </g>
-<!-- 13&#45;&#45;11 -->
-<g id="edge28" class="edge">
-<title>13&#45;&#45;11</title>
-<path fill="none" stroke="#000000" d="M290.3935,-566.0946C300.3588,-576.6604 313.9466,-591.0207 326,-603.6 363.9999,-643.2577 409.126,-689.605 432.0393,-713.0859"/>
-<text text-anchor="middle" x="393.75" y="-635.4" font-family="Times,serif" font-size="14.00" fill="#000000">16.64</text>
+<!-- 5&#45;&#45;13 -->
+<g id="edge11" class="edge">
+<title>5&#45;&#45;13</title>
+<path fill="none" stroke="#000000" d="M196.5994,-96.4397C159.603,-79.3289 86.1604,-45.3617 49.2579,-28.2943"/>
+<text text-anchor="middle" x="156.75" y="-58.2" font-family="Times,serif" font-size="14.00" fill="#000000">13.94</text>
+</g>
+<!-- 6&#45;&#45;4 -->
+<g id="edge12" class="edge">
+<title>6&#45;&#45;4</title>
+<path fill="none" stroke="#000000" d="M245.8547,-20.5834C304.8435,-27.8298 445.5897,-54.0411 510,-142.8 543.0597,-188.357 526.3654,-218.6685 518,-248.4 516.0558,-255.3099 512.3761,-262.205 508.5746,-268.0841"/>
+<text text-anchor="middle" x="532.25" y="-147" font-family="Times,serif" font-size="14.00" fill="#000000">1.64</text>
+</g>
+<!-- 7 -->
+<g id="node10" class="node">
+<title>7</title>
+<ellipse fill="none" stroke="#0000ff" cx="669" cy="-195.6" rx="27" ry="18"/>
+<text text-anchor="middle" x="669" y="-191.4" font-family="Times,serif" font-size="14.00" fill="#000000">7</text>
+</g>
+<!-- 9&#45;&#45;7 -->
+<g id="edge13" class="edge">
+<title>9&#45;&#45;7</title>
+<path fill="none" stroke="#000000" d="M657.0355,-266.43C659.6379,-251.0236 663.3679,-228.942 665.969,-213.5433"/>
+<text text-anchor="middle" x="677.75" y="-235.8" font-family="Times,serif" font-size="14.00" fill="#000000">20.65</text>
+</g>
+<!-- 8 -->
+<g id="node11" class="node">
+<title>8</title>
+<ellipse fill="none" stroke="#ff0000" cx="673" cy="-106.8" rx="27" ry="18"/>
+<text text-anchor="middle" x="673" y="-102.6" font-family="Times,serif" font-size="14.00" fill="#000000">8</text>
+</g>
+<!-- 7&#45;&#45;8 -->
+<g id="edge14" class="edge">
+<title>7&#45;&#45;8</title>
+<path fill="none" stroke="#000000" d="M669.8288,-177.2006C670.5199,-161.8587 671.499,-140.122 672.1859,-124.872"/>
+<text text-anchor="middle" x="686.75" y="-147" font-family="Times,serif" font-size="14.00" fill="#000000">21.86</text>
+</g>
+<!-- 24 -->
+<g id="node12" class="node">
+<title>24</title>
+<ellipse fill="none" stroke="#0000ff" cx="452" cy="-747.6" rx="27" ry="18"/>
+<text text-anchor="middle" x="452" y="-743.4" font-family="Times,serif" font-size="14.00" fill="#000000">24</text>
+</g>
+<!-- 24&#45;&#45;22 -->
+<g id="edge17" class="edge">
+<title>24&#45;&#45;22</title>
+<path fill="none" stroke="#000000" d="M448.3024,-729.5522C441.6434,-699.0661 426.0494,-635.8958 402,-586.8 380.8255,-543.5731 367.8698,-537.2454 340,-498 335.4469,-491.5884 330.3945,-484.571 325.9634,-478.4484"/>
+<text text-anchor="middle" x="421.25" y="-591" font-family="Times,serif" font-size="14.00" fill="#000000">2.34</text>
+</g>
+<!-- 24&#45;&#45;5 -->
+<g id="edge16" class="edge">
+<title>24&#45;&#45;5</title>
+<path fill="none" stroke="#000000" d="M425.1763,-744.6256C381.2704,-739.3713 296.3989,-727.4837 271,-711.6 188.6724,-660.1149 196,-603.5007 196,-506.4 196,-506.4 196,-506.4 196,-195.6 196,-170.1194 204.9844,-141.802 211.7227,-124.1472"/>
+<text text-anchor="middle" x="211.75" y="-413.4" font-family="Times,serif" font-size="14.00" fill="#000000">23.10</text>
+</g>
+<!-- 12 -->
+<g id="node13" class="node">
+<title>12</title>
+<ellipse fill="none" stroke="#0000ff" cx="479" cy="-639.6" rx="27" ry="18"/>
+<text text-anchor="middle" x="479" y="-635.4" font-family="Times,serif" font-size="14.00" fill="#000000">12</text>
+</g>
+<!-- 24&#45;&#45;12 -->
+<g id="edge15" class="edge">
+<title>24&#45;&#45;12</title>
+<path fill="none" stroke="#000000" d="M456.4585,-729.766C461.4612,-709.7553 469.5295,-677.482 474.5349,-657.4605"/>
+<text text-anchor="middle" x="481.25" y="-689.4" font-family="Times,serif" font-size="14.00" fill="#000000">3.34</text>
+</g>
+<!-- 12&#45;&#45;3 -->
+<g id="edge20" class="edge">
+<title>12&#45;&#45;3</title>
+<path fill="none" stroke="#000000" d="M472.5335,-621.7703C450.7586,-558.8974 384.5521,-342.4403 441,-177.6 457.3818,-129.7614 522.5704,-114.2007 560.0679,-109.1727"/>
+<text text-anchor="middle" x="436.75" y="-369" font-family="Times,serif" font-size="14.00" fill="#000000">24.00</text>
+</g>
+<!-- 12&#45;&#45;9 -->
+<g id="edge18" class="edge">
+<title>12&#45;&#45;9</title>
+<path fill="none" stroke="#000000" d="M500.013,-628.2428C504.8561,-625.8654 510.0428,-623.5051 515,-621.6 542.981,-610.8468 559.2285,-625.2128 580,-603.6 663.1731,-517.0581 659.5114,-356.3309 655.6542,-302.4993"/>
+<text text-anchor="middle" x="661.25" y="-457.8" font-family="Times,serif" font-size="14.00" fill="#000000">6.90</text>
+</g>
+<!-- 2 -->
+<g id="node14" class="node">
+<title>2</title>
+<ellipse fill="none" stroke="#ff0000" cx="251" cy="-550.8" rx="27" ry="18"/>
+<text text-anchor="middle" x="251" y="-546.6" font-family="Times,serif" font-size="14.00" fill="#000000">2</text>
+</g>
+<!-- 12&#45;&#45;2 -->
+<g id="edge19" class="edge">
+<title>12&#45;&#45;2</title>
+<path fill="none" stroke="#000000" d="M453.5728,-632.7418C432.5326,-626.5647 402.2009,-616.4829 377.5,-603.6 366.1164,-597.6628 365.5518,-592.403 354,-586.8 328.1832,-574.278 318.9722,-578.5883 292,-568.8 285.8617,-566.5724 279.3373,-563.8687 273.3412,-561.2411"/>
+<text text-anchor="middle" x="389.25" y="-591" font-family="Times,serif" font-size="14.00" fill="#000000">3.56</text>
+</g>
+<!-- 2&#45;&#45;22 -->
+<g id="edge21" class="edge">
+<title>2&#45;&#45;22</title>
+<path fill="none" stroke="#000000" d="M257.1697,-533.2418C261.4076,-522.5046 267.677,-508.8043 275.5,-498 281.4034,-489.8469 289.3419,-482.0536 296.4766,-475.8163"/>
+<text text-anchor="middle" x="287.25" y="-502.2" font-family="Times,serif" font-size="14.00" fill="#000000">2.63</text>
 </g>
 <!-- 10 -->
 <g id="node15" class="node">
 <title>10</title>
-<ellipse fill="none" stroke="#ff0000" cx="158" cy="-462" rx="27" ry="18"/>
-<text text-anchor="middle" x="158" y="-457.8" font-family="Times,serif" font-size="14.00" fill="#000000">10</text>
+<ellipse fill="none" stroke="#ff0000" cx="307" cy="-693.6" rx="27" ry="18"/>
+<text text-anchor="middle" x="307" y="-689.4" font-family="Times,serif" font-size="14.00" fill="#000000">10</text>
 </g>
-<!-- 13&#45;&#45;10 -->
-<g id="edge27" class="edge">
-<title>13&#45;&#45;10</title>
-<path fill="none" stroke="#000000" d="M254.3811,-539.9937C241.9665,-533.3916 226.3415,-524.3916 213.5,-514.8 198.3698,-503.4989 182.9485,-488.4895 172.2143,-477.3629"/>
-<text text-anchor="middle" x="229.75" y="-502.2" font-family="Times,serif" font-size="14.00" fill="#000000">18.33</text>
+<!-- 10&#45;&#45;22 -->
+<g id="edge22" class="edge">
+<title>10&#45;&#45;22</title>
+<path fill="none" stroke="#000000" d="M306.0863,-675.5256C305.6194,-653.7138 306.8768,-616.2955 318.5,-586.8 322.1663,-577.4963 328.8377,-578.2868 332,-568.8 337.0596,-553.6211 333.9866,-548.6762 332,-532.8 329.701,-514.4265 324.1696,-493.9822 319.8407,-479.8051"/>
+<text text-anchor="middle" x="333.75" y="-591" font-family="Times,serif" font-size="14.00" fill="#000000">21.98</text>
 </g>
-<!-- 4 -->
+<!-- 11 -->
+<g id="node16" class="node">
+<title>11</title>
+<ellipse fill="none" stroke="#0000ff" cx="277" cy="-925.2" rx="27" ry="18"/>
+<text text-anchor="middle" x="277" y="-921" font-family="Times,serif" font-size="14.00" fill="#000000">11</text>
+</g>
+<!-- 14 -->
 <g id="node17" class="node">
-<title>4</title>
-<ellipse fill="none" stroke="#0000ff" cx="318" cy="-284.4" rx="27" ry="18"/>
-<text text-anchor="middle" x="318" y="-280.2" font-family="Times,serif" font-size="14.00" fill="#000000">4</text>
+<title>14</title>
+<ellipse fill="none" stroke="#ff0000" cx="551" cy="-639.6" rx="27" ry="18"/>
+<text text-anchor="middle" x="551" y="-635.4" font-family="Times,serif" font-size="14.00" fill="#000000">14</text>
 </g>
-<!-- 13&#45;&#45;4 -->
+<!-- 14&#45;&#45;4 -->
+<g id="edge23" class="edge">
+<title>14&#45;&#45;4</title>
+<path fill="none" stroke="#000000" d="M534.7957,-624.9602C518.572,-608.6193 496,-580.5401 496,-550.8 496,-550.8 496,-550.8 496,-373.2 496,-348.6875 496,-320.3689 496,-302.4279"/>
+<text text-anchor="middle" x="508.25" y="-457.8" font-family="Times,serif" font-size="14.00" fill="#000000">9.97</text>
+</g>
+<!-- 17 -->
+<g id="node18" class="node">
+<title>17</title>
+<ellipse fill="none" stroke="#ff0000" cx="551" cy="-550.8" rx="27" ry="18"/>
+<text text-anchor="middle" x="551" y="-546.6" font-family="Times,serif" font-size="14.00" fill="#000000">17</text>
+</g>
+<!-- 14&#45;&#45;17 -->
+<g id="edge24" class="edge">
+<title>14&#45;&#45;17</title>
+<path fill="none" stroke="#000000" d="M551,-621.2006C551,-605.8587 551,-584.122 551,-568.872"/>
+<text text-anchor="middle" x="563.25" y="-591" font-family="Times,serif" font-size="14.00" fill="#000000">3.34</text>
+</g>
+<!-- 20 -->
+<g id="node19" class="node">
+<title>20</title>
+<ellipse fill="none" stroke="#ff0000" cx="573" cy="-462" rx="27" ry="18"/>
+<text text-anchor="middle" x="573" y="-457.8" font-family="Times,serif" font-size="14.00" fill="#000000">20</text>
+</g>
+<!-- 17&#45;&#45;20 -->
+<g id="edge25" class="edge">
+<title>17&#45;&#45;20</title>
+<path fill="none" stroke="#000000" d="M555.452,-532.83C559.2689,-517.4236 564.7396,-495.342 568.5546,-479.9433"/>
+<text text-anchor="middle" x="578.75" y="-502.2" font-family="Times,serif" font-size="14.00" fill="#000000">16.43</text>
+</g>
+<!-- 20&#45;&#45;18 -->
+<g id="edge26" class="edge">
+<title>20&#45;&#45;18</title>
+<path fill="none" stroke="#000000" d="M572.7928,-443.6006C572.62,-428.2587 572.3752,-406.522 572.2035,-391.272"/>
+<text text-anchor="middle" x="584.25" y="-413.4" font-family="Times,serif" font-size="14.00" fill="#000000">7.28</text>
+</g>
+<!-- 15 -->
+<g id="node20" class="node">
+<title>15</title>
+<ellipse fill="none" stroke="#ff0000" cx="551" cy="-836.4" rx="27" ry="18"/>
+<text text-anchor="middle" x="551" y="-832.2" font-family="Times,serif" font-size="14.00" fill="#000000">15</text>
+</g>
+<!-- 15&#45;&#45;9 -->
 <g id="edge29" class="edge">
-<title>13&#45;&#45;4</title>
-<path fill="none" stroke="#000000" d="M278.9419,-532.6163C282.866,-508.3223 290.0141,-463.9311 296,-426 302.9805,-381.7665 311.0212,-329.7315 315.18,-302.7342"/>
-<text text-anchor="middle" x="311.25" y="-413.4" font-family="Times,serif" font-size="14.00" fill="#000000">4.18</text>
+<title>15&#45;&#45;9</title>
+<path fill="none" stroke="#000000" d="M560.336,-819.2649C591.5015,-761.4396 690,-573.3845 690,-506.4 690,-506.4 690,-506.4 690,-373.2 690,-346.417 675.7612,-318.1996 665.1933,-300.9452"/>
+<text text-anchor="middle" x="698.25" y="-546.6" font-family="Times,serif" font-size="14.00" fill="#000000">3.78</text>
 </g>
-<!-- 10&#45;&#45;3 -->
+<!-- 15&#45;&#45;24 -->
+<g id="edge27" class="edge">
+<title>15&#45;&#45;24</title>
+<path fill="none" stroke="#000000" d="M534.6522,-821.7365C516.3091,-805.2833 486.7251,-778.7474 468.3721,-762.2853"/>
+<text text-anchor="middle" x="522.25" y="-787.8" font-family="Times,serif" font-size="14.00" fill="#000000">5.54</text>
+</g>
+<!-- 15&#45;&#45;14 -->
+<g id="edge28" class="edge">
+<title>15&#45;&#45;14</title>
+<path fill="none" stroke="#000000" d="M551,-818.2383C551,-780.7471 551,-695.1715 551,-657.7178"/>
+<text text-anchor="middle" x="563.25" y="-743.4" font-family="Times,serif" font-size="14.00" fill="#000000">9.68</text>
+</g>
+<!-- 16 -->
+<g id="node21" class="node">
+<title>16</title>
+<ellipse fill="none" stroke="#0000ff" cx="205" cy="-925.2" rx="27" ry="18"/>
+<text text-anchor="middle" x="205" y="-921" font-family="Times,serif" font-size="14.00" fill="#000000">16</text>
+</g>
+<!-- 16&#45;&#45;3 -->
 <g id="edge31" class="edge">
-<title>10&#45;&#45;3</title>
-<path fill="none" stroke="#000000" d="M155.9951,-479.9707C147.3874,-558.7347 114,-881.3765 114,-1147.2 114,-1280.4 114,-1280.4 114,-1280.4 114,-1306.3487 125.3281,-1334.549 133.8242,-1352.0502"/>
-<text text-anchor="middle" x="138.75" y="-901.8" font-family="Times,serif" font-size="14.00" fill="#000000">18.91</text>
+<title>16&#45;&#45;3</title>
+<path fill="none" stroke="#000000" d="M225.8185,-913.2725C230.6717,-910.9247 235.9117,-908.7205 241,-907.2 306.6026,-887.5963 326.0287,-897.4404 394,-889.2 488.0409,-877.7991 817,-931.1295 817,-836.4 817,-836.4 817,-836.4 817,-373.2 817,-259.728 798.5095,-209.8961 707,-142.8 681.0942,-123.8055 667.7015,-134.2508 637,-124.8 628.2706,-122.1128 618.8152,-118.8121 610.5009,-115.7742"/>
+<text text-anchor="middle" x="829.25" y="-502.2" font-family="Times,serif" font-size="14.00" fill="#000000">3.49</text>
 </g>
-<!-- 10&#45;&#45;23 -->
-<g id="edge30" class="edge">
-<title>10&#45;&#45;23</title>
-<path fill="none" stroke="#000000" d="M154.848,-443.963C153.8517,-433.3053 154.155,-419.8561 159.5,-409.2 164.7387,-398.7558 174.572,-390.385 183.7604,-384.3531"/>
-<text text-anchor="middle" x="175.75" y="-413.4" font-family="Times,serif" font-size="14.00" fill="#000000">13.45</text>
-</g>
-<!-- 10&#45;&#45;17 -->
-<g id="edge32" class="edge">
-<title>10&#45;&#45;17</title>
-<path fill="none" stroke="#000000" d="M178.6146,-450.0783C199.6404,-438.3309 233.4893,-420.5412 264.5,-409.2 305.4546,-394.2221 355.1069,-383.4989 384.8189,-377.8317"/>
-<text text-anchor="middle" x="280.75" y="-413.4" font-family="Times,serif" font-size="14.00" fill="#000000">10.19</text>
-</g>
-<!-- 23&#45;&#45;8 -->
-<g id="edge34" class="edge">
-<title>23&#45;&#45;8</title>
-<path fill="none" stroke="#000000" d="M184.2476,-385.0729C173.7592,-391.5468 161.1408,-400.0876 151,-409.2 82.5463,-470.7112 60,-503.1699 60,-595.2 60,-861.6 60,-861.6 60,-861.6 60,-1096.1321 10.6167,-1173.388 107,-1387.2 117.7102,-1410.959 139.7805,-1431.7538 155.6675,-1444.553"/>
-<text text-anchor="middle" x="75.75" y="-901.8" font-family="Times,serif" font-size="14.00" fill="#000000">14.88</text>
-</g>
-<!-- 23&#45;&#45;13 -->
-<g id="edge35" class="edge">
-<title>23&#45;&#45;13</title>
-<path fill="none" stroke="#000000" d="M212.0387,-390.8068C225.6254,-424.7927 255.3234,-499.0794 268.9327,-533.1217"/>
-<text text-anchor="middle" x="260.25" y="-457.8" font-family="Times,serif" font-size="14.00" fill="#000000">5.07</text>
-</g>
-<!-- 23&#45;&#45;4 -->
+<!-- 16&#45;&#45;5 -->
 <g id="edge33" class="edge">
-<title>23&#45;&#45;4</title>
-<path fill="none" stroke="#000000" d="M222.6563,-359.325C243.8851,-342.6425 279.2942,-314.8166 300.4677,-298.1776"/>
-<text text-anchor="middle" x="287.75" y="-324.6" font-family="Times,serif" font-size="14.00" fill="#000000">18.00</text>
+<title>16&#45;&#45;5</title>
+<path fill="none" stroke="#000000" d="M177.9045,-923.3291C129.6872,-918.3705 34,-900.4601 34,-836.4 34,-836.4 34,-836.4 34,-550.8 34,-471.8617 36,-452.1383 36,-373.2 36,-373.2 36,-373.2 36,-240 36,-163.1769 142.7246,-126.0076 193.1687,-112.7299"/>
+<text text-anchor="middle" x="47.25" y="-502.2" font-family="Times,serif" font-size="14.00" fill="#000000">4.89</text>
+</g>
+<!-- 16&#45;&#45;2 -->
+<g id="edge32" class="edge">
+<title>16&#45;&#45;2</title>
+<path fill="none" stroke="#000000" d="M193.5999,-908.8257C161.9614,-861.1814 79.0413,-719.7848 136,-621.6 155.6473,-587.7321 198.5996,-567.9221 226.0901,-558.2414"/>
+<text text-anchor="middle" x="141.75" y="-743.4" font-family="Times,serif" font-size="14.00" fill="#000000">10.00</text>
+</g>
+<!-- 16&#45;&#45;20 -->
+<g id="edge34" class="edge">
+<title>16&#45;&#45;20</title>
+<path fill="none" stroke="#000000" d="M225.8584,-913.4017C230.7094,-911.0471 235.9385,-908.8076 241,-907.2 389.2594,-860.1102 434.6459,-885.8087 587,-854.4 618.0402,-848.0009 656,-868.093 656,-836.4 656,-836.4 656,-836.4 656,-639.6 656,-574.5945 609.7976,-507.7273 586.3354,-477.9621"/>
+<text text-anchor="middle" x="668.25" y="-689.4" font-family="Times,serif" font-size="14.00" fill="#000000">9.51</text>
+</g>
+<!-- 0 -->
+<g id="node22" class="node">
+<title>0</title>
+<ellipse fill="none" stroke="#ff0000" cx="205" cy="-836.4" rx="27" ry="18"/>
+<text text-anchor="middle" x="205" y="-832.2" font-family="Times,serif" font-size="14.00" fill="#000000">0</text>
+</g>
+<!-- 16&#45;&#45;0 -->
+<g id="edge30" class="edge">
+<title>16&#45;&#45;0</title>
+<path fill="none" stroke="#000000" d="M205,-906.8006C205,-891.4587 205,-869.722 205,-854.472"/>
+<text text-anchor="middle" x="220.75" y="-876.6" font-family="Times,serif" font-size="14.00" fill="#000000">12.78</text>
+</g>
+<!-- 0&#45;&#45;22 -->
+<g id="edge36" class="edge">
+<title>0&#45;&#45;22</title>
+<path fill="none" stroke="#000000" d="M197.9963,-818.9771C184.1652,-782.1984 156.054,-694.0578 172.5,-621.6 182.1847,-578.9313 187.3262,-566.6905 215,-532.8 231.2143,-512.9433 240.1678,-512.9403 261,-498 272.0276,-490.0912 284.5815,-481.5445 294.7024,-474.764"/>
+<text text-anchor="middle" x="185.25" y="-635.4" font-family="Times,serif" font-size="14.00" fill="#000000">1.18</text>
+</g>
+<!-- 0&#45;&#45;6 -->
+<g id="edge37" class="edge">
+<title>0&#45;&#45;6</title>
+<path fill="none" stroke="#000000" d="M193.3746,-820.0306C161.314,-774.2492 74,-644.9969 74,-595.2 74,-595.2 74,-595.2 74,-106.8 74,-51.8943 150.5445,-29.8965 192.4048,-21.9717"/>
+<text text-anchor="middle" x="89.75" y="-413.4" font-family="Times,serif" font-size="14.00" fill="#000000">22.05</text>
+</g>
+<!-- 0&#45;&#45;10 -->
+<g id="edge35" class="edge">
+<title>0&#45;&#45;10</title>
+<path fill="none" stroke="#000000" d="M226.682,-825.3429C237.1948,-819.1377 249.3791,-810.5906 258,-800.4 280.7936,-773.4559 295.1575,-734.155 302.0757,-711.5031"/>
+<text text-anchor="middle" x="282.25" y="-787.8" font-family="Times,serif" font-size="14.00" fill="#000000">7.45</text>
+</g>
+<!-- 1 -->
+<g id="node23" class="node">
+<title>1</title>
+<ellipse fill="none" stroke="#0000ff" cx="233" cy="-747.6" rx="27" ry="18"/>
+<text text-anchor="middle" x="233" y="-743.4" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- 0&#45;&#45;1 -->
+<g id="edge38" class="edge">
+<title>0&#45;&#45;1</title>
+<path fill="none" stroke="#000000" d="M210.6662,-818.43C215.5561,-802.9222 222.5785,-780.6511 227.4378,-765.2402"/>
+<text text-anchor="middle" x="237.75" y="-787.8" font-family="Times,serif" font-size="14.00" fill="#000000">16.72</text>
 </g>
 <!-- 19 -->
-<g id="node19" class="node">
+<g id="node24" class="node">
 <title>19</title>
-<ellipse fill="none" stroke="#0000ff" cx="465" cy="-284.4" rx="27" ry="18"/>
-<text text-anchor="middle" x="465" y="-280.2" font-family="Times,serif" font-size="14.00" fill="#000000">19</text>
+<ellipse fill="none" stroke="#0000ff" cx="266" cy="-639.6" rx="27" ry="18"/>
+<text text-anchor="middle" x="266" y="-635.4" font-family="Times,serif" font-size="14.00" fill="#000000">19</text>
 </g>
-<!-- 17&#45;&#45;19 -->
-<g id="edge36" class="edge">
-<title>17&#45;&#45;19</title>
-<path fill="none" stroke="#000000" d="M411.1576,-354.9917C411.9806,-344.2733 414.334,-330.8204 420.5,-320.4 426.269,-310.6505 435.7245,-302.4452 444.4391,-296.3422"/>
-<text text-anchor="middle" x="436.75" y="-324.6" font-family="Times,serif" font-size="14.00" fill="#000000">17.83</text>
-</g>
-<!-- 17&#45;&#45;12 -->
-<g id="edge37" class="edge">
-<title>17&#45;&#45;12</title>
-<path fill="none" stroke="#000000" d="M405.3666,-355.3359C399.4294,-334.0446 391.6826,-297.4444 397.5,-266.4 401.0702,-247.3477 409.6077,-226.8311 416.2308,-212.8139"/>
-<text text-anchor="middle" x="413.75" y="-280.2" font-family="Times,serif" font-size="14.00" fill="#000000">19.53</text>
-</g>
-<!-- 19&#45;&#45;0 -->
+<!-- 1&#45;&#45;19 -->
 <g id="edge39" class="edge">
-<title>19&#45;&#45;0</title>
-<path fill="none" stroke="#000000" d="M462.5922,-302.6576C454.8351,-361.6307 429.9032,-552.3619 411,-710.4 403.1874,-775.7164 394.6847,-853.4018 390.9472,-887.9224"/>
-<text text-anchor="middle" x="442.75" y="-591" font-family="Times,serif" font-size="14.00" fill="#000000">17.90</text>
+<title>1&#45;&#45;19</title>
+<path fill="none" stroke="#000000" d="M234.8209,-729.4405C236.6784,-714.632 240.2073,-693.3393 246.5,-675.6 248.8288,-669.035 252.2323,-662.2207 255.5463,-656.31"/>
+<text text-anchor="middle" x="258.25" y="-689.4" font-family="Times,serif" font-size="14.00" fill="#000000">9.77</text>
 </g>
-<!-- 19&#45;&#45;6 -->
-<g id="edge38" class="edge">
-<title>19&#45;&#45;6</title>
-<path fill="none" stroke="#000000" d="M473.7601,-301.5401C476.2972,-307.3703 478.7252,-314.0262 480,-320.4 486.1711,-351.2556 480.9488,-359.7476 480,-391.2 477.3946,-477.5678 469.7049,-580.5973 466.4653,-621.5398"/>
-<text text-anchor="middle" x="490.25" y="-457.8" font-family="Times,serif" font-size="14.00" fill="#000000">2.10</text>
-</g>
-<!-- 19&#45;&#45;12 -->
+<!-- 19&#45;&#45;22 -->
 <g id="edge40" class="edge">
-<title>19&#45;&#45;12</title>
-<path fill="none" stroke="#000000" d="M457.0973,-266.856C450.0847,-251.2881 439.8939,-228.6644 432.8863,-213.1076"/>
-<text text-anchor="middle" x="464.75" y="-235.8" font-family="Times,serif" font-size="14.00" fill="#000000">12.74</text>
+<title>19&#45;&#45;22</title>
+<path fill="none" stroke="#000000" d="M271.4652,-621.9085C275.8261,-607.6211 282.0096,-586.9741 287,-568.8 295.5582,-537.6324 304.5837,-501.0716 309.7298,-479.8214"/>
+<text text-anchor="middle" x="311.75" y="-546.6" font-family="Times,serif" font-size="14.00" fill="#000000">22.55</text>
 </g>
-<!-- 12&#45;&#45;11 -->
+<!-- 19&#45;&#45;2 -->
 <g id="edge41" class="edge">
-<title>12&#45;&#45;11</title>
-<path fill="none" stroke="#000000" d="M451.0911,-200.2736C490.8404,-209.0646 562,-232.1052 562,-284.4 562,-417.6 562,-417.6 562,-417.6 562,-480.5623 527.3139,-639.6098 493,-692.4 486.6995,-702.093 476.8884,-710.2921 467.9428,-716.4057"/>
-<text text-anchor="middle" x="576.75" y="-457.8" font-family="Times,serif" font-size="14.00" fill="#000000">17.93</text>
-</g>
-<!-- 5 -->
-<g id="node21" class="node">
-<title>5</title>
-<ellipse fill="none" stroke="#0000ff" cx="482" cy="-106.8" rx="27" ry="18"/>
-<text text-anchor="middle" x="482" y="-102.6" font-family="Times,serif" font-size="14.00" fill="#000000">5</text>
-</g>
-<!-- 12&#45;&#45;5 -->
-<g id="edge42" class="edge">
-<title>12&#45;&#45;5</title>
-<path fill="none" stroke="#000000" d="M435.7213,-178.8974C445.912,-163.0214 461.152,-139.2789 471.3268,-123.4277"/>
-<text text-anchor="middle" x="474.75" y="-147" font-family="Times,serif" font-size="14.00" fill="#000000">24.15</text>
-</g>
-<!-- 5&#45;&#45;9 -->
-<g id="edge43" class="edge">
-<title>5&#45;&#45;9</title>
-<path fill="none" stroke="#000000" d="M500.4143,-93.5057C523.6023,-76.7651 563.2125,-48.1685 586.4598,-31.3851"/>
-<text text-anchor="middle" x="567.25" y="-58.2" font-family="Times,serif" font-size="14.00" fill="#000000">0.16</text>
-</g>
-<!-- 5&#45;&#45;16 -->
-<g id="edge44" class="edge">
-<title>5&#45;&#45;16</title>
-<path fill="none" stroke="#000000" d="M468.2339,-90.9243C454.2185,-74.761 432.6192,-49.8517 418.6469,-33.7382"/>
-<text text-anchor="middle" x="466.75" y="-58.2" font-family="Times,serif" font-size="14.00" fill="#000000">15.92</text>
-</g>
-<!-- 16&#45;&#45;12 -->
-<g id="edge45" class="edge">
-<title>16&#45;&#45;12</title>
-<path fill="none" stroke="#000000" d="M406.2911,-36.1746C407.8781,-57.4543 410.8191,-93.7444 414.5,-124.8 416.6354,-142.816 419.7503,-163.3107 422.0329,-177.5969"/>
-<text text-anchor="middle" x="430.75" y="-102.6" font-family="Times,serif" font-size="14.00" fill="#000000">18.45</text>
-</g>
-<!-- 7&#45;&#45;4 -->
-<g id="edge46" class="edge">
-<title>7&#45;&#45;4</title>
-<path fill="none" stroke="#000000" d="M341.6446,-1032.2162C329.8188,-1013.2983 313,-981.0118 313,-950.4 313,-950.4 313,-950.4 313,-817.2 313,-729.3805 327.5582,-708.3847 341,-621.6 342.2414,-613.5852 343.3311,-611.6827 344,-603.6 344.6159,-596.1588 344.2518,-594.2624 344,-586.8 339.9977,-468.1975 342.9199,-437.8576 326,-320.4 325.1419,-314.4432 323.8354,-308.0071 322.5254,-302.2469"/>
-<text text-anchor="middle" x="347.75" y="-679.8" font-family="Times,serif" font-size="14.00" fill="#000000">11.62</text>
+<title>19&#45;&#45;2</title>
+<path fill="none" stroke="#000000" d="M252.827,-623.7575C248.6797,-617.812 244.6283,-610.7539 242.5,-603.6 239.1112,-592.209 241.2362,-579.009 244.2084,-568.6568"/>
+<text text-anchor="middle" x="257.75" y="-591" font-family="Times,serif" font-size="14.00" fill="#000000">16.28</text>
 </g>
 <!-- 21 -->
 <g id="node25" class="node">
 <title>21</title>
-<ellipse fill="none" stroke="#0000ff" cx="246" cy="-1546.8" rx="27" ry="18"/>
-<text text-anchor="middle" x="246" y="-1542.6" font-family="Times,serif" font-size="14.00" fill="#000000">21</text>
+<ellipse fill="none" stroke="#0000ff" cx="761" cy="-550.8" rx="27" ry="18"/>
+<text text-anchor="middle" x="761" y="-546.6" font-family="Times,serif" font-size="14.00" fill="#000000">21</text>
+</g>
+<!-- 21&#45;&#45;8 -->
+<g id="edge43" class="edge">
+<title>21&#45;&#45;8</title>
+<path fill="none" stroke="#000000" d="M763.8972,-532.8262C766.5282,-514.9263 770,-486.6381 770,-462 770,-462 770,-462 770,-195.6 770,-155.8735 725.1884,-129.1268 696.481,-116.0682"/>
+<text text-anchor="middle" x="785.75" y="-324.6" font-family="Times,serif" font-size="14.00" fill="#000000">21.65</text>
+</g>
+<!-- 21&#45;&#45;20 -->
+<g id="edge42" class="edge">
+<title>21&#45;&#45;20</title>
+<path fill="none" stroke="#000000" d="M738.6957,-540.2648C702.5134,-523.1744 631.4389,-489.6031 595.2753,-472.5215"/>
+<text text-anchor="middle" x="698.75" y="-502.2" font-family="Times,serif" font-size="14.00" fill="#000000">12.53</text>
 </g>
 </g>
 </svg>

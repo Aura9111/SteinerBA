@@ -1,0 +1,397 @@
+<svg width="1920px" height="1567px"
+ viewBox="0.00 0.00 1032.50 843.20" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<g id="graph0" class="graph" transform="scale(1.0 1.0) rotate(0) translate(4 839.2)">
+<title>%0</title>
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-839.2 1028.5,-839.2 1028.5,4 -4,4"/>
+<!-- 0 -->
+<g id="node1" class="node">
+<title>0</title>
+<ellipse fill="none" stroke="#ff0000" cx="479" cy="-817.2" rx="27" ry="18"/>
+<text text-anchor="middle" x="479" y="-813" font-family="Times,serif" font-size="14.00" fill="#000000">0</text>
+</g>
+<!-- 0&#45;&#45;0 -->
+<g id="edge7" class="edge">
+<title>0&#45;&#45;0</title>
+<path fill="none" stroke="#000000" d="M503.5325,-825.3211C514.5078,-826.0945 524,-823.3875 524,-817.2 524,-811.0125 514.5078,-808.3055 503.5325,-809.0789"/>
+<text text-anchor="middle" x="539.75" y="-813" font-family="Times,serif" font-size="14.00" fill="#000000">10.41</text>
+</g>
+<!-- 6 -->
+<g id="node2" class="node">
+<title>6</title>
+<ellipse fill="none" stroke="#ff0000" cx="353" cy="-284.4" rx="27" ry="18"/>
+<text text-anchor="middle" x="353" y="-280.2" font-family="Times,serif" font-size="14.00" fill="#000000">6</text>
+</g>
+<!-- 0&#45;&#45;6 -->
+<g id="edge1" class="edge">
+<title>0&#45;&#45;6</title>
+<path fill="none" stroke="#000000" d="M453.0797,-811.0958C383.0771,-794.0337 193.1119,-743.7232 158,-692.4 72.877,-567.9754 248.528,-526.997 314,-391.2 328.5734,-360.973 340.9897,-323.7947 347.6872,-302.2267"/>
+<text text-anchor="middle" x="204.25" y="-546.6" font-family="Times,serif" font-size="14.00" fill="#000000">9.10</text>
+</g>
+<!-- 7 -->
+<g id="node3" class="node">
+<title>7</title>
+<ellipse fill="none" stroke="#ff0000" cx="630" cy="-195.6" rx="27" ry="18"/>
+<text text-anchor="middle" x="630" y="-191.4" font-family="Times,serif" font-size="14.00" fill="#000000">7</text>
+</g>
+<!-- 0&#45;&#45;7 -->
+<g id="edge2" class="edge">
+<title>0&#45;&#45;7</title>
+<path fill="none" stroke="#000000" d="M505.9552,-814.7298C602.5971,-805.5174 926,-771.4713 926,-728.4 926,-728.4 926,-728.4 926,-506.4 926,-394.7781 923.7525,-351.9046 852,-266.4 834.5958,-245.6602 826.8612,-242.3222 802,-231.6 753.396,-210.6379 691.6695,-201.5536 656.9326,-197.8755"/>
+<text text-anchor="middle" x="938.25" y="-502.2" font-family="Times,serif" font-size="14.00" fill="#000000">2.32</text>
+</g>
+<!-- 8 -->
+<g id="node4" class="node">
+<title>8</title>
+<ellipse fill="none" stroke="#0000ff" cx="457" cy="-106.8" rx="27" ry="18"/>
+<text text-anchor="middle" x="457" y="-102.6" font-family="Times,serif" font-size="14.00" fill="#000000">8</text>
+</g>
+<!-- 0&#45;&#45;8 -->
+<g id="edge9" class="edge">
+<title>0&#45;&#45;8</title>
+<path fill="none" stroke="#000000" d="M506.2744,-816.5383C565.8729,-814.6307 711.9179,-807.4376 831,-781.2 896.3489,-766.8016 972,-795.3163 972,-728.4 972,-728.4 972,-728.4 972,-506.4 972,-369.5313 950.7248,-301.4134 833,-231.6 752.1323,-183.6437 730.7322,-170.863 641,-142.8 596.6469,-128.9289 583.5832,-133.8429 538,-124.8 519.3482,-121.0998 498.3956,-116.4298 482.474,-112.7739"/>
+<text text-anchor="middle" x="984.25" y="-457.8" font-family="Times,serif" font-size="14.00" fill="#000000">1.30</text>
+</g>
+<!-- 9 -->
+<g id="node5" class="node">
+<title>9</title>
+<ellipse fill="none" stroke="#0000ff" cx="293" cy="-18" rx="27" ry="18"/>
+<text text-anchor="middle" x="293" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">9</text>
+</g>
+<!-- 0&#45;&#45;9 -->
+<g id="edge10" class="edge">
+<title>0&#45;&#45;9</title>
+<path fill="none" stroke="#000000" d="M452.0118,-816.4522C374.0857,-814.027 149.9059,-805.1058 81,-781.2 40.4009,-767.1148 0,-771.3731 0,-728.4 0,-728.4 0,-728.4 0,-106.8 0,-51.4545 193.891,-27.3907 266.2215,-20.3392"/>
+<text text-anchor="middle" x="15.75" y="-413.4" font-family="Times,serif" font-size="14.00" fill="#000000">12.69</text>
+</g>
+<!-- 4 -->
+<g id="node6" class="node">
+<title>4</title>
+<ellipse fill="none" stroke="#0000ff" cx="647" cy="-462" rx="27" ry="18"/>
+<text text-anchor="middle" x="647" y="-457.8" font-family="Times,serif" font-size="14.00" fill="#000000">4</text>
+</g>
+<!-- 0&#45;&#45;4 -->
+<g id="edge3" class="edge">
+<title>0&#45;&#45;4</title>
+<path fill="none" stroke="#000000" d="M502.313,-807.9922C516.8111,-801.6537 535.4047,-792.3733 550,-781.2 634.3597,-716.619 671.9128,-702.7798 710,-603.6 727.042,-559.2222 719.0483,-537.7657 693,-498 686.6653,-488.3293 676.8505,-480.1326 667.9112,-474.015"/>
+<text text-anchor="middle" x="718.75" y="-635.4" font-family="Times,serif" font-size="14.00" fill="#000000">12.02</text>
+</g>
+<!-- 5 -->
+<g id="node7" class="node">
+<title>5</title>
+<ellipse fill="none" stroke="#0000ff" cx="229" cy="-373.2" rx="27" ry="18"/>
+<text text-anchor="middle" x="229" y="-369" font-family="Times,serif" font-size="14.00" fill="#000000">5</text>
+</g>
+<!-- 0&#45;&#45;5 -->
+<g id="edge4" class="edge">
+<title>0&#45;&#45;5</title>
+<path fill="none" stroke="#000000" d="M451.8443,-816.7517C378.6956,-815.1881 179.0758,-808.4701 120,-781.2 89.2344,-766.9982 65,-762.2853 65,-728.4 65,-728.4 65,-728.4 65,-595.2 65,-498.6454 166.6048,-416.5507 209.8661,-385.9724"/>
+<text text-anchor="middle" x="77.25" y="-591" font-family="Times,serif" font-size="14.00" fill="#000000">2.69</text>
+</g>
+<!-- 2 -->
+<g id="node8" class="node">
+<title>2</title>
+<ellipse fill="none" stroke="#ff0000" cx="356" cy="-639.6" rx="27" ry="18"/>
+<text text-anchor="middle" x="356" y="-635.4" font-family="Times,serif" font-size="14.00" fill="#000000">2</text>
+</g>
+<!-- 0&#45;&#45;2 -->
+<g id="edge5" class="edge">
+<title>0&#45;&#45;2</title>
+<path fill="none" stroke="#000000" d="M462.633,-802.5722C448.0428,-788.9782 426.7045,-767.6797 411.5,-746.4 390.6055,-717.1569 372.7344,-678.998 363.2561,-657.1047"/>
+<text text-anchor="middle" x="427.75" y="-724.2" font-family="Times,serif" font-size="14.00" fill="#000000">12.54</text>
+</g>
+<!-- 3 -->
+<g id="node9" class="node">
+<title>3</title>
+<ellipse fill="none" stroke="#ff0000" cx="554" cy="-550.8" rx="27" ry="18"/>
+<text text-anchor="middle" x="554" y="-546.6" font-family="Times,serif" font-size="14.00" fill="#000000">3</text>
+</g>
+<!-- 0&#45;&#45;3 -->
+<g id="edge6" class="edge">
+<title>0&#45;&#45;3</title>
+<path fill="none" stroke="#000000" d="M498.8924,-804.5492C516.9169,-792.0083 542.7681,-771.1265 557,-746.4 584.9881,-697.7736 584.4197,-677.0704 576,-621.6 573.1606,-602.8933 566.328,-582.3254 561.0245,-568.2019"/>
+<text text-anchor="middle" x="596.75" y="-679.8" font-family="Times,serif" font-size="14.00" fill="#000000">17.48</text>
+</g>
+<!-- 1 -->
+<g id="node10" class="node">
+<title>1</title>
+<ellipse fill="none" stroke="#0000ff" cx="479" cy="-728.4" rx="27" ry="18"/>
+<text text-anchor="middle" x="479" y="-724.2" font-family="Times,serif" font-size="14.00" fill="#000000">1</text>
+</g>
+<!-- 0&#45;&#45;1 -->
+<g id="edge8" class="edge">
+<title>0&#45;&#45;1</title>
+<path fill="none" stroke="#000000" d="M479,-798.8006C479,-783.4587 479,-761.722 479,-746.472"/>
+<text text-anchor="middle" x="491.25" y="-768.6" font-family="Times,serif" font-size="14.00" fill="#000000">9.43</text>
+</g>
+<!-- 6&#45;&#45;6 -->
+<g id="edge12" class="edge">
+<title>6&#45;&#45;6</title>
+<path fill="none" stroke="#000000" d="M377.5325,-292.5211C388.5078,-293.2945 398,-290.5875 398,-284.4 398,-278.2125 388.5078,-275.5055 377.5325,-276.2789"/>
+<text text-anchor="middle" x="413.75" y="-280.2" font-family="Times,serif" font-size="14.00" fill="#000000">17.28</text>
+</g>
+<!-- 6&#45;&#45;7 -->
+<g id="edge11" class="edge">
+<title>6&#45;&#45;7</title>
+<path fill="none" stroke="#000000" d="M377.5819,-276.5196C430.1474,-259.6683 552.9568,-220.2983 605.4732,-203.4627"/>
+<text text-anchor="middle" x="532.75" y="-235.8" font-family="Times,serif" font-size="14.00" fill="#000000">14.83</text>
+</g>
+<!-- 6&#45;&#45;8 -->
+<g id="edge14" class="edge">
+<title>6&#45;&#45;8</title>
+<path fill="none" stroke="#000000" d="M361.9574,-267.175C373.1349,-245.8903 393.0327,-208.6784 411.5,-177.6 422.6958,-158.7587 436.3927,-137.6898 445.816,-123.4724"/>
+<text text-anchor="middle" x="427.75" y="-191.4" font-family="Times,serif" font-size="14.00" fill="#000000">23.75</text>
+</g>
+<!-- 6&#45;&#45;9 -->
+<g id="edge13" class="edge">
+<title>6&#45;&#45;9</title>
+<path fill="none" stroke="#000000" d="M348.9701,-266.5071C338.0397,-217.9763 307.9222,-84.2545 297.0124,-35.815"/>
+<text text-anchor="middle" x="337.25" y="-147" font-family="Times,serif" font-size="14.00" fill="#000000">9.06</text>
+</g>
+<!-- 7&#45;&#45;7 -->
+<g id="edge16" class="edge">
+<title>7&#45;&#45;7</title>
+<path fill="none" stroke="#000000" d="M654.5325,-203.7211C665.5078,-204.4945 675,-201.7875 675,-195.6 675,-189.4125 665.5078,-186.7055 654.5325,-187.4789"/>
+<text text-anchor="middle" x="690.75" y="-191.4" font-family="Times,serif" font-size="14.00" fill="#000000">19.65</text>
+</g>
+<!-- 7&#45;&#45;8 -->
+<g id="edge15" class="edge">
+<title>7&#45;&#45;8</title>
+<path fill="none" stroke="#000000" d="M620.0491,-178.4779C612.4166,-166.7951 600.8554,-151.8528 587,-142.8 555.2398,-122.0486 511.6174,-113.1444 483.8643,-109.4033"/>
+<text text-anchor="middle" x="621.75" y="-147" font-family="Times,serif" font-size="14.00" fill="#000000">15.31</text>
+</g>
+<!-- 7&#45;&#45;9 -->
+<g id="edge17" class="edge">
+<title>7&#45;&#45;9</title>
+<path fill="none" stroke="#000000" d="M639.4774,-178.406C644.0908,-167.55 647.4048,-153.5892 641,-142.8 615.4156,-99.702 588.2754,-108.0507 542,-88.8 463.5738,-56.1745 365.229,-33.1324 319.1236,-23.306"/>
+<text text-anchor="middle" x="640.25" y="-102.6" font-family="Times,serif" font-size="14.00" fill="#000000">7.28</text>
+</g>
+<!-- 8&#45;&#45;8 -->
+<g id="edge18" class="edge">
+<title>8&#45;&#45;8</title>
+<path fill="none" stroke="#000000" d="M481.5325,-114.9211C492.5078,-115.6945 502,-112.9875 502,-106.8 502,-100.6125 492.5078,-97.9055 481.5325,-98.6789"/>
+<text text-anchor="middle" x="517.75" y="-102.6" font-family="Times,serif" font-size="14.00" fill="#000000">10.71</text>
+</g>
+<!-- 8&#45;&#45;9 -->
+<g id="edge19" class="edge">
+<title>8&#45;&#45;9</title>
+<path fill="none" stroke="#000000" d="M435.8956,-95.3727C404.4055,-78.322 345.4664,-46.4086 314.0234,-29.3834"/>
+<text text-anchor="middle" x="405.75" y="-58.2" font-family="Times,serif" font-size="14.00" fill="#000000">18.12</text>
+</g>
+<!-- 9&#45;&#45;9 -->
+<g id="edge20" class="edge">
+<title>9&#45;&#45;9</title>
+<path fill="none" stroke="#000000" d="M317.5325,-26.1211C328.5078,-26.8945 338,-24.1875 338,-18 338,-11.8125 328.5078,-9.1055 317.5325,-9.8789"/>
+<text text-anchor="middle" x="353.75" y="-13.8" font-family="Times,serif" font-size="14.00" fill="#000000">24.88</text>
+</g>
+<!-- 4&#45;&#45;6 -->
+<g id="edge23" class="edge">
+<title>4&#45;&#45;6</title>
+<path fill="none" stroke="#000000" d="M632.2016,-446.4399C603.9126,-417.5564 539.0752,-355.4129 473,-320.4 442.826,-304.411 404.5286,-294.4934 379.4206,-289.2139"/>
+<text text-anchor="middle" x="585.25" y="-369" font-family="Times,serif" font-size="14.00" fill="#000000">6.00</text>
+</g>
+<!-- 4&#45;&#45;7 -->
+<g id="edge24" class="edge">
+<title>4&#45;&#45;7</title>
+<path fill="none" stroke="#000000" d="M646.8541,-443.9107C646.7224,-433.7135 646.4728,-420.7424 646,-409.2 643.3973,-345.6607 642.1293,-329.7854 637,-266.4 635.5455,-248.4254 633.4732,-227.9249 631.9609,-213.626"/>
+<text text-anchor="middle" x="655.25" y="-324.6" font-family="Times,serif" font-size="14.00" fill="#000000">3.28</text>
+</g>
+<!-- 4&#45;&#45;8 -->
+<g id="edge25" class="edge">
+<title>4&#45;&#45;8</title>
+<path fill="none" stroke="#000000" d="M643.3672,-443.9869C632.0364,-391.7336 592.9637,-237.7979 509,-142.8 500.2741,-132.9273 488.3029,-124.4001 478.0463,-118.1263"/>
+<text text-anchor="middle" x="615.75" y="-280.2" font-family="Times,serif" font-size="14.00" fill="#000000">22.20</text>
+</g>
+<!-- 4&#45;&#45;9 -->
+<g id="edge26" class="edge">
+<title>4&#45;&#45;9</title>
+<path fill="none" stroke="#000000" d="M657.2279,-445.1482C682.7761,-400.863 745.2274,-277.7158 715,-177.6 701.3043,-132.2387 695.35,-115.1969 656,-88.8 600.3451,-51.4654 394.0875,-27.9415 319.8454,-20.5298"/>
+<text text-anchor="middle" x="739.75" y="-235.8" font-family="Times,serif" font-size="14.00" fill="#000000">20.29</text>
+</g>
+<!-- 4&#45;&#45;4 -->
+<g id="edge21" class="edge">
+<title>4&#45;&#45;4</title>
+<path fill="none" stroke="#000000" d="M671.5325,-470.1211C682.5078,-470.8945 692,-468.1875 692,-462 692,-455.8125 682.5078,-453.1055 671.5325,-453.8789"/>
+<text text-anchor="middle" x="704.25" y="-457.8" font-family="Times,serif" font-size="14.00" fill="#000000">5.81</text>
+</g>
+<!-- 4&#45;&#45;5 -->
+<g id="edge22" class="edge">
+<title>4&#45;&#45;5</title>
+<path fill="none" stroke="#000000" d="M620.2284,-459.0969C588.2231,-454.9021 533.5838,-445.4147 490.5,-426 478.7947,-420.7253 478.8972,-414.0264 467,-409.2 429.0502,-393.8048 309.6998,-380.881 255.8389,-375.6686"/>
+<text text-anchor="middle" x="506.75" y="-413.4" font-family="Times,serif" font-size="14.00" fill="#000000">24.44</text>
+</g>
+<!-- 5&#45;&#45;6 -->
+<g id="edge28" class="edge">
+<title>5&#45;&#45;6</title>
+<path fill="none" stroke="#000000" d="M244.0531,-357.8142C255.4025,-346.6761 271.6703,-331.6625 287.5,-320.4 301.2448,-310.6208 317.9208,-301.4902 331.0065,-294.8712"/>
+<text text-anchor="middle" x="303.75" y="-324.6" font-family="Times,serif" font-size="14.00" fill="#000000">24.83</text>
+</g>
+<!-- 5&#45;&#45;7 -->
+<g id="edge29" class="edge">
+<title>5&#45;&#45;7</title>
+<path fill="none" stroke="#000000" d="M254.0348,-366.3351C309.8659,-350.4371 447.8441,-307.8591 552,-248.4 573.3021,-236.2394 596.42,-220.202 611.9123,-209.006"/>
+<text text-anchor="middle" x="528.25" y="-280.2" font-family="Times,serif" font-size="14.00" fill="#000000">6.69</text>
+</g>
+<!-- 5&#45;&#45;8 -->
+<g id="edge30" class="edge">
+<title>5&#45;&#45;8</title>
+<path fill="none" stroke="#000000" d="M240.3155,-356.7792C247.7062,-346.2316 257.6808,-332.3241 267,-320.4 330.9774,-238.5397 346.67,-217.3828 419,-142.8 425.9593,-135.6239 433.954,-127.968 440.8093,-121.5696"/>
+<text text-anchor="middle" x="349.25" y="-235.8" font-family="Times,serif" font-size="14.00" fill="#000000">9.71</text>
+</g>
+<!-- 5&#45;&#45;9 -->
+<g id="edge31" class="edge">
+<title>5&#45;&#45;9</title>
+<path fill="none" stroke="#000000" d="M216.8739,-356.7895C205.4254,-339.6425 190,-311.5092 190,-284.4 190,-284.4 190,-284.4 190,-106.8 190,-65.2462 238.6836,-38.857 269.1108,-26.4217"/>
+<text text-anchor="middle" x="202.25" y="-191.4" font-family="Times,serif" font-size="14.00" fill="#000000">7.50</text>
+</g>
+<!-- 5&#45;&#45;5 -->
+<g id="edge27" class="edge">
+<title>5&#45;&#45;5</title>
+<path fill="none" stroke="#000000" d="M253.5325,-381.3211C264.5078,-382.0945 274,-379.3875 274,-373.2 274,-367.0125 264.5078,-364.3055 253.5325,-365.0789"/>
+<text text-anchor="middle" x="289.75" y="-369" font-family="Times,serif" font-size="14.00" fill="#000000">20.50</text>
+</g>
+<!-- 2&#45;&#45;6 -->
+<g id="edge35" class="edge">
+<title>2&#45;&#45;6</title>
+<path fill="none" stroke="#000000" d="M361.5935,-621.8715C371.7383,-587.625 391.5446,-509.932 385,-444 379.8359,-391.9751 365.4241,-331.7942 357.8273,-302.4143"/>
+<text text-anchor="middle" x="399.25" y="-457.8" font-family="Times,serif" font-size="14.00" fill="#000000">1.12</text>
+</g>
+<!-- 2&#45;&#45;7 -->
+<g id="edge34" class="edge">
+<title>2&#45;&#45;7</title>
+<path fill="none" stroke="#000000" d="M382.787,-636.697C416.2763,-633.0831 475.3627,-626.7575 526,-621.6 566.8726,-617.437 673.7527,-622.9399 710,-603.6 755.0759,-579.5496 757.4908,-559.0667 783,-514.8 846.2198,-405.0935 843.5297,-319.0903 752,-231.6 738.2314,-218.439 687.6247,-206.6689 656.0766,-200.3909"/>
+<text text-anchor="middle" x="839.75" y="-413.4" font-family="Times,serif" font-size="14.00" fill="#000000">18.34</text>
+</g>
+<!-- 2&#45;&#45;8 -->
+<g id="edge33" class="edge">
+<title>2&#45;&#45;8</title>
+<path fill="none" stroke="#000000" d="M345.6162,-622.8884C332.1258,-601.4949 307.5101,-563.5223 284,-532.8 225.7264,-456.6498 131.5637,-446.296 161.5,-355.2 198.1075,-243.8033 220.8674,-208.4855 318,-142.8 352.1753,-119.6891 400.257,-111.4139 429.9812,-108.4514"/>
+<text text-anchor="middle" x="177.75" y="-369" font-family="Times,serif" font-size="14.00" fill="#000000">13.61</text>
+</g>
+<!-- 2&#45;&#45;9 -->
+<g id="edge32" class="edge">
+<title>2&#45;&#45;9</title>
+<path fill="none" stroke="#000000" d="M339.9227,-625.0037C324.8993,-611.088 302.1285,-589.2765 284,-568.8 270.5636,-553.6234 270.6702,-546.7875 256,-532.8 226.4964,-504.6694 207.539,-510.9431 181,-480 132.1649,-423.0607 106,-403.813 106,-328.8 106,-328.8 106,-328.8 106,-106.8 106,-71.4892 216.1759,-38.0671 267.3905,-24.4386"/>
+<text text-anchor="middle" x="119.25" y="-324.6" font-family="Times,serif" font-size="14.00" fill="#000000">7.14</text>
+</g>
+<!-- 2&#45;&#45;4 -->
+<g id="edge37" class="edge">
+<title>2&#45;&#45;4</title>
+<path fill="none" stroke="#000000" d="M382.613,-636.3821C444.9144,-628.3039 597.5696,-605.1758 632,-568.8 654.5242,-545.003 653.2631,-503.8333 650.2101,-480.163"/>
+<text text-anchor="middle" x="665.75" y="-546.6" font-family="Times,serif" font-size="14.00" fill="#000000">10.19</text>
+</g>
+<!-- 2&#45;&#45;5 -->
+<g id="edge36" class="edge">
+<title>2&#45;&#45;5</title>
+<path fill="none" stroke="#000000" d="M351.6122,-621.7752C346.0134,-600.2092 335.4253,-563.0328 322,-532.8 297.6614,-477.9914 259.2566,-418.0946 240.3222,-389.7882"/>
+<text text-anchor="middle" x="329.75" y="-502.2" font-family="Times,serif" font-size="14.00" fill="#000000">22.58</text>
+</g>
+<!-- 2&#45;&#45;2 -->
+<g id="edge39" class="edge">
+<title>2&#45;&#45;2</title>
+<path fill="none" stroke="#000000" d="M380.5325,-647.7211C391.5078,-648.4945 401,-645.7875 401,-639.6 401,-633.4125 391.5078,-630.7055 380.5325,-631.4789"/>
+<text text-anchor="middle" x="416.75" y="-635.4" font-family="Times,serif" font-size="14.00" fill="#000000">24.06</text>
+</g>
+<!-- 2&#45;&#45;3 -->
+<g id="edge38" class="edge">
+<title>2&#45;&#45;3</title>
+<path fill="none" stroke="#000000" d="M378.7131,-629.4135C416.9066,-612.2843 493.5368,-577.9168 531.5518,-560.8677"/>
+<text text-anchor="middle" x="488.75" y="-591" font-family="Times,serif" font-size="14.00" fill="#000000">11.75</text>
+</g>
+<!-- 3&#45;&#45;6 -->
+<g id="edge43" class="edge">
+<title>3&#45;&#45;6</title>
+<path fill="none" stroke="#000000" d="M544.5925,-533.7119C531.3265,-510.8688 505.2224,-470.2226 474,-444 460.4537,-432.623 448.8308,-440.3601 438.5,-426 410.7977,-387.4931 450.5915,-358.9863 423,-320.4 412.3487,-305.5043 393.6689,-296.339 378.2837,-290.9863"/>
+<text text-anchor="middle" x="451.25" y="-413.4" font-family="Times,serif" font-size="14.00" fill="#000000">5.91</text>
+</g>
+<!-- 3&#45;&#45;7 -->
+<g id="edge42" class="edge">
+<title>3&#45;&#45;7</title>
+<path fill="none" stroke="#000000" d="M579.1428,-544.037C622.3732,-531.851 707.8155,-505.131 725,-480 756.1739,-434.4107 764.9673,-276.6366 733,-231.6 723.8996,-218.779 683.2927,-207.4483 655.8658,-201.066"/>
+<text text-anchor="middle" x="768.75" y="-369" font-family="Times,serif" font-size="14.00" fill="#000000">21.36</text>
+</g>
+<!-- 3&#45;&#45;8 -->
+<g id="edge41" class="edge">
+<title>3&#45;&#45;8</title>
+<path fill="none" stroke="#000000" d="M560.8975,-533.3411C573.7553,-497.908 597.687,-415.7835 570,-355.2 555.0959,-322.5876 527.6052,-333.052 509,-302.4 471.1655,-240.0677 492.7096,-212.4094 471,-142.8 469.0833,-136.6542 466.6353,-130.0553 464.3241,-124.2073"/>
+<text text-anchor="middle" x="572.75" y="-324.6" font-family="Times,serif" font-size="14.00" fill="#000000">22.50</text>
+</g>
+<!-- 3&#45;&#45;9 -->
+<g id="edge40" class="edge">
+<title>3&#45;&#45;9</title>
+<path fill="none" stroke="#000000" d="M579.6523,-544.5626C620.5549,-534.5987 696.2586,-516.075 699,-514.8 722.8925,-503.6879 727.0032,-497.1598 747,-480 780.5807,-451.1835 785.108,-439.875 817,-409.2 897.3067,-331.9577 1002,-351.425 1002,-240 1002,-240 1002,-240 1002,-106.8 1002,-36.7882 450.6571,-21.2003 320.3592,-18.494"/>
+<text text-anchor="middle" x="1012.25" y="-280.2" font-family="Times,serif" font-size="14.00" fill="#000000">9.39</text>
+</g>
+<!-- 3&#45;&#45;4 -->
+<g id="edge45" class="edge">
+<title>3&#45;&#45;4</title>
+<path fill="none" stroke="#000000" d="M569.7762,-535.7363C586.9814,-519.3081 614.344,-493.1812 631.4568,-476.8412"/>
+<text text-anchor="middle" x="624.75" y="-502.2" font-family="Times,serif" font-size="14.00" fill="#000000">23.56</text>
+</g>
+<!-- 3&#45;&#45;5 -->
+<g id="edge44" class="edge">
+<title>3&#45;&#45;5</title>
+<path fill="none" stroke="#000000" d="M528.8126,-543.9375C505.1134,-537.257 468.7689,-526.4337 438,-514.8 402.6826,-501.4465 389.2356,-504.4929 360.5,-480 331.8489,-455.5791 342.911,-433.3126 314,-409.2 296.6468,-394.727 272.6236,-385.2759 254.5421,-379.7054"/>
+<text text-anchor="middle" x="373.25" y="-457.8" font-family="Times,serif" font-size="14.00" fill="#000000">2.53</text>
+</g>
+<!-- 3&#45;&#45;3 -->
+<g id="edge46" class="edge">
+<title>3&#45;&#45;3</title>
+<path fill="none" stroke="#000000" d="M578.5325,-558.9211C589.5078,-559.6945 599,-556.9875 599,-550.8 599,-544.6125 589.5078,-541.9055 578.5325,-542.6789"/>
+<text text-anchor="middle" x="611.25" y="-546.6" font-family="Times,serif" font-size="14.00" fill="#000000">4.97</text>
+</g>
+<!-- 1&#45;&#45;6 -->
+<g id="edge50" class="edge">
+<title>1&#45;&#45;6</title>
+<path fill="none" stroke="#000000" d="M472.8837,-710.6111C467.3294,-692.8516 460,-664.6673 460,-639.6 460,-639.6 460,-639.6 460,-506.4 460,-500.7647 381.7908,-325.2958 379,-320.4 375.1056,-313.5683 370.187,-306.4655 365.6786,-300.3922"/>
+<text text-anchor="middle" x="472.25" y="-502.2" font-family="Times,serif" font-size="14.00" fill="#000000">7.61</text>
+</g>
+<!-- 1&#45;&#45;7 -->
+<g id="edge47" class="edge">
+<title>1&#45;&#45;7</title>
+<path fill="none" stroke="#000000" d="M504.1404,-721.2939C525.7512,-714.8311 557.5251,-704.476 584,-692.4 738.8218,-621.781 815.1502,-590.4203 859,-426 883.2994,-334.8866 856.4489,-277.3635 774,-231.6 736.598,-210.8399 687.1539,-201.8661 657.0112,-198.1223"/>
+<text text-anchor="middle" x="869.75" y="-457.8" font-family="Times,serif" font-size="14.00" fill="#000000">21.54</text>
+</g>
+<!-- 1&#45;&#45;8 -->
+<g id="edge48" class="edge">
+<title>1&#45;&#45;8</title>
+<path fill="none" stroke="#000000" d="M482.8137,-710.2211C494.8827,-651.6665 530.9317,-468.361 522,-409.2 514.5836,-360.0757 500.3708,-350.7622 489,-302.4 473.8002,-237.752 463.3308,-159.407 459.0985,-124.7618"/>
+<text text-anchor="middle" x="536.25" y="-413.4" font-family="Times,serif" font-size="14.00" fill="#000000">2.05</text>
+</g>
+<!-- 1&#45;&#45;9 -->
+<g id="edge55" class="edge">
+<title>1&#45;&#45;9</title>
+<path fill="none" stroke="#000000" d="M459.1916,-715.8561C455.2653,-713.7768 451.0902,-711.8344 447,-710.4 400.2522,-694.0058 382.9929,-710.8058 337,-692.4 144.8342,-615.4975 46,-535.7823 46,-328.8 46,-328.8 46,-328.8 46,-106.8 46,-60.3196 202.8474,-31.5285 266.5667,-21.7498"/>
+<text text-anchor="middle" x="65.75" y="-369" font-family="Times,serif" font-size="14.00" fill="#000000">24.62</text>
+</g>
+<!-- 1&#45;&#45;4 -->
+<g id="edge52" class="edge">
+<title>1&#45;&#45;4</title>
+<path fill="none" stroke="#000000" d="M502.4155,-718.9536C547.9425,-699.1152 647.2343,-648.2788 685,-568.8 699.7812,-537.6926 676.5963,-499.2071 660.4448,-477.9673"/>
+<text text-anchor="middle" x="690.75" y="-591" font-family="Times,serif" font-size="14.00" fill="#000000">17.32</text>
+</g>
+<!-- 1&#45;&#45;5 -->
+<g id="edge49" class="edge">
+<title>1&#45;&#45;5</title>
+<path fill="none" stroke="#000000" d="M458.6553,-716.1543C454.8499,-714.0953 450.8554,-712.0835 447,-710.4 390.9794,-685.9388 361.1234,-702.8275 320,-657.6 247.6334,-578.0112 232.7941,-440.5964 229.7688,-391.3857"/>
+<text text-anchor="middle" x="282.75" y="-546.6" font-family="Times,serif" font-size="14.00" fill="#000000">21.08</text>
+</g>
+<!-- 1&#45;&#45;2 -->
+<g id="edge54" class="edge">
+<title>1&#45;&#45;2</title>
+<path fill="none" stroke="#000000" d="M457.057,-717.7242C444.221,-711.1002 427.9481,-702.0343 414.5,-692.4 398.7071,-681.0859 382.4353,-666.078 371.075,-654.9552"/>
+<text text-anchor="middle" x="430.75" y="-679.8" font-family="Times,serif" font-size="14.00" fill="#000000">14.25</text>
+</g>
+<!-- 1&#45;&#45;3 -->
+<g id="edge51" class="edge">
+<title>1&#45;&#45;3</title>
+<path fill="none" stroke="#000000" d="M495.6815,-713.9533C501.8708,-707.843 508.4774,-700.3111 513,-692.4 536.2446,-651.7399 547.2078,-596.8532 551.5701,-568.8569"/>
+<text text-anchor="middle" x="556.75" y="-635.4" font-family="Times,serif" font-size="14.00" fill="#000000">12.59</text>
+</g>
+<!-- 1&#45;&#45;1 -->
+<g id="edge53" class="edge">
+<title>1&#45;&#45;1</title>
+<path fill="none" stroke="#000000" d="M503.5325,-736.5211C514.5078,-737.2945 524,-734.5875 524,-728.4 524,-722.2125 514.5078,-719.5055 503.5325,-720.2789"/>
+<text text-anchor="middle" x="536.25" y="-724.2" font-family="Times,serif" font-size="14.00" fill="#000000">3.29</text>
+</g>
+</g>
+</svg>
