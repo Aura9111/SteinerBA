@@ -10,15 +10,12 @@ public class App {
     public static void main(String[] args) throws Exception {
         Graph g = createConnectedGraph25N();
         g.printGraph();
-        SetPair setPair = prepareChange(g, new SetPair(new HashSet<Edge>(), new HashSet<Edge>()));
-        System.out.println(setPair.addSet + "\n" + setPair.removeSet);
-        g.changePath("edited");
-        g.printGraph();
         Tree t = new Tree(g.getHighestDegreeNode());
         t.printGraph();
+        System.out.println(prepareChange(t, new SetPair()));
     }
 
-    public static SetPair prepareChange(Graph g, SetPair setPair) throws IOException {
+/*     public static SetPair prepareChange(Graph g, SetPair setPair) throws IOException {
         if (g.numberOfComponents() > 1 || g.hasCircles())
             return null;
         if (g.getAllTerminalNodes().size() == 1)
@@ -36,11 +33,36 @@ public class App {
         setPair.add(prepareChange(g2, new SetPair()));
         String nodeName1 = c1.getAllTerminalNodes().iterator().next().getName();
         String nodeName2 = c2.getAllTerminalNodes().iterator().next().getName();
-        g.addEdge(nodeName1, nodeName2, e.getWeight());
-        Edge f = g.getEdge(nodeName1, nodeName2).get();
+        g.addEdge(e.first.getName(), e.second.getName(), e.getWeight());
+        String edgeName = (nodeName1.compareTo(nodeName2) < 0) ? nodeName1 + "--" + nodeName2
+        : nodeName2 + "--" + nodeName1;
+        Edge f = new Edge(edgeName, g.getNode(nodeName1).get(), g.getNode(nodeName2).get(), e.getWeight());
         setPair.addSet.add(f);
         setPair.removeSet.add(e);
         return setPair;
+    } */
+   
+    public static SetPair prepareChange(Tree t, SetPair setPair) throws IOException {
+        if (t.getAllTerminalNodes().size() == 1)
+            return setPair;
+        TreeEdge e = t.getMaxCostConnectingEdge();
+        Tree t1=t.removeEdge(e);
+        Tree t2=e.to;
+        setPair.add(prepareChange(t1, new SetPair()));
+        setPair.add(prepareChange(t2, new SetPair()));
+        t1= t1.getRndTerminalTreeNode();
+        t2= t2.getRndTerminalTreeNode();
+        TreeEdge f = new TreeEdge(t1,t2,e.cost);
+        setPair.addSet.add(f);
+        setPair.removeSet.add(e);
+        return setPair;
+    }
+
+    public static void evaluationPhase(int k){
+        
+        for (int j=3; j<k;j++){
+            
+        }
     }
 
     public static Graph createRandom50N() {

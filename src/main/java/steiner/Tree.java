@@ -73,27 +73,20 @@ public class Tree {
                 new OutputStreamWriter(new FileOutputStream("example/tree.dot")))) {
             out.write("digraph {");
             out.newLine();
-            for (Tree child : children) {
-                out.write(node.getName() + (node.isTerminal() ? "[color=red]" : "[color=blue]"));
-                out.newLine();
-                out.write(node.getName() + "->" + child.node.getName() + "[label=" + String.format("%.2f", child.cost)
-                        + "]");
-                out.newLine();
-                child.writeDotRec(out);
-            }
+            writeDotRec(out);
             out.write("}");
             out.close();
         }
     }
 
     private void writeDotRec(BufferedWriter out) throws IOException {
+        out.write(node.getName() + (node.isTerminal() ? "[color=red]" : "[color=black]"));
+        out.newLine();
         for (Tree child : children) {
-            out.write(node.getName() + (node.isTerminal() ? "[color=red]" : "[color=blue]"));
-            out.newLine();
+            child.writeDotRec(out);
             out.write(
                     node.getName() + "->" + child.node.getName() + "[label=" + String.format("%.2f", child.cost) + "]");
             out.newLine();
-            child.writeDotRec(out);
         }
     }
 
@@ -103,5 +96,64 @@ public class Tree {
             MutableGraph g = new Parser().read(dot);
             Graphviz.fromGraph(g).width(1920).render(Format.SVG).toFile(new File("example/tree.svg"));
         }
+    }
+
+    public HashSet<Node> getAllTerminalNodes() {
+        HashSet<Node> set = new HashSet<>();
+        if (node.isTerminal())
+            set.add(node);
+        for (Tree child : children) {
+            set.addAll(child.getAllTerminalNodes());
+        }
+        return set;
+    }
+
+    public int getNumberOfTerminals() {
+        int i = node.isTerminal() ? 1 : 0;
+        for (Tree child : children) {
+            i += child.getNumberOfTerminals();
+        }
+        return i;
+    }
+
+    private TreeEdge getMaxCostConnectingEdge(int numberofTotalTerminals, TreeEdge e) {
+        for (Tree child : children) {
+            if (numberofTotalTerminals > child.getNumberOfTerminals() && child.getNumberOfTerminals() > 0) {
+                if (child.cost > e.cost)
+                    e = new TreeEdge(this, child);
+
+            }
+            e = child.getMaxCostConnectingEdge(numberofTotalTerminals, e);
+        }
+        return e;
+    }
+
+    public TreeEdge getMaxCostConnectingEdge() {
+        if (children.size() == 0)
+            return null;
+        TreeEdge e = getMaxCostConnectingEdge(getNumberOfTerminals(), new TreeEdge(this, children.iterator().next()));
+        return e;
+    }
+
+    public Tree removeEdge(TreeEdge e) {
+        if (e.from.equals(this)) {
+            children.remove(e.to);
+            return this;
+        }
+        for (Tree child : children) {
+            child = child.removeEdge(e);
+        }
+        return this;
+    }
+
+    public Tree getRndTerminalTreeNode() {
+        if (node.isTerminal())
+            return this;
+        for (Tree child : children) {
+            Tree t = child.getRndTerminalTreeNode();
+            if (t != null)
+                return t;
+        }
+        return null;
     }
 }
