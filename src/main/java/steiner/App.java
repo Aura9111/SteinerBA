@@ -1,5 +1,6 @@
 package steiner;
 
+import java.io.IOException;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Random;
@@ -9,16 +10,37 @@ public class App {
     public static void main(String[] args) throws Exception {
         Graph g = createConnectedGraph25N();
         g.printGraph();
-        Tree t= new Tree(g.getHighestDegreeNode());
+        SetPair setPair = prepareChange(g, new SetPair(new HashSet<Edge>(), new HashSet<Edge>()));
+        System.out.println(setPair.addSet + "\n" + setPair.removeSet);
+        g.changePath("edited");
+        g.printGraph();
+        Tree t = new Tree(g.getHighestDegreeNode());
         t.printGraph();
-        g = createConnectedGraphWithCircles25N();
-        g.printGraph();
-        g = createMaximumGraph10N();
-        g.printGraph();
-        g = createRandom25N();
-        g.printGraph();
-        g = createRandom50N();
-        g.printGraph();
+    }
+
+    public static SetPair prepareChange(Graph g, SetPair setPair) throws IOException {
+        if (g.numberOfComponents() > 1 || g.hasCircles())
+            return null;
+        if (g.getAllTerminalNodes().size() == 1)
+            return setPair;
+        Edge e = g.getMaxCostConnectingEdge();
+        g.removeEdge(e.first.getName(), e.second.getName());
+        Iterator<Component> it = g.components.iterator();
+        Component c1 = it.next();
+        Component c2 = it.next();
+        Graph g1 = new Graph("tmp");
+        g1.addComponent(c1);
+        setPair.add(prepareChange(g1, new SetPair()));
+        Graph g2 = new Graph("tmp");
+        g2.addComponent(c2);
+        setPair.add(prepareChange(g2, new SetPair()));
+        String nodeName1 = c1.getAllTerminalNodes().iterator().next().getName();
+        String nodeName2 = c2.getAllTerminalNodes().iterator().next().getName();
+        g.addEdge(nodeName1, nodeName2, e.getWeight());
+        Edge f = g.getEdge(nodeName1, nodeName2).get();
+        setPair.addSet.add(f);
+        setPair.removeSet.add(e);
+        return setPair;
     }
 
     public static Graph createRandom50N() {

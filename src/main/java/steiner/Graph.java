@@ -18,12 +18,19 @@ import guru.nidi.graphviz.parse.Parser;
 
 public class Graph {
 
-    private HashSet<Component> components;
+    public HashSet<Component> components;
     private String path;
 
     public Graph(String path) {
         components = new HashSet<Component>();
         this.path = path;
+    }
+
+    public void changePath(String path) {
+        this.path = path;
+        for (Component c : components) {
+            c.changePath(path);
+        }
     }
 
     public boolean addEdge(String nodeName1, String nodeName2, double weight) {
@@ -103,16 +110,18 @@ public class Graph {
     }
 
     public void printGraph() throws IOException {
-        try (BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path + ".dot")))) {
+        try (BufferedWriter out = new BufferedWriter(
+                new OutputStreamWriter(new FileOutputStream("example/" + path + ".dot")))) {
             out.write("graph {");
             out.newLine();
             writeDot(out);
             out.write("}");
             out.close();
         }
-        try (InputStream dot = new FileInputStream(path + ".dot")) {
+        try (InputStream dot = new FileInputStream("example/" + path + ".dot")) {
             MutableGraph g = new Parser().read(dot);
-            Graphviz.fromGraph(g).width(1920).render(Format.SVG).toFile(new File(path + ".svg"));
+            dot.close();
+            Graphviz.fromGraph(g).width(1920).render(Format.SVG).toFile(new File("example/" + path + ".svg"));
         }
     }
 
@@ -202,29 +211,35 @@ public class Graph {
         return false;
     }
 
-    public Node getHighestDegreeNode(){
-        Node n=null;
-        int degree=0;
+    public Node getHighestDegreeNode() {
+        Node n = null;
+        int degree = 0;
         for (Component c : components) {
-            Node tmp=c.getHighestDegreeNode();
-            if (tmp.getDegree()>degree){
-                n=tmp;
-                degree=tmp.getDegree();
+            Node tmp = c.getHighestDegreeNode();
+            if (tmp.getDegree() > degree) {
+                n = tmp;
+                degree = tmp.getDegree();
             }
         }
         return n;
     }
 
-	public void addNode(String nodeName, boolean isTerminal) {
+    public void addNode(String nodeName, boolean isTerminal) {
         components.add(new Component(new Node(nodeName, isTerminal), path));
-	}
+    }
 
-	public HashSet<Node> getNonNeighborNodes(String nodeName) {
+    public HashSet<Node> getNonNeighborNodes(String nodeName) {
         for (Component c : components) {
-            if (c.containsNode(nodeName)){
+            if (c.containsNode(nodeName)) {
                 return c.getNonNeighborNodes(nodeName);
             }
         }
         return new HashSet<Node>();
-	}
+    }
+
+    public Edge getMaxCostConnectingEdge() {
+        if (components.size() > 1 || hasCircles())
+            return null;
+        return components.iterator().next().getMaxCostConnectingEdge();
+    }
 }

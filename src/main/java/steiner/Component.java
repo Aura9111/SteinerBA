@@ -87,36 +87,52 @@ public class Component {
     public Optional<Component> removeEdge(String nodeName1, String nodeName2) {
         String edgeName = (nodeName1.compareTo(nodeName2) < 0) ? nodeName1 + "--" + nodeName2
                 : nodeName2 + "--" + nodeName1;
-        Edge e = edges.get(edgeName);
-        nodes.get(nodeName1).removeEdge(e);
-        nodes.get(nodeName2).removeEdge(e);
+        Edge edge = edges.get(edgeName);
+        nodes.get(nodeName1).removeEdge(edge);
+        nodes.get(nodeName2).removeEdge(edge);
         edges.remove(edgeName);
-        if (nodes.get(nodeName1).isInSameComponent(nodes.get(nodeName2)))
+        HashSet<Node> nodeSet = nodes.get(nodeName2).getNodesInComponent(new HashSet<Node>());
+        if (nodeSet.contains(nodes.get(nodeName1)))
             return Optional.empty();
+
+        // split into 2 Components
         HashMap<String, Node> newNodes = new HashMap<String, Node>();
         HashMap<String, Edge> newEdges = new HashMap<String, Edge>();
-        HashSet<String> workSet = new HashSet<String>();
-        workSet.add(nodeName2);
-        while (!workSet.isEmpty()) {
-            HashSet<String> tmp = new HashSet<String>();
-            for (String name : workSet) {
-                Node n = nodes.get(name);
-                for (Edge edge : n.getEdges()) {
-                    newEdges.put(edge.getName(), edges.remove(edge.getName()));
-                    String oppName = edge.opposite(n).getName();
-                    if (!newNodes.containsKey(oppName))
-                        tmp.add(oppName);
-                }
-                newNodes.put(name, nodes.remove(name));
+        for (Node n : nodeSet) {
+            for (Edge e : n.getEdges()) {
+                newEdges.put(e.getName(), edges.get(e.getName()));
             }
-            workSet = tmp;
+            newNodes.put(n.getName(), nodes.get(n.getName()));
+        }
+        for (String nKey : newNodes.keySet()) {
+            nodes.remove(nKey);
+        }
+        for (String eKey : newEdges.keySet()) {
+            edges.remove(eKey);
         }
         return Optional.of(new Component(newNodes, newEdges, path));
+
+        /*
+         * if (nodes.get(nodeName1).isInSameComponent(nodes.get(nodeName2))) return
+         * Optional.empty(); HashMap<String, Node> newNodes = new HashMap<String,
+         * Node>(); HashMap<String, Edge> newEdges = new HashMap<String, Edge>();
+         * HashSet<String> workSet = new HashSet<String>(); workSet.add(nodeName2);
+         * while (!workSet.isEmpty()) { HashSet<String> tmp = new HashSet<String>(); for
+         * (String name : workSet) { Node n = nodes.get(name); for (Edge edge :
+         * n.getEdges()) { if (edges.remove(edge.getName())!=null){
+         * newEdges.put(edge.getName(), edges.remove(edge.getName())); }else {
+         * 
+         * } String oppName = edge.opposite(n).getName(); if
+         * (!newNodes.containsKey(oppName)) tmp.add(oppName);
+         * 
+         * } newNodes.put(name, nodes.remove(name)); } workSet = tmp; } return
+         * Optional.of(new Component(newNodes, newEdges, path));
+         */
     }
 
     public void writeDot(BufferedWriter out) throws IOException {
         for (Node n : nodes.values()) {
-            out.write(n.getName() + (n.isTerminal() ? "[color=red]" : "[color=blue]"));
+            out.write(n.getName() + (n.isTerminal() ? "[color=red]" : "[color=black]"));
             out.newLine();
         }
         for (Edge e : edges.values()) {
@@ -126,16 +142,18 @@ public class Component {
     }
 
     public void printGraph() throws IOException {
-        try (BufferedWriter out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(path + ".dot")))) {
+        try (BufferedWriter out = new BufferedWriter(
+                new OutputStreamWriter(new FileOutputStream("example/" + path + ".dot")))) {
             out.write("graph {");
             out.newLine();
             writeDot(out);
             out.write("}");
             out.close();
         }
-        try (InputStream dot = new FileInputStream(path + ".dot")) {
+        try (InputStream dot = new FileInputStream("example/" + path + ".dot")) {
             MutableGraph g = new Parser().read(dot);
-            Graphviz.fromGraph(g).width(1920).render(Format.SVG).toFile(new File(path + ".svg"));
+            dot.close();
+            Graphviz.fromGraph(g).width(1920).render(Format.SVG).toFile(new File("example/" + path + ".svg"));
         }
     }
 
@@ -203,5 +221,23 @@ public class Component {
             }
         }
         return n;
+    }
+
+    public Edge getMaxCostConnectingEdge() {
+        double maxCost = 0;
+        Edge maxCostEdge = null;
+        for (Edge e : edges.values()) {
+            if (e.first.stillInComponentWithTerminal(e) && e.second.stillInComponentWithTerminal(e)) {
+                if (e.getWeight() > maxCost) {
+                    maxCost = e.getWeight();
+                    maxCostEdge = e;
+                }
+            }
+        }
+        return maxCostEdge;
+    }
+
+    public void changePath(String path) {
+        this.path = path;
     }
 }

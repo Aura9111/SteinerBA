@@ -30,11 +30,11 @@ public class Node {
         return name;
     }
 
-    public HashSet<Edge> getEdges(){
+    public HashSet<Edge> getEdges() {
         return edges;
     }
 
-    public int getDegree(){
+    public int getDegree() {
         return edges.size();
     }
 
@@ -64,27 +64,8 @@ public class Node {
     }
 
     public boolean isInSameComponent(Node find) {
-        if (this.equals(find))
-            return true;
-        boolean output = false;
-        for (Edge e : edges) {
-            Node n = e.opposite(this);
-            output = output || n.isInSameComponent(this, find);
-        }
-        return output;
-    }
-
-    private boolean isInSameComponent(Node start, Node find) {
-        if (this.equals(start))
-            return false;
-        if (this.equals(find))
-            return true;
-        boolean output = false;
-        for (Edge e : edges) {
-            Node n = e.opposite(this);
-            output = output || n.isInSameComponent(start, find);
-        }
-        return output;
+        HashSet<Node> set= getNodesInComponent(new HashSet<Node>());
+        return set.contains(find);
     }
 
     public HashSet<Node> getNodesInComponent(HashSet<Node> set) {
@@ -103,5 +84,24 @@ public class Node {
             set.add(e.opposite(this));
         }
         return set;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if(!this.getClass().equals(o.getClass())) return false;
+        return this.name.equals(((Node)o).name);
+    }
+
+    public boolean stillInComponentWithTerminal(Edge e) {
+        this.edges.remove(e);
+        HashSet<Node> set = getNodesInComponent(new HashSet<Node>());
+        for (Node n : set) {
+            if (n.terminal) {
+                edges.add(e);
+                return true;
+            }
+        }
+        edges.add(e);
+        return false;
     }
 }
