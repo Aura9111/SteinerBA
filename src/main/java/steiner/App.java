@@ -12,7 +12,7 @@ public class App {
         g.printGraph();
         Tree t = new Tree(g.getHighestDegreeNode());
         t.printGraph();
-        System.out.println(prepareChange(t, new SetPair()));
+        System.out.println(prepareChange(t, t.getAllTerminalNodes(), new SetPair()));
     }
 
 /*     public static SetPair prepareChange(Graph g, SetPair setPair) throws IOException {
@@ -42,26 +42,27 @@ public class App {
         return setPair;
     } */
    
-    public static SetPair prepareChange(Tree t, SetPair setPair) throws IOException {
-        if (t.getAllTerminalNodes().size() == 1)
+    public static SetPair prepareChange(Tree t, HashSet<Tree> terminals, SetPair setPair) throws IOException {
+        if (terminals.size() == 1)
             return setPair;
-        TreeEdge e = t.getMaxCostConnectingEdge();
-        Tree t1=t.removeEdge(e);
-        Tree t2=e.to;
-        setPair.add(prepareChange(t1, new SetPair()));
-        setPair.add(prepareChange(t2, new SetPair()));
-        t1= t1.getRndTerminalTreeNode();
-        t2= t2.getRndTerminalTreeNode();
-        TreeEdge f = new TreeEdge(t1,t2,e.cost);
+        TreeEdge e = t.getMaxCostConnectingEdge(terminals);
+        HashSet<Tree> terminalsTo=t.splitTermOnEdge(e);
+        HashSet<Tree> terminalsFrom=terminals;
+        terminalsFrom.removeAll(terminalsTo);
+        setPair.add(prepareChange(t, terminalsTo, new SetPair()));
+        setPair.add(prepareChange(t, terminalsFrom, new SetPair()));
+        Tree nFrom=terminalsFrom.iterator().next();
+        Tree nTo=terminalsTo.iterator().next();
+        TreeEdge f = new TreeEdge(nFrom,nTo,e.cost);
         setPair.addSet.add(f);
         setPair.removeSet.add(e);
         return setPair;
     }
 
-    public static void evaluationPhase(int k){
+    public static void evaluationPhase(Tree t, int k){
         
         for (int j=3; j<k;j++){
-            
+            t.getXElementSubsets(j);
         }
     }
 

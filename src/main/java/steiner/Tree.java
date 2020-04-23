@@ -98,10 +98,10 @@ public class Tree {
         }
     }
 
-    public HashSet<Node> getAllTerminalNodes() {
-        HashSet<Node> set = new HashSet<>();
+    public HashSet<Tree> getAllTerminalNodes() {
+        HashSet<Tree> set = new HashSet<>();
         if (node.isTerminal())
-            set.add(node);
+            set.add(this);
         for (Tree child : children) {
             set.addAll(child.getAllTerminalNodes());
         }
@@ -116,22 +116,25 @@ public class Tree {
         return i;
     }
 
-    private TreeEdge getMaxCostConnectingEdge(int numberofTotalTerminals, TreeEdge e) {
+    private TreeEdge getMaxCostConnectingEdge(HashSet<Tree> terminals, TreeEdge e) {
         for (Tree child : children) {
-            if (numberofTotalTerminals > child.getNumberOfTerminals() && child.getNumberOfTerminals() > 0) {
-                if (child.cost > e.cost)
+            HashSet<Tree> childSet= child.getAllTerminalNodes();
+            if (!childSet.containsAll(terminals)){
+                childSet.retainAll(terminals);
+                if (!childSet.isEmpty()){
+                    if (child.cost > e.cost)
                     e = new TreeEdge(this, child);
-
+                }
             }
-            e = child.getMaxCostConnectingEdge(numberofTotalTerminals, e);
+            e = child.getMaxCostConnectingEdge(terminals, e);
         }
         return e;
     }
 
-    public TreeEdge getMaxCostConnectingEdge() {
+    public TreeEdge getMaxCostConnectingEdge(HashSet<Tree> terminals) {
         if (children.size() == 0)
             return null;
-        TreeEdge e = getMaxCostConnectingEdge(getNumberOfTerminals(), new TreeEdge(this, children.iterator().next()));
+        TreeEdge e = getMaxCostConnectingEdge(terminals, new TreeEdge(this, children.iterator().next(), 0));
         return e;
     }
 
@@ -156,4 +159,19 @@ public class Tree {
         }
         return null;
     }
+
+	public void getXElementSubsets(int j) {
+        //TODO
+	}
+
+	public HashSet<Tree> splitTermOnEdge(TreeEdge e) {
+        HashSet<Tree> out=new HashSet<>();
+        if (e.to.equals(this)) {
+            return getAllTerminalNodes();
+        }
+        for (Tree child : children) {
+            out.addAll(child.splitTermOnEdge(e));
+        }
+        return out;
+	}
 }
