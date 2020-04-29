@@ -173,5 +173,9 @@ public class Tree {
             out.addAll(child.splitTermOnEdge(e));
         }
         return out;
-	}
+    }
+    
+    public String toString(){
+        return "Tree: " + node.getName();
+    }
 }

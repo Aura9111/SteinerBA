@@ -62,7 +62,7 @@ public class App {
     public static void evaluationPhase(Tree t, int k){
         
         for (int j=3; j<k;j++){
-            t.getXElementSubsets(j);
+            
         }
     }
 
