@@ -98,15 +98,26 @@ public class Tree {
         }
     }
 
-    public HashSet<Tree> getAllTerminalNodes() {
-        HashSet<Tree> set = new HashSet<>();
+    public HashSet<Node> getAllTerminalNodes() {
+        HashSet<Node> set = new HashSet<>();
         if (node.isTerminal())
-            set.add(this);
+            set.add(this.node);
         for (Tree child : children) {
             set.addAll(child.getAllTerminalNodes());
         }
         return set;
     }
+
+    public HashSet<Tree> getAllTerminalTreeNodes() {
+        HashSet<Tree> set = new HashSet<>();
+        if (node.isTerminal())
+            set.add(this);
+        for (Tree child : children) {
+            set.addAll(child.getAllTerminalTreeNodes());
+        }
+        return set;
+    }
+
 
     public int getNumberOfTerminals() {
         int i = node.isTerminal() ? 1 : 0;
@@ -118,7 +129,7 @@ public class Tree {
 
     private TreeEdge getMaxCostConnectingEdge(HashSet<Tree> terminals, TreeEdge e) {
         for (Tree child : children) {
-            HashSet<Tree> childSet= child.getAllTerminalNodes();
+            HashSet<Tree> childSet= child.getAllTerminalTreeNodes();
             if (!childSet.containsAll(terminals)){
                 childSet.retainAll(terminals);
                 if (!childSet.isEmpty()){
@@ -160,14 +171,27 @@ public class Tree {
         return null;
     }
 
-	public void getXElementSubsets(int j) {
-        //TODO
+	public HashSet<HashSet<Node>> getXElementSubsets(int k) {
+        HashSet<Node> terminals=this.getAllTerminalNodes();
+        return getXElementSubsets(k, new MyImmutableHashSet<Node>(terminals), new MyImmutableHashSet<Node>());
 	}
 
-	public HashSet<Tree> splitTermOnEdge(TreeEdge e) {
+	private HashSet<HashSet<Node>> getXElementSubsets(int k, MyImmutableHashSet<Node> in, MyImmutableHashSet<Node> out) {
+        HashSet<HashSet<Node>> setOfSets=new HashSet<>();
+        if (out.getSize()==k) {
+            setOfSets.add(out.getHashSet());
+            return setOfSets;   
+        }
+        for (Node n:in){
+            setOfSets.addAll(getXElementSubsets(k, in.remove(n), out.add(n)));
+        }
+        return setOfSets;
+    }
+
+    public HashSet<Tree> splitTermOnEdge(TreeEdge e) {
         HashSet<Tree> out=new HashSet<>();
         if (e.to.equals(this)) {
-            return getAllTerminalNodes();
+            return getAllTerminalTreeNodes();
         }
         for (Tree child : children) {
             out.addAll(child.splitTermOnEdge(e));

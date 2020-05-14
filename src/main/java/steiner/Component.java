@@ -215,7 +215,7 @@ public class Component {
         Node n = null;
         int degree = 0;
         for (Node tmp : nodes.values()) {
-            if (tmp.getDegree() > degree) {
+            if (tmp.getDegree() >= degree) {
                 n = tmp;
                 degree = tmp.getDegree();
             }

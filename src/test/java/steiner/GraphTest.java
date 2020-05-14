@@ -10,16 +10,7 @@ import java.util.Scanner;
 public class GraphTest {
 
     public static void main(String[] args) throws IOException {
-        g021().printGraph();
-        g022().printGraph();
-        g023().printGraph();
-        g024().printGraph();
-        g025().printGraph();
-        g041().printGraph();
-        g042().printGraph();
-        g043().printGraph();
-        g044().printGraph();
-        g045().printGraph();
+        
     }
 
     public static void makeMyGraphMethods(String path) throws IOException {

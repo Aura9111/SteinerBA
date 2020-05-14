@@ -11,8 +11,9 @@ public class App {
         Graph g = createConnectedGraph25N();
         g.printGraph();
         Tree t = new Tree(g.getHighestDegreeNode());
-        t.printGraph();
-        System.out.println(prepareChange(t, t.getAllTerminalNodes(), new SetPair()));
+        System.out.println(t.getAllTerminalNodes().size() +"\n"+ t.getXElementSubsets(4).size());
+/*         t.printGraph();
+        System.out.println(prepareChange(t, t.getAllTerminalTreeNodes(), new SetPair())); */
     }
 
 /*     public static SetPair prepareChange(Graph g, SetPair setPair) throws IOException {

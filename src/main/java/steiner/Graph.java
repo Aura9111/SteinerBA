@@ -216,7 +216,7 @@ public class Graph {
         int degree = 0;
         for (Component c : components) {
             Node tmp = c.getHighestDegreeNode();
-            if (tmp.getDegree() > degree) {
+            if (tmp.getDegree() >= degree) {
                 n = tmp;
                 degree = tmp.getDegree();
             }
