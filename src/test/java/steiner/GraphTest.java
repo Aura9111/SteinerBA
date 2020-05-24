@@ -10,7 +10,21 @@ import java.util.Scanner;
 public class GraphTest {
 
     public static void main(String[] args) throws IOException {
-        
+        makeMyGraphMethods("D:\\I080\\i080-011");
+        makeMyGraphMethods("D:\\I080\\i080-012");
+        makeMyGraphMethods("D:\\I080\\i080-013");
+        makeMyGraphMethods("D:\\I080\\i080-014");
+        makeMyGraphMethods("D:\\I080\\i080-015");
+        makeMyGraphMethods("D:\\I080\\i080-021");
+        makeMyGraphMethods("D:\\I080\\i080-022");
+        makeMyGraphMethods("D:\\I080\\i080-023");
+        makeMyGraphMethods("D:\\I080\\i080-024");
+        makeMyGraphMethods("D:\\I080\\i080-025");
+        makeMyGraphMethods("D:\\I080\\i080-041");
+        makeMyGraphMethods("D:\\I080\\i080-042");
+        makeMyGraphMethods("D:\\I080\\i080-043");
+        makeMyGraphMethods("D:\\I080\\i080-044");
+        makeMyGraphMethods("D:\\I080\\i080-045");
     }
 
     public static void makeMyGraphMethods(String path) throws IOException {
@@ -35,7 +49,7 @@ public class GraphTest {
                     out.write("g.addNode(\"\"+" + i + ", true);");
                     out.newLine();
                 }
-                for (int i = x; i <= nodes; i++) {
+                for (int i = x+1; i <= nodes; i++) {
                     out.write("g.addNode(\"\"+" + i + ", false);");
                     out.newLine();
                 }

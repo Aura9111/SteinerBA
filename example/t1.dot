@@ -1,0 +1,5 @@
+digraph {
+18[color=black]
+31[color=black]
+18->31[label=98.00]
+}

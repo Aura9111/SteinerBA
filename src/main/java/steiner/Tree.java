@@ -24,22 +24,20 @@ public class Tree {
         this.node = node;
         this.cost = 0;
         this.children = new HashSet<Tree>();
-        for (Edge e : node.getEdges()) {
-            Node opp = e.opposite(node);
-            opp.removeEdge(e);
-            children.add(new Tree(opp, e.getWeight()));
-        }
+        /*
+         * for (Edge e : node.getEdges()) { Node opp = e.opposite(node);
+         * opp.removeEdge(e); children.add(new Tree(opp, e.getWeight())); }
+         */
     }
 
     private Tree(Node node, double weight) {
         this.node = node;
         this.cost = weight;
         this.children = new HashSet<Tree>();
-        for (Edge e : node.getEdges()) {
-            Node opp = e.opposite(node);
-            opp.removeEdge(e);
-            children.add(new Tree(opp, e.getWeight()));
-        }
+        /*
+         * for (Edge e : node.getEdges()) { Node opp = e.opposite(node);
+         * opp.removeEdge(e); children.add(new Tree(opp, e.getWeight())); }
+         */
     }
 
     public boolean containsNode(Node n) {
@@ -50,6 +48,28 @@ public class Tree {
                 return true;
         }
         return false;
+    }
+
+    public boolean combineWith(Tree other, Edge e) {
+        if (node.equals(e.first)) {
+            other.setWeight(e.getWeight());
+            children.add(other);
+            return true;
+        }
+        if (node.equals(e.second)) {
+            other.setWeight(e.getWeight());
+            children.add(other);
+            return true;
+        }
+        boolean bool = false;
+        for (Tree child : children) {
+            bool = bool || child.combineWith(other, e);
+        }
+        return bool;
+    }
+
+    private void setWeight(double weight) {
+        this.cost = weight;
     }
 
     public boolean addChild(Edge edge) {
@@ -79,6 +99,17 @@ public class Tree {
         }
     }
 
+    public void writeDot(String path) throws IOException {
+        try (BufferedWriter out = new BufferedWriter(
+                new OutputStreamWriter(new FileOutputStream("example/" + path + ".dot")))) {
+            out.write("digraph {");
+            out.newLine();
+            writeDotRec(out);
+            out.write("}");
+            out.close();
+        }
+    }
+
     private void writeDotRec(BufferedWriter out) throws IOException {
         out.write(node.getName() + (node.isTerminal() ? "[color=red]" : "[color=black]"));
         out.newLine();
@@ -95,6 +126,14 @@ public class Tree {
         try (InputStream dot = new FileInputStream("example/tree.dot")) {
             MutableGraph g = new Parser().read(dot);
             Graphviz.fromGraph(g).width(1920).render(Format.SVG).toFile(new File("example/tree.svg"));
+        }
+    }
+
+    public void printGraph(String path) throws IOException {
+        writeDot(path);
+        try (InputStream dot = new FileInputStream(("example/" + path + ".dot"))) {
+            MutableGraph g = new Parser().read(dot);
+            Graphviz.fromGraph(g).width(1920).render(Format.SVG).toFile(new File("example/" + path + ".svg"));
         }
     }
 
@@ -118,7 +157,6 @@ public class Tree {
         return set;
     }
 
-
     public int getNumberOfTerminals() {
         int i = node.isTerminal() ? 1 : 0;
         for (Tree child : children) {
@@ -129,12 +167,12 @@ public class Tree {
 
     private TreeEdge getMaxCostConnectingEdge(HashSet<Tree> terminals, TreeEdge e) {
         for (Tree child : children) {
-            HashSet<Tree> childSet= child.getAllTerminalTreeNodes();
-            if (!childSet.containsAll(terminals)){
+            HashSet<Tree> childSet = child.getAllTerminalTreeNodes();
+            if (!childSet.containsAll(terminals)) {
                 childSet.retainAll(terminals);
-                if (!childSet.isEmpty()){
+                if (!childSet.isEmpty()) {
                     if (child.cost > e.cost)
-                    e = new TreeEdge(this, child);
+                        e = new TreeEdge(this, child);
                 }
             }
             e = child.getMaxCostConnectingEdge(terminals, e);
@@ -171,25 +209,26 @@ public class Tree {
         return null;
     }
 
-	public HashSet<HashSet<Node>> getXElementSubsets(int k) {
-        HashSet<Node> terminals=this.getAllTerminalNodes();
+    public HashSet<HashSet<Node>> getXElementSubsets(int k) {
+        HashSet<Node> terminals = this.getAllTerminalNodes();
         return getXElementSubsets(k, new MyImmutableHashSet<Node>(terminals), new MyImmutableHashSet<Node>());
-	}
+    }
 
-	private HashSet<HashSet<Node>> getXElementSubsets(int k, MyImmutableHashSet<Node> in, MyImmutableHashSet<Node> out) {
-        HashSet<HashSet<Node>> setOfSets=new HashSet<>();
-        if (out.getSize()==k) {
+    private HashSet<HashSet<Node>> getXElementSubsets(int k, MyImmutableHashSet<Node> in,
+            MyImmutableHashSet<Node> out) {
+        HashSet<HashSet<Node>> setOfSets = new HashSet<>();
+        if (out.getSize() == k) {
             setOfSets.add(out.getHashSet());
-            return setOfSets;   
+            return setOfSets;
         }
-        for (Node n:in){
+        for (Node n : in) {
             setOfSets.addAll(getXElementSubsets(k, in.remove(n), out.add(n)));
         }
         return setOfSets;
     }
 
     public HashSet<Tree> splitTermOnEdge(TreeEdge e) {
-        HashSet<Tree> out=new HashSet<>();
+        HashSet<Tree> out = new HashSet<>();
         if (e.to.equals(this)) {
             return getAllTerminalTreeNodes();
         }
@@ -198,8 +237,64 @@ public class Tree {
         }
         return out;
     }
-    
-    public String toString(){
+
+    public String toString() {
         return "Tree: " + node.getName();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other.getClass().equals(this.getClass())) {
+            return this.node == ((Tree) other).node;
+        } else {
+            return false;
+        }
+    }
+
+    public HashSet<Node> getNodes() {
+        HashSet<Node> set = new HashSet<>();
+        set.add(this.node);
+        for (Tree child : children) {
+            set.addAll(child.getNodes());
+        }
+        return set;
+    }
+
+    public Tree makeRoot(Node n) {
+        if (!containsNode(n))
+            return this;
+        if (this.node.equals(n))
+            return this;
+        for (Tree child : children) {
+            Tree result = child.makeRootRec(n, this);
+            if (!result.equals(this)) {
+                return result;
+            }
+        }
+        // should never happen. want it to throw an exception
+        return null;
+    }
+
+    private Tree makeRootRec(Node n, Tree parent) {
+        if (this.node.equals(n)) {
+            double tmp = this.cost;
+            cost = parent.cost;
+            parent.cost = tmp;
+            parent.children.remove(this);
+            children.add(parent);
+            return this;
+        }
+        for (Tree child : children) {
+            Tree result = child.makeRootRec(n, this);
+            if (!result.equals(this)) {
+                double tmp = parent.cost;
+                parent.cost = result.cost;
+                result.cost = tmp;
+                parent.children.remove(this);
+                children.add(parent);
+                return result;
+            }
+        }
+        return parent;
     }
 }

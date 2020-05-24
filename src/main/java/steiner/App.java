@@ -1,6 +1,7 @@
 package steiner;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Random;
@@ -8,62 +9,111 @@ import java.util.Random;
 public class App {
 
     public static void main(String[] args) throws Exception {
-        Graph g = createConnectedGraph25N();
-        g.printGraph();
-        Tree t = new Tree(g.getHighestDegreeNode());
-        System.out.println(t.getAllTerminalNodes().size() +"\n"+ t.getXElementSubsets(4).size());
-/*         t.printGraph();
-        System.out.println(prepareChange(t, t.getAllTerminalTreeNodes(), new SetPair())); */
+        Graph g = GraphFactory.g011();
+        Tree t = mst(g);
+        t.printGraph();
     }
 
-/*     public static SetPair prepareChange(Graph g, SetPair setPair) throws IOException {
-        if (g.numberOfComponents() > 1 || g.hasCircles())
-            return null;
-        if (g.getAllTerminalNodes().size() == 1)
-            return setPair;
-        Edge e = g.getMaxCostConnectingEdge();
-        g.removeEdge(e.first.getName(), e.second.getName());
-        Iterator<Component> it = g.components.iterator();
-        Component c1 = it.next();
-        Component c2 = it.next();
-        Graph g1 = new Graph("tmp");
-        g1.addComponent(c1);
-        setPair.add(prepareChange(g1, new SetPair()));
-        Graph g2 = new Graph("tmp");
-        g2.addComponent(c2);
-        setPair.add(prepareChange(g2, new SetPair()));
-        String nodeName1 = c1.getAllTerminalNodes().iterator().next().getName();
-        String nodeName2 = c2.getAllTerminalNodes().iterator().next().getName();
-        g.addEdge(e.first.getName(), e.second.getName(), e.getWeight());
-        String edgeName = (nodeName1.compareTo(nodeName2) < 0) ? nodeName1 + "--" + nodeName2
-        : nodeName2 + "--" + nodeName1;
-        Edge f = new Edge(edgeName, g.getNode(nodeName1).get(), g.getNode(nodeName2).get(), e.getWeight());
-        setPair.addSet.add(f);
-        setPair.removeSet.add(e);
-        return setPair;
-    } */
-   
     public static SetPair prepareChange(Tree t, HashSet<Tree> terminals, SetPair setPair) throws IOException {
         if (terminals.size() == 1)
             return setPair;
         TreeEdge e = t.getMaxCostConnectingEdge(terminals);
-        HashSet<Tree> terminalsTo=t.splitTermOnEdge(e);
-        HashSet<Tree> terminalsFrom=terminals;
+        HashSet<Tree> terminalsTo = t.splitTermOnEdge(e);
+        HashSet<Tree> terminalsFrom = terminals;
         terminalsFrom.removeAll(terminalsTo);
         setPair.add(prepareChange(t, terminalsTo, new SetPair()));
         setPair.add(prepareChange(t, terminalsFrom, new SetPair()));
-        Tree nFrom=terminalsFrom.iterator().next();
-        Tree nTo=terminalsTo.iterator().next();
-        TreeEdge f = new TreeEdge(nFrom,nTo,e.cost);
+        Tree nFrom = terminalsFrom.iterator().next();
+        Tree nTo = terminalsTo.iterator().next();
+        TreeEdge f = new TreeEdge(nFrom, nTo, e.cost);
         setPair.addSet.add(f);
         setPair.removeSet.add(e);
         return setPair;
     }
 
-    public static void evaluationPhase(Tree t, int k){
-        
-        for (int j=3; j<k;j++){
-            
+    public static Tree mst(Graph g) throws Exception {
+        if (g.numberOfComponents() > 1)
+            throw new Exception();
+        HashMap<String, Node> nodes = g.getNodes();
+        HashSet<Tree> forest = new HashSet<>();
+        for (String n : nodes.keySet()) {
+            forest.add(new Tree(nodes.get(n)));
+        }
+        HashMap<String, Edge> compToEdge;
+        HashMap<Node, String> nodeToComp;
+        while (forest.size() > 1) {
+            compToEdge = new HashMap<>();
+            nodeToComp = new HashMap<>();
+            for (Tree t : forest) {
+                String compName = t.node.getName();
+                compToEdge.put(compName, null);
+                for (Node n : t.getNodes()) {
+                    nodeToComp.put(n, compName);
+                }
+            }
+            for (Edge e : g.getEdges().values()) {
+                if (!nodeToComp.get(e.first).equals(nodeToComp.get(e.second))) {
+                    if (compToEdge.get(nodeToComp.get(e.first)) == null)
+                        compToEdge.put(nodeToComp.get(e.first), e);
+                    else if (e.getWeight() < compToEdge.get(nodeToComp.get(e.first)).getWeight())
+                        compToEdge.put(nodeToComp.get(e.first), e);
+                    if (compToEdge.get(nodeToComp.get(e.second)) == null)
+                        compToEdge.put(nodeToComp.get(e.second), e);
+                    else if (e.getWeight() < compToEdge.get(nodeToComp.get(e.second)).getWeight())
+                        compToEdge.put(nodeToComp.get(e.second), e);
+                }
+            }
+            HashSet<Edge> alreadyDone = new HashSet<>();
+            for (String c : compToEdge.keySet()) {
+                if (compToEdge.get(c) != null) {
+                    Edge e = compToEdge.get(c);
+                    if (!alreadyDone.contains(e)) {
+                        String root1 = nodeToComp.get(e.first);
+                        String root2 = nodeToComp.get(e.second);
+                        Tree t1 = null;
+                        Tree t2 = null;
+                        for (Tree t : forest) {
+                            if (t.node.getName().equals(root1))
+                                t1 = t;
+                            if (t.node.getName().equals(root2))
+                                t2 = t;
+                        }
+                        if (root1.equals("18") && root2.equals("2")) {
+                            t1.printGraph("t1");
+                            t2.printGraph("t2");
+                        }
+                        int t1Size = t1.getNodes().size();
+                        int t2Size = t2.getNodes().size();
+                        forest.remove(t1);
+                        forest.remove(t2);
+                        t2 = t2.makeRoot(e.second);
+                        if (root1.equals("18") && root2.equals("2")) {
+                            t1.printGraph("t1");
+                            t2.printGraph("t2_2");
+                        }
+                        if (t2.getNodes().size() != t2Size)
+                            throw new Exception("wir haben einen verloren");
+                        if (!t1.combineWith(t2, e)) {
+                            System.out.println(t1 + " " + t2 + " " + e);
+                        }
+                        if (t1.getNodes().size() != t1Size + t2Size)
+                            throw new Exception("wir haben einen verloren");
+                        for (Node n : t2.getNodes()) {
+                            nodeToComp.put(n, t1.node.getName());
+                        }
+                        forest.add(t1);
+                        alreadyDone.add(e);
+                    }
+                } else
+                    throw new Exception("Graph nicht zusammenhängend");
+            }
+        }
+        return forest.iterator().next();
+    }
+
+    public static void evaluationPhase(Tree t, int k) {
+        for (int j = 3; j < k; j++) {
+
         }
     }
 

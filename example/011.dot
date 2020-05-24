@@ -1,5 +1,4 @@
 graph {
-6[color=black]
 44[color=black]
 45[color=black]
 46[color=black]
@@ -31,7 +30,7 @@ graph {
 3[color=red]
 4[color=red]
 5[color=red]
-6[color=red]
+6[color=black]
 7[color=black]
 8[color=black]
 9[color=black]

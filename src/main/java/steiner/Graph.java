@@ -109,6 +109,17 @@ public class Graph {
         }
     }
 
+    public void writeDotOnly() throws IOException {
+        try (BufferedWriter out = new BufferedWriter(
+                new OutputStreamWriter(new FileOutputStream("example/" + path + ".dot")))) {
+            out.write("graph {");
+            out.newLine();
+            writeDot(out);
+            out.write("}");
+            out.close();
+        }
+    }
+
     public void printGraph() throws IOException {
         try (BufferedWriter out = new BufferedWriter(
                 new OutputStreamWriter(new FileOutputStream("example/" + path + ".dot")))) {
@@ -118,6 +129,14 @@ public class Graph {
             out.write("}");
             out.close();
         }
+        try (InputStream dot = new FileInputStream("example/" + path + ".dot")) {
+            MutableGraph g = new Parser().read(dot);
+            dot.close();
+            Graphviz.fromGraph(g).width(1920).render(Format.SVG).toFile(new File("example/" + path + ".svg"));
+        }
+    }
+
+    public void printGraphFromExistingDot() throws IOException {
         try (InputStream dot = new FileInputStream("example/" + path + ".dot")) {
             MutableGraph g = new Parser().read(dot);
             dot.close();
@@ -242,4 +261,20 @@ public class Graph {
             return null;
         return components.iterator().next().getMaxCostConnectingEdge();
     }
+
+	public HashMap<String, Node> getNodes() {
+		HashMap<String, Node> output = new HashMap<>();
+        for (Component c : components) {
+            output.putAll(c.nodes);
+        }
+        return output;
+	}
+
+	public HashMap<String, Edge> getEdges() {
+		HashMap<String, Edge> output = new HashMap<>();
+        for (Component c : components) {
+            output.putAll(c.edges);
+        }
+        return output;
+	}
 }
