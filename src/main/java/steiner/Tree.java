@@ -72,6 +72,19 @@ public class Tree {
         this.cost = weight;
     }
 
+    public boolean addChild(Node from, Tree to, double cost) {
+        if (node.equals(from)) {
+            to.cost = cost;
+            children.add(to);
+            return true;
+        }
+        for (Tree child : children) {
+            if (child.addChild(from, to, cost))
+                return true;
+        }
+        return false;
+    }
+
     public boolean addChild(Edge edge) {
         if (node.equals(edge.first)) {
             children.add(new Tree(edge.second, edge.getWeight()));
@@ -81,11 +94,10 @@ public class Tree {
             children.add(new Tree(edge.first, edge.getWeight()));
             return true;
         }
-        boolean bool = false;
         for (Tree child : children) {
-            bool = bool && child.addChild(edge);
+            if (child.addChild(edge)) return true;
         }
-        return bool;
+        return false;
     }
 
     public void writeDot() throws IOException {
@@ -165,26 +177,47 @@ public class Tree {
         return i;
     }
 
-    private TreeEdge getMaxCostConnectingEdge(HashSet<Tree> terminals, TreeEdge e) {
+    private TreeEdge recMaxCostConnectingEdge(HashSet<Node> terminals, TreeEdge e) {
         for (Tree child : children) {
-            HashSet<Tree> childSet = child.getAllTerminalTreeNodes();
+            HashSet<Node> childSet = child.getAllTerminalNodes();
             if (!childSet.containsAll(terminals)) {
                 childSet.retainAll(terminals);
                 if (!childSet.isEmpty()) {
+                    if (e == null)
+                        e = new TreeEdge(this, child);
                     if (child.cost > e.cost)
                         e = new TreeEdge(this, child);
                 }
             }
-            e = child.getMaxCostConnectingEdge(terminals, e);
+            e = child.recMaxCostConnectingEdge(terminals, e);
         }
         return e;
     }
 
-    public TreeEdge getMaxCostConnectingEdge(HashSet<Tree> terminals) {
+    public TreeEdge getMaxCostConnectingEdge(HashSet<Node> terminals) {
         if (children.size() == 0)
             return null;
-        TreeEdge e = getMaxCostConnectingEdge(terminals, new TreeEdge(this, children.iterator().next(), 0));
+        TreeEdge e = recMaxCostConnectingEdge(terminals, null);
         return e;
+    }
+
+    public Tree removeEdge(Node from, Node to) {
+        if (node.equals(from)) {
+            for (Tree child : children) {
+                if (child.node.equals(to)) {
+                    child.cost = 0;
+                    children.remove(child);
+                    return child;
+                }
+            }
+            return null;
+        }
+        for (Tree child : children) {
+            Tree out = child.removeEdge(from, to);
+            if (out != null)
+                return out;
+        }
+        return null;
     }
 
     public Tree removeEdge(TreeEdge e) {
@@ -227,15 +260,15 @@ public class Tree {
         return setOfSets;
     }
 
-    public HashSet<Tree> splitTermOnEdge(TreeEdge e) {
-        HashSet<Tree> out = new HashSet<>();
+    public HashSet<Node> splitTermOnEdge(TreeEdge e) {
         if (e.to.equals(this)) {
-            return getAllTerminalTreeNodes();
+            return getAllTerminalNodes();
         }
         for (Tree child : children) {
-            out.addAll(child.splitTermOnEdge(e));
+            HashSet<Node> result=child.splitTermOnEdge(e);
+            if (result!=null) return result;
         }
-        return out;
+        return null;
     }
 
     public String toString() {
@@ -297,4 +330,82 @@ public class Tree {
         }
         return parent;
     }
+
+    public Tree findNode(Node n) {
+        if (node.equals(n)) {
+            return this;
+        }
+        for (Tree child : children) {
+            Tree result = child.findNode(n);
+            if (result != null)
+                return result;
+        }
+        return null;
+    }
+
+    public double totalCost() {
+        double total = cost;
+        for (Tree child : children) {
+            total += child.totalCost();
+        }
+        return total;
+    }
+
+    public boolean containsAllTreeEdges(HashSet<TreeEdge> set) {
+        for (TreeEdge e : set) {
+            if (!containsTreeEdge(e))
+                return false;
+        }
+        return true;
+    }
+
+    private boolean containsTreeEdge(TreeEdge e) {
+        if (this.equals(e.from)) {
+            return children.contains(e.to);
+        }
+        for (Tree child : children) {
+            if (child.containsTreeEdge(e))
+                return true;
+        }
+        return false;
+    }
+
+    public HashSet<TreeEdge> toEdgeSet() {
+        HashSet<TreeEdge> out = new HashSet<>();
+        for (Tree child : children) {
+            out.add(new TreeEdge(this, child));
+            out.addAll(child.toEdgeSet());
+        }
+        return out;
+    }
+
+    public boolean containsEdge(TreeEdge e) {
+        if (this.equals(e.from)) {
+            for (Tree child : children) {
+                if (child.equals(e.to))
+                    return true;
+            }
+            return false;
+        }
+        for (Tree child : children) {
+            if (child.containsEdge(e))
+                return true;
+        }
+        return false;
+    }
+
+    public boolean containsAllNodes(HashSet<Node> set) {
+        for(Node n: set){
+            if (!containsNode(n)) return false;
+        }
+        return true;
+    }
+
+	public boolean leadsToNodeFromSet(HashSet<Node> set) {
+        if (set.contains(this.node)) return true;
+        for (Tree child: children){
+            if (child.leadsToNodeFromSet(set)) return true;
+        }
+        return false;
+	}
 }

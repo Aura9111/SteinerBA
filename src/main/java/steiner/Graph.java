@@ -262,19 +262,58 @@ public class Graph {
         return components.iterator().next().getMaxCostConnectingEdge();
     }
 
-	public HashMap<String, Node> getNodes() {
-		HashMap<String, Node> output = new HashMap<>();
+    public HashMap<String, Node> getNodes() {
+        HashMap<String, Node> output = new HashMap<>();
         for (Component c : components) {
             output.putAll(c.nodes);
         }
         return output;
-	}
+    }
 
-	public HashMap<String, Edge> getEdges() {
-		HashMap<String, Edge> output = new HashMap<>();
+    public HashMap<String, Edge> getEdges() {
+        HashMap<String, Edge> output = new HashMap<>();
         for (Component c : components) {
             output.putAll(c.edges);
         }
         return output;
-	}
+    }
+
+    public Tree djikstra(Node from, Node to) {
+        HashMap<Node, Pair<Node, Double>> map = new HashMap<>();
+        map.put(from, new Pair<Node, Double>(null, 0.0));
+        HashSet<Node> todo = new HashSet<>();
+        todo.add(from);
+        while (!todo.isEmpty()) {
+            HashSet<Node> tmp = new HashSet<>();
+            for (Node n : todo) {
+                for (Edge e : n.getEdges()) {
+                    Node neighbor = e.opposite(n);
+                    double newCost = map.get(n).second + e.getWeight();
+                    if (map.containsKey(neighbor)) {
+                        if (map.get(neighbor).second > newCost) {
+                            map.put(neighbor, new Pair<Node, Double>(n, newCost));
+                        }
+                    } else {
+                        map.put(neighbor, new Pair<Node, Double>(n, newCost));
+                        tmp.add(neighbor);
+                    }
+                }
+            }
+            todo = tmp;
+        }
+        Node n1=to;
+        Node n2=null;
+        if (map.get(to).first != null)
+            n2 = map.get(to).first;
+        Tree t1=new Tree(n1);
+        while (n2 != null) {
+            Tree t2=new Tree(n2);
+            double cost=map.get(n1).second-map.get(n2).second;
+            t2.addChild(n2, t1, cost);
+            t1=t2;
+            n1=n2;
+            n2=map.get(n2).first;
+        }
+        return t1;
+    }
 }

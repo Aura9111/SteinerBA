@@ -17,7 +17,13 @@ public class TreeEdge {
         this.cost=cost;
     }
 
-    public String toString(){
+    public TreeEdge(Tree t, Node nFrom, Node nTo, double cost) {
+        this.from=t.findNode(nFrom);
+        this.to = t.findNode(nTo);
+        this.cost=cost;
+	}
+
+	public String toString(){
         return from.node.getName() +"->"+ to.node.getName();
     }
 }

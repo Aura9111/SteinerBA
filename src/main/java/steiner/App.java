@@ -1,31 +1,66 @@
 package steiner;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Random;
+import java.util.Stack;
 
 public class App {
 
     public static void main(String[] args) throws Exception {
         Graph g = GraphFactory.g011();
-        Tree t = mst(g);
+        Tree t = bermanRamaiyer(g, g.getAllTerminalNodes(), 3);
         t.printGraph();
+        System.out.println(t.totalCost());
     }
 
-    public static SetPair prepareChange(Tree t, HashSet<Tree> terminals, SetPair setPair) throws IOException {
+    public static Tree trimmedMst(Graph g, HashSet<Node> terminals) throws Exception {
+        Tree t = mst(g);
+        return recTrimHelper(t, terminals, false);
+    }
+
+    private static Tree recTrimHelper(Tree t, HashSet<Node> terminals, boolean parentHasTerminal) throws Exception {
+        HashSet<Tree> newChildren = new HashSet<>();
+        HashSet<Tree> removeSet = new HashSet<>();
+        for (Tree child : t.children) {
+            if (!child.leadsToNodeFromSet(terminals))
+                removeSet.add(child);
+        }
+        for (Tree toRemove : removeSet) {
+            t.children.remove(toRemove);
+        }
+        if ((parentHasTerminal ? 1 : 0) + t.children.size() >= 2 || terminals.contains(t.node)) {
+            parentHasTerminal = true;
+            for (Tree child : t.children) {
+                newChildren.add(recTrimHelper(child, terminals, parentHasTerminal));
+            }
+            t.children = newChildren;
+            return t;
+        } else if (parentHasTerminal || t.children.size() == 0)
+            throw new Exception("this doesnt lead to any node. why was it called");
+        else {
+            return recTrimHelper(t.children.iterator().next(), terminals, parentHasTerminal);
+        }
+    }
+
+    public static SetPair prepareChange(Tree t, HashSet<Node> terminals, SetPair setPair) throws IOException {
         if (terminals.size() == 1)
             return setPair;
         TreeEdge e = t.getMaxCostConnectingEdge(terminals);
-        HashSet<Tree> terminalsTo = t.splitTermOnEdge(e);
-        HashSet<Tree> terminalsFrom = terminals;
-        terminalsFrom.removeAll(terminalsTo);
+        HashSet<Node> terminalsTo = t.splitTermOnEdge(e);
+        HashSet<Node> terminalsFrom = new HashSet<>();
+        for (Node n : terminals) {
+            if (!terminalsTo.contains(n))
+                terminalsFrom.add(n);
+        }
         setPair.add(prepareChange(t, terminalsTo, new SetPair()));
         setPair.add(prepareChange(t, terminalsFrom, new SetPair()));
-        Tree nFrom = terminalsFrom.iterator().next();
-        Tree nTo = terminalsTo.iterator().next();
-        TreeEdge f = new TreeEdge(nFrom, nTo, e.cost);
+        Node nFrom = terminalsFrom.iterator().next();
+        Node nTo = terminalsTo.iterator().next();
+        TreeEdge f = new TreeEdge(t, nFrom, nTo, e.cost);
         setPair.addSet.add(f);
         setPair.removeSet.add(e);
         return setPair;
@@ -78,19 +113,11 @@ public class App {
                             if (t.node.getName().equals(root2))
                                 t2 = t;
                         }
-                        if (root1.equals("18") && root2.equals("2")) {
-                            t1.printGraph("t1");
-                            t2.printGraph("t2");
-                        }
                         int t1Size = t1.getNodes().size();
                         int t2Size = t2.getNodes().size();
                         forest.remove(t1);
                         forest.remove(t2);
                         t2 = t2.makeRoot(e.second);
-                        if (root1.equals("18") && root2.equals("2")) {
-                            t1.printGraph("t1");
-                            t2.printGraph("t2_2");
-                        }
                         if (t2.getNodes().size() != t2Size)
                             throw new Exception("wir haben einen verloren");
                         if (!t1.combineWith(t2, e)) {
@@ -111,10 +138,184 @@ public class App {
         return forest.iterator().next();
     }
 
-    public static void evaluationPhase(Tree t, int k) {
-        for (int j = 3; j < k; j++) {
+    public static HashMap<Integer, Stack<myEvaluationResult>> evaluationPhase(Graph g, Tree t, int k,
+            HashSet<Node> terminals) throws Exception {
+        HashMap<Integer, Stack<myEvaluationResult>> stackMap = new HashMap<>();
+        for (int j = 3; j <= k; j++) {
+            stackMap.put(j, new Stack<>());
+            HashSet<HashSet<Node>> sets = t.getXElementSubsets(j);
+            for (HashSet<Node> nodeSet : sets) {
+                SetPair setPair = prepareChange(t, nodeSet, new SetPair());
+                double gain = cost(setPair.removeSet) - scost(g, nodeSet, k);
+                if (gain > 0) {
+                    Forest forest = new Forest(t);
+                    for (TreeEdge e : setPair.removeSet) {
+                        forest.removeEdge(e);
+                    }
+                    for (TreeEdge e : setPair.addSet) {
+                        e.cost = e.cost - gain;
+                        forest.addEdge(e);
+                    }
+                    t = forest.giveSingleTree();
+                    stackMap.get(j).push(new myEvaluationResult(terminals, setPair));
+                }
+            }
+        }
+        return stackMap;
+    }
+
+    private static double scost(Graph g, HashSet<Node> terminals, int k) throws Exception {
+        Tree Smt = bermanRamaiyer(g, terminals, k);
+        return Smt.totalCost();
+    }
+
+    private static double cost(HashSet<TreeEdge> edgeSet) {
+        double total = 0;
+        for (TreeEdge e : edgeSet) {
+            total += e.cost;
+        }
+        return total;
+    }
+
+    public static Tree bermanRamaiyer(Graph g, HashSet<Node> terminals, int k) throws Exception {
+        System.out.println(terminals);
+        if (terminals.size() == 1)
+            return new Tree(terminals.iterator().next());
+        if (terminals.size() == 2) 
+        {
+            Iterator<Node> it= terminals.iterator();
+            Node n1=it.next();
+            Node n2=it.next();
+            return g.djikstra(n1, n2);
+        }
+        Tree M = trimmedMst(g, terminals);
+        System.out.println(M.totalCost());
+        // Evaluation Phase
+        HashMap<Integer, Stack<myEvaluationResult>> stackMap = new HashMap<>();
+        for (int j = 3; j <= k; j++) {
+            stackMap.put(j, new Stack<>());
+            HashSet<HashSet<Node>> sets = getXElementSubsets(terminals, j);
+            for (HashSet<Node> nodeSet : sets) {
+                if (!nodeSet.equals(terminals)) {
+                    SetPair setPair = prepareChange(M, nodeSet, new SetPair());
+                    double gain = cost(setPair.removeSet) - scost(g, nodeSet, k);
+                    if (gain > 0) {
+                        Forest forest = new Forest(M);
+                        for (TreeEdge e : setPair.removeSet) {
+                            forest.removeEdge(e);
+                        }
+                        for (TreeEdge e : setPair.addSet) {
+                            e.cost = e.cost - gain;
+                            forest.addEdge(e);
+                        }
+                        M = forest.giveSingleTree();
+                        System.out.println(M.totalCost());
+                        stackMap.get(j).push(new myEvaluationResult(terminals, setPair));
+                    }
+                }
+            }
+        }
+        // Construction Phase
+        Tree n = M;
+        for (int j = k; j >= 3; j--) {
+            while (!stackMap.get(j).empty()) {
+                myEvaluationResult curr = stackMap.get(j).pop();
+                Forest forest = new Forest(M);
+                for (TreeEdge e : curr.addSet) {
+                    forest.removeEdge(e);
+                }
+                for (TreeEdge e : curr.removeSet) {
+                    forest.addEdge(e);
+                }
+                M = forest.giveSingleTree();
+                System.out.println(M.totalCost());
+                if (n.containsAllTreeEdges(curr.addSet)) {
+                    forest = new Forest(n);
+                    for (TreeEdge e : curr.addSet) {
+                        forest.removeEdge(e);
+                    }
+                    for (TreeEdge e : bermanRamaiyer(g, curr.terminals, k).toEdgeSet()) {
+                        forest.addEdge(e);
+                    }
+                    n = forest.giveSingleTree();
+                    System.out.println(n.totalCost());
+                } else {
+                    for (TreeEdge e : curr.addSet) {
+                        if (n.containsEdge(e)) {
+                            TreeEdge f = minCostConnectingEdge(M, n, e, curr.terminals);
+                            forest = new Forest(n);
+                            forest.removeEdge(e);
+                            forest.addEdge(f);
+                            n = forest.giveSingleTree();
+                        }
+                    }
+                }
+            }
 
         }
+        return n;
+    }
+
+    private static Tree constructionPhase(Graph g, Tree m, int k, HashMap<Integer, Stack<myEvaluationResult>> stackMap)
+            throws Exception {
+        Tree n = m;
+        for (int j = k; k <= 3; k--) {
+            while (!stackMap.get(j).empty()) {
+                myEvaluationResult curr = stackMap.get(j).pop();
+                Forest forest = new Forest(m);
+                for (TreeEdge e : curr.addSet) {
+                    forest.removeEdge(e);
+                }
+                for (TreeEdge e : curr.removeSet) {
+                    forest.addEdge(e);
+                }
+                m = forest.giveSingleTree();
+                if (n.containsAllTreeEdges(curr.addSet)) {
+                    forest = new Forest(n);
+                    for (TreeEdge e : curr.addSet) {
+                        forest.removeEdge(e);
+                    }
+                    for (TreeEdge e : bermanRamaiyer(g, curr.terminals, k).toEdgeSet()) {
+                        forest.addEdge(e);
+                    }
+                    n = forest.giveSingleTree();
+                } else {
+                    for (TreeEdge e : curr.addSet) {
+                        if (n.containsEdge(e)) {
+                            TreeEdge f = minCostConnectingEdge(m, n, e, curr.terminals);
+                            forest = new Forest(n);
+                            forest.removeEdge(e);
+                            forest.addEdge(f);
+                            n = forest.giveSingleTree();
+                        }
+                    }
+                }
+            }
+
+        }
+        return n;
+    }
+
+    // finds edge f element tree m of minimal cost such that Tree n - e + f connects
+    // all terminals
+    public static TreeEdge minCostConnectingEdge(Tree m, Tree n, TreeEdge e, HashSet<Node> terminals) throws Exception {
+        Forest forest = new Forest(n);
+        forest.removeEdge(e);
+        double minCost = Double.POSITIVE_INFINITY;
+        TreeEdge f = null;
+        if (forest.isSetConnected(terminals))
+            throw new Exception("no added edge needed");
+        for (TreeEdge edge : m.toEdgeSet()) {
+            if (edge.cost < minCost) {
+                if (forest.wouldEdgeConnectSet(terminals, edge)) {
+                    minCost = edge.cost;
+                    f = edge;
+                }
+            }
+        }
+        if (f == null)
+            throw new Exception("couldnt find valid Edge f");
+        return f;
     }
 
     public static Graph createRandom50N() {
@@ -205,5 +406,44 @@ public class App {
             }
         }
         return g;
+    }
+
+    public static Tree buildFromEdgeSet(HashSet<TreeEdge> edgeSet) {
+        ArrayList<Tree> forest = new ArrayList<>();
+        for (TreeEdge e : edgeSet) {
+            Tree from = null;
+            Tree to = null;
+            if (forest.contains(e.from))
+                from = forest.remove(forest.indexOf(e.from));
+            else
+                from = new Tree(e.from.node);
+            if (forest.contains(e.to))
+                to = forest.remove(forest.indexOf(e.to));
+            else
+                to = new Tree(e.to.node);
+            to.cost = e.cost;
+            from.children.add(to);
+            forest.add(from);
+        }
+        if (forest.size() == 1)
+            return forest.iterator().next();
+        return null;
+    }
+
+    public static HashSet<HashSet<Node>> getXElementSubsets(HashSet<Node> in, int x) {
+        return getXElementSubsets(x, new MyImmutableHashSet<Node>(in), new MyImmutableHashSet<Node>());
+    }
+
+    private static HashSet<HashSet<Node>> getXElementSubsets(int x, MyImmutableHashSet<Node> in,
+            MyImmutableHashSet<Node> out) {
+        HashSet<HashSet<Node>> setOfSets = new HashSet<>();
+        if (out.getSize() == x) {
+            setOfSets.add(out.getHashSet());
+            return setOfSets;
+        }
+        for (Node n : in) {
+            setOfSets.addAll(getXElementSubsets(x, in.remove(n), out.add(n)));
+        }
+        return setOfSets;
     }
 }

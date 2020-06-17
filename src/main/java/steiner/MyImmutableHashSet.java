@@ -39,6 +39,11 @@ public class MyImmutableHashSet<T> implements Iterable<T>{
 
 	public HashSet<T> getHashSet() {
 		return set;
+    }
+    
+
+    public boolean contains(T find){
+		 return set.contains(find);
 	}
 
     @Override
