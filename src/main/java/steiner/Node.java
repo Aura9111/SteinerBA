@@ -4,7 +4,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 
 public class Node {
-    private String name;
+    public String name;
     private HashSet<Edge> edges;
     private boolean terminal;
 
@@ -64,7 +64,7 @@ public class Node {
     }
 
     public boolean isInSameComponent(Node find) {
-        HashSet<Node> set= getNodesInComponent(new HashSet<Node>());
+        HashSet<Node> set = getNodesInComponent(new HashSet<Node>());
         return set.contains(find);
     }
 
@@ -88,8 +88,14 @@ public class Node {
 
     @Override
     public boolean equals(Object o) {
-        if(!this.getClass().equals(o.getClass())) return false;
-        return this.name.equals(((Node)o).name);
+        if (!this.getClass().equals(o.getClass()))
+            return false;
+        return this.name.equals(((Node) o).name);
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
     }
 
     public boolean stillInComponentWithTerminal(Edge e) {

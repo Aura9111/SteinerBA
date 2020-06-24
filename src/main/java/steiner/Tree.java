@@ -95,7 +95,8 @@ public class Tree {
             return true;
         }
         for (Tree child : children) {
-            if (child.addChild(edge)) return true;
+            if (child.addChild(edge))
+                return true;
         }
         return false;
     }
@@ -122,7 +123,7 @@ public class Tree {
         }
     }
 
-    private void writeDotRec(BufferedWriter out) throws IOException {
+    public void writeDotRec(BufferedWriter out) throws IOException {
         out.write(node.getName() + (node.isTerminal() ? "[color=red]" : "[color=black]"));
         out.newLine();
         for (Tree child : children) {
@@ -137,7 +138,7 @@ public class Tree {
         writeDot();
         try (InputStream dot = new FileInputStream("example/tree.dot")) {
             MutableGraph g = new Parser().read(dot);
-            Graphviz.fromGraph(g).width(1920).render(Format.SVG).toFile(new File("example/tree.svg"));
+            Graphviz.fromGraph(g).width(600).render(Format.SVG).toFile(new File("example/tree.svg"));
         }
     }
 
@@ -145,7 +146,7 @@ public class Tree {
         writeDot(path);
         try (InputStream dot = new FileInputStream(("example/" + path + ".dot"))) {
             MutableGraph g = new Parser().read(dot);
-            Graphviz.fromGraph(g).width(1920).render(Format.SVG).toFile(new File("example/" + path + ".svg"));
+            Graphviz.fromGraph(g).width(600).render(Format.SVG).toFile(new File("example/" + path + ".svg"));
         }
     }
 
@@ -260,13 +261,21 @@ public class Tree {
         return setOfSets;
     }
 
-    public HashSet<Node> splitTermOnEdge(TreeEdge e) {
+    public HashSet<Node> splitTermOnEdge(TreeEdge e, HashSet<Node> terminals) {
         if (e.to.equals(this)) {
-            return getAllTerminalNodes();
+            HashSet<Node> set = getAllTerminalNodes();
+            HashSet<Node> out = new HashSet<>();
+            for (Node n : set) {
+                if (terminals.contains(n)) {
+                    out.add(n);
+                }
+            }
+            return out;
         }
         for (Tree child : children) {
-            HashSet<Node> result=child.splitTermOnEdge(e);
-            if (result!=null) return result;
+            HashSet<Node> result = child.splitTermOnEdge(e, terminals);
+            if (result != null)
+                return result;
         }
         return null;
     }
@@ -282,6 +291,11 @@ public class Tree {
         } else {
             return false;
         }
+    }
+
+    @Override
+    public int hashCode(){
+        return node.hashCode();
     }
 
     public HashSet<Node> getNodes() {
@@ -395,17 +409,64 @@ public class Tree {
     }
 
     public boolean containsAllNodes(HashSet<Node> set) {
-        for(Node n: set){
-            if (!containsNode(n)) return false;
+        for (Node n : set) {
+            if (!containsNode(n))
+                return false;
         }
         return true;
     }
 
-	public boolean leadsToNodeFromSet(HashSet<Node> set) {
-        if (set.contains(this.node)) return true;
-        for (Tree child: children){
-            if (child.leadsToNodeFromSet(set)) return true;
+    public boolean leadsToNodeFromSet(HashSet<Node> set) {
+        if (set.contains(this.node))
+            return true;
+        for (Tree child : children) {
+            if (child.leadsToNodeFromSet(set))
+                return true;
         }
         return false;
-	}
+    }
+
+    public Tree replace(Node n, Tree t) {
+        if (node.equals(n)) {
+            return t;
+        }
+        HashSet<Tree> newChildren = new HashSet<>();
+        for (Tree child : children) {
+            newChildren.add(child.replace(n, t));
+        }
+        children = newChildren;
+        return this;
+    }
+
+    public void changeCostOfN(Node n, double cost) {
+        if (node.equals(n)) {
+            this.cost = cost;
+            return;
+        }
+        for (Tree child : children) {
+            child.changeCostOfN(n, cost);
+        }
+    }
+
+    public Tree removeNode(Node n) {
+        if (this.node.equals(n)){
+            return null;
+        }
+        Tree changed=null;
+        for(Tree child: children){
+            Tree result=child.removeNode(n);
+            if (result==null) changed=child;
+            else child=result;
+        }
+        if (changed!=null) children.remove(changed);
+        return this;
+    }
+    
+    public Tree copy(){
+        Tree out= new Tree(this.node, this.cost);
+        for (Tree child: children){
+            out.addChild(this.node, child.copy(), child.cost);
+        }
+        return out;
+    }
 }

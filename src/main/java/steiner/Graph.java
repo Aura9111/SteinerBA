@@ -19,18 +19,11 @@ import guru.nidi.graphviz.parse.Parser;
 public class Graph {
 
     public HashSet<Component> components;
-    private String path;
+    public String path;
 
     public Graph(String path) {
         components = new HashSet<Component>();
         this.path = path;
-    }
-
-    public void changePath(String path) {
-        this.path = path;
-        for (Component c : components) {
-            c.changePath(path);
-        }
     }
 
     public boolean addEdge(String nodeName1, String nodeName2, double weight) {
@@ -278,7 +271,9 @@ public class Graph {
         return output;
     }
 
-    public Tree djikstra(Node from, Node to) {
+    public Tree djikstra(String nodeFrom, String nodeTo) {
+        Node from=getNode(nodeFrom).get();
+        Node to=getNode(nodeTo).get();
         HashMap<Node, Pair<Node, Double>> map = new HashMap<>();
         map.put(from, new Pair<Node, Double>(null, 0.0));
         HashSet<Node> todo = new HashSet<>();
