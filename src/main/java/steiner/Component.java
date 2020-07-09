@@ -136,7 +136,7 @@ public class Component {
             out.newLine();
         }
         for (Edge e : edges.values()) {
-            out.write(e.getName() + "[label=" + String.format("%.2f", e.getWeight()) + "]");
+            out.write(e.getName() + "[label=" + String.format("%.2f", e.cost) + "]");
             out.newLine();
         }
     }
@@ -228,8 +228,8 @@ public class Component {
         Edge maxCostEdge = null;
         for (Edge e : edges.values()) {
             if (e.first.stillInComponentWithTerminal(e) && e.second.stillInComponentWithTerminal(e)) {
-                if (e.getWeight() > maxCost) {
-                    maxCost = e.getWeight();
+                if (e.cost > maxCost) {
+                    maxCost = e.cost;
                     maxCostEdge = e;
                 }
             }
@@ -240,4 +240,25 @@ public class Component {
     public void changePath(String path) {
         this.path = path;
     }
+
+	public void contractSet(HashSet<Node> set) {
+        for (Edge e: edges.values()){
+            if (set.contains(e.first)&&set.contains(e.second)){
+                e.cost=0;
+            }
+        }
+	}
+
+	public Component copy() {
+        HashMap<String, Node> newNodes=new HashMap<>();
+        HashMap<String, Edge> newEdges=new HashMap<>();
+        Component newComp=new Component(newNodes, newEdges, path+"C");
+        for (Node n: nodes.values()){
+            newComp.nodes.put(n.name, new Node(n.name, n.isTerminal()));
+        }
+        for (Edge e: edges.values()){
+            newComp.addEdge(e.first.name, e.second.name, e.cost);
+        }
+        return newComp;
+	}
 }

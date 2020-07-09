@@ -26,7 +26,7 @@ public class Tree {
         this.children = new HashSet<Tree>();
         /*
          * for (Edge e : node.getEdges()) { Node opp = e.opposite(node);
-         * opp.removeEdge(e); children.add(new Tree(opp, e.getWeight())); }
+         * opp.removeEdge(e); children.add(new Tree(opp, e.cost)); }
          */
     }
 
@@ -36,7 +36,7 @@ public class Tree {
         this.children = new HashSet<Tree>();
         /*
          * for (Edge e : node.getEdges()) { Node opp = e.opposite(node);
-         * opp.removeEdge(e); children.add(new Tree(opp, e.getWeight())); }
+         * opp.removeEdge(e); children.add(new Tree(opp, e.cost)); }
          */
     }
 
@@ -52,12 +52,12 @@ public class Tree {
 
     public boolean combineWith(Tree other, Edge e) {
         if (node.equals(e.first)) {
-            other.setWeight(e.getWeight());
+            other.setWeight(e.cost);
             children.add(other);
             return true;
         }
         if (node.equals(e.second)) {
-            other.setWeight(e.getWeight());
+            other.setWeight(e.cost);
             children.add(other);
             return true;
         }
@@ -87,11 +87,11 @@ public class Tree {
 
     public boolean addChild(Edge edge) {
         if (node.equals(edge.first)) {
-            children.add(new Tree(edge.second, edge.getWeight()));
+            children.add(new Tree(edge.second, edge.cost));
             return true;
         }
         if (node.equals(edge.second)) {
-            children.add(new Tree(edge.first, edge.getWeight()));
+            children.add(new Tree(edge.first, edge.cost));
             return true;
         }
         for (Tree child : children) {
@@ -172,6 +172,14 @@ public class Tree {
 
     public int getNumberOfTerminals() {
         int i = node.isTerminal() ? 1 : 0;
+        for (Tree child : children) {
+            i += child.getNumberOfTerminals();
+        }
+        return i;
+    }
+
+    public int getNumberOfNonTerminals() {
+        int i = node.isTerminal() ? 0 : 1;
         for (Tree child : children) {
             i += child.getNumberOfTerminals();
         }
@@ -294,7 +302,7 @@ public class Tree {
     }
 
     @Override
-    public int hashCode(){
+    public int hashCode() {
         return node.hashCode();
     }
 
@@ -384,10 +392,23 @@ public class Tree {
         return false;
     }
 
-    public HashSet<TreeEdge> toEdgeSet() {
+    public HashSet<TreeEdge> toTreeEdgeSet() {
         HashSet<TreeEdge> out = new HashSet<>();
         for (Tree child : children) {
             out.add(new TreeEdge(this, child));
+            out.addAll(child.toTreeEdgeSet());
+        }
+        return out;
+    }
+
+    public HashSet<Edge> toEdgeSet() {
+        HashSet<Edge> out = new HashSet<>();
+        for (Tree child : children) {
+            for (Edge e : node.getEdges()) {
+                if (e.opposite(node).equals(child.node)) {
+                    out.add(e);
+                }
+            }
             out.addAll(child.toEdgeSet());
         }
         return out;
@@ -449,23 +470,85 @@ public class Tree {
     }
 
     public Tree removeNode(Node n) {
-        if (this.node.equals(n)){
+        if (this.node.equals(n)) {
             return null;
         }
-        Tree changed=null;
-        for(Tree child: children){
-            Tree result=child.removeNode(n);
-            if (result==null) changed=child;
-            else child=result;
+        Tree changed = null;
+        for (Tree child : children) {
+            Tree result = child.removeNode(n);
+            if (result == null)
+                changed = child;
+            else
+                child = result;
         }
-        if (changed!=null) children.remove(changed);
+        if (changed != null)
+            children.remove(changed);
         return this;
     }
-    
-    public Tree copy(){
-        Tree out= new Tree(this.node, this.cost);
-        for (Tree child: children){
+
+    public Tree copy() {
+        Tree out = new Tree(this.node, this.cost);
+        for (Tree child : children) {
             out.addChild(this.node, child.copy(), child.cost);
+        }
+        return out;
+    }
+
+    public Tree copyWithSetContracted(HashSet<Node> set) {
+        Tree newSelf = new Tree(node);
+        for (Tree child : children) {
+            Tree newChild = child.copyWithSetContracted(set);
+            if (set.contains(node)&&set.contains(child.node)) {
+
+            } else {
+                newChild.cost = child.cost;
+            }
+            newSelf.addChild(node, newChild, newChild.cost);
+        }
+        return newSelf;
+    }
+
+    /* public void incorporateOtherTree(Tree other) {
+        // TODO reverse tree if needed
+        if (other.containsNode(node)) {
+            Tree inOther = other.findNode(node);
+            for (Tree otherChild : inOther.children) {
+                if (!children.contains(otherChild)) {
+                    children.add(otherChild);
+                }
+            }
+        }
+        for (Tree child : children) {
+            child.incorporateOtherTree(other);
+        }
+    }
+ */
+    public boolean isFull() {
+        if (node.isTerminal() ^ children.isEmpty())
+            return false;
+        for (Tree c : children) {
+            if (!c.isFull())
+                return false;
+        }
+        return true;
+    }
+    /*
+     * public Tree swapNodes(Node n1, Node n2) throws Exception { Tree t2 = null; if
+     * (node.equals(n1)) { for (Tree c : children) { if (c.node.equals(n2)) { t2 =
+     * c; } } } else if (node.equals(n2)) { for (Tree c : children) { if
+     * (c.node.equals(n1)) { t2 = c; } } } else {
+     * 
+     * } if (t2 == null) throw new Exception("cant swap " + n1 + " and " + n2 +
+     * " because they arent connected"); double tmp = t2.cost; t2.cost = this.cost;
+     * this.cost = tmp; children.remove(t2); t2.children.add(this); return t2; }
+     */
+
+    public HashSet<Node> getSteinerNodes() {
+        HashSet<Node> out = new HashSet<>();
+        if (!node.isTerminal())
+            out.add(node);
+        for (Tree child : children) {
+            out.addAll(child.getSteinerNodes());
         }
         return out;
     }

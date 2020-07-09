@@ -283,7 +283,7 @@ public class Graph {
             for (Node n : todo) {
                 for (Edge e : n.getEdges()) {
                     Node neighbor = e.opposite(n);
-                    double newCost = map.get(n).second + e.getWeight();
+                    double newCost = map.get(n).second + e.cost;
                     if (map.containsKey(neighbor)) {
                         if (map.get(neighbor).second > newCost) {
                             map.put(neighbor, new Pair<Node, Double>(n, newCost));
@@ -311,4 +311,18 @@ public class Graph {
         }
         return t1;
     }
+
+	public void contractSet(HashSet<Node> set) {
+        for (Component c: components){
+            c.contractSet(set);
+        }
+	}
+
+	public Graph copy() {
+        Graph g=new Graph(path+"C");
+        for (Component c: components){
+            g.addComponent(c.copy());
+        }
+        return g;
+	}
 }

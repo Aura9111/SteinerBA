@@ -5,23 +5,20 @@ public class Edge {
     private String name;
     public Node first;
     public Node second;
-    private double weight;
+    public double cost;
 
-    public Edge(String name, Node n1, Node n2, double weight) {
+    public Edge(String name, Node n1, Node n2, double cost) {
         this.name = name;
         this.first = n1;
         this.second = n2;
-        this.weight = weight;
+        this.cost = cost;
     }
 
     public String toString() {
         return name;
     }
 
-    public double getWeight() {
-        return weight;
-    }
-
+    @Override
     public boolean equals(Object o) {
         if (o == this)
             return true;
@@ -30,6 +27,11 @@ public class Edge {
         Edge other = (Edge) o;
         return ((this.first == other.first && this.second == other.second)
                 || (this.first == other.second && this.second == other.first));
+    }
+
+    @Override
+    public int hashCode() {
+        return name.hashCode();
     }
 
     public boolean contains(Node n) {

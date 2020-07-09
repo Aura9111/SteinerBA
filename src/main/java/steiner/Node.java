@@ -7,14 +7,23 @@ public class Node {
     public String name;
     private HashSet<Edge> edges;
     private boolean terminal;
+    public int id;
 
     public Node(String name, boolean isTerminal) {
         this.name = name;
         this.terminal = isTerminal;
         this.edges = new HashSet<Edge>();
+        this.id=Integer.parseInt(name)-1;
     }
 
-    public boolean addEdge(Edge e) {
+    public Node(int id, boolean isTerminal) {
+        this.name = ""+(1+id);
+        this.terminal = isTerminal;
+        this.edges = new HashSet<Edge>();
+        this.id=id;
+	}
+
+	public boolean addEdge(Edge e) {
         if (!e.contains(this)) {
             return false;
         }
@@ -110,4 +119,22 @@ public class Node {
         edges.add(e);
         return false;
     }
+
+	public void removeNeighbor(Node other) {
+        if (getNeighbors().contains(other)){
+            for (Edge e:edges){
+                if (e.opposite(this).equals(other)){
+                    edges.remove(e);
+                }
+            }
+        }
+	}
+
+	public Node copy() {
+        Node out= new Node(id, terminal);
+        for(Edge e: edges){
+            out.edges.add(new Edge(e.getName(), e.first, e.second, e.cost));
+            }
+        return out;
+	}
 }
