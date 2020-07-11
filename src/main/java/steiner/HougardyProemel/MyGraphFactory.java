@@ -1,4 +1,4 @@
-package steiner;
+package steiner.HougardyProemel;
 
 import java.io.File;
 import java.io.IOException;
@@ -98,18 +98,15 @@ public class MyGraphFactory {
             String line = scanner.nextLine();
             if (line.startsWith("E ")) {
                 String[] split = line.split(" ");
-                String nodeName1 = split[1];
-                String nodeName2 = split[2];
-                int nodeID1 = Integer.parseInt(nodeName1) - 1;
-                int nodeID2 = Integer.parseInt(nodeName2) - 1;
+                int nodeID1 = Integer.parseInt(split[1]) - 1;
+                int nodeID2 = Integer.parseInt(split[2]) - 1;
                 double cost = Double.parseDouble(split[3]);
-                String edgeName = (nodeName1.compareTo(nodeName2) < 0) ? nodeName1 + "--" + nodeName2
-                        : nodeName2 + "--" + nodeName1;
-                Edge e = new Edge(edgeName, g.nodes[nodeID1], g.nodes[nodeID2], cost);
+                Edge e = new Edge(g.nodes[nodeID1], g.nodes[nodeID2], cost);
                 g.addEdgeNoUpdate(e);
             }
         }
         g.floydWarshal();
+        g.computeShortestPaths();
         scanner.close();
         return g;
     }

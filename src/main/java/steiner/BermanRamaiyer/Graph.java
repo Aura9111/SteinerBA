@@ -1,4 +1,4 @@
-package steiner;
+package steiner.BermanRamaiyer;
 
 import java.io.BufferedWriter;
 import java.io.File;

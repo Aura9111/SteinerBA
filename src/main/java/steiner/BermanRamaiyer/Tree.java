@@ -1,4 +1,4 @@
-package steiner;
+package steiner.BermanRamaiyer;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -508,21 +508,6 @@ public class Tree {
         return newSelf;
     }
 
-    /* public void incorporateOtherTree(Tree other) {
-        // TODO reverse tree if needed
-        if (other.containsNode(node)) {
-            Tree inOther = other.findNode(node);
-            for (Tree otherChild : inOther.children) {
-                if (!children.contains(otherChild)) {
-                    children.add(otherChild);
-                }
-            }
-        }
-        for (Tree child : children) {
-            child.incorporateOtherTree(other);
-        }
-    }
- */
     public boolean isFull() {
         if (node.isTerminal() ^ children.isEmpty())
             return false;

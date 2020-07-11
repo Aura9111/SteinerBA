@@ -1,4 +1,4 @@
-package steiner;
+package steiner.HougardyProemel;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -46,19 +46,6 @@ public class Forest {
         return null;
     }
 
-    public void addEdge(TreeEdge e) throws Exception {
-        Tree from = getTreeWithNode(e.from.node);
-        Tree to = getTreeWithNode(e.to.node);
-        if (from == null || to == null)
-            throw new Exception("Forest doesn't contain required nodes");
-        Tree rebase = to;
-        if (!to.node.equals(e.to.node)) {
-            rebase = to.makeRoot(e.to.node);
-        }
-        trees.remove(to);
-        from.addChild(e.from.node, rebase, e.cost);
-    }
-
     public void addEdgeWithNewNode(Edge e) throws Exception {
         Tree from = getTreeWithNode(e.first);
         Tree to = getTreeWithNode(e.second);
@@ -85,47 +72,6 @@ public class Forest {
         from.addChild(e.first, rebase, e.cost);
     }
 
-    public void addEdgeWithNewNode(TreeEdge e) throws Exception {
-        Tree from = getTreeWithNode(e.from.node);
-        Tree to = getTreeWithNode(e.to.node);
-        if (from == null && to == null)
-            throw new Exception("Forest doesn't contain required nodes");
-        Tree rebase = to;
-        if (to == null) {
-            rebase = new Tree(e.to.node);
-        } else if (from == null) {
-            from = new Tree(e.from.node);
-            if (!to.node.equals(e.to.node)) {
-                rebase = to.makeRoot(e.to.node);
-            }
-            trees.remove(to);
-            trees.add(from);
-        } else {
-            if (from.equals(to))
-                return; // Edge already exists
-            if (!to.node.equals(e.to.node)) {
-                rebase = to.makeRoot(e.to.node);
-            }
-            trees.remove(to);
-        }
-        from.addChild(e.from.node, rebase, e.cost);
-    }
-
-    public void removeEdge(TreeEdge e) throws Exception {
-        for (Tree t : trees) {
-            if (t.containsNode(e.from.node)) {
-                Tree to = t.removeEdge(e.from.node, e.to.node);
-                if (to == null) {
-                    to = t.removeEdge(e.to.node, e.from.node);
-                    if (to == null)
-                        throw new Exception("Edge not found");
-                }
-                trees.add(to);
-                return;
-            }
-        }
-    }
-
     public Tree giveSingleTree() throws Exception {
         if (trees.size() == 1)
             return trees.iterator().next();
@@ -141,17 +87,6 @@ public class Forest {
                 return true;
         }
         return false;
-    }
-
-    public boolean wouldEdgeConnectSet(HashSet<Node> set, TreeEdge e) throws Exception {
-        HashSet<Tree> copy = new HashSet<>();
-        for (Tree t : trees) {
-            copy.add(t.copy());
-        }
-        addEdgeWithNewNode(e);
-        boolean out = isSetConnected(set);
-        trees = copy;
-        return out;
     }
 
     public void printGraph(String path) throws IOException {
@@ -183,30 +118,6 @@ public class Forest {
                 return false;
         }
         return true;
-    }
-
-    public HashSet<Edge> getMinEdgeForEachTree(Graph g) {
-        HashSet<Edge> edges = new HashSet<>();
-        for (Tree t : trees) {
-            double minCost = Double.POSITIVE_INFINITY;
-            Edge minEdge = null;
-            for (Node n : t.getNodes()) {
-                for (Edge e : n.getEdges()) {
-                    if (!t.containsNode(e.opposite(n))) {
-                        if (e.cost < minCost) {
-                            minCost = e.cost;
-                            minEdge = e;
-                        }
-                    }
-                }
-            }
-            if (minEdge == null) {
-                System.out.println(t + " isnt connected");
-            } else {
-                edges.add(minEdge);
-            }
-        }
-        return edges;
     }
 
     public double totalCost() {

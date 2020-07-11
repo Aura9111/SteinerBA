@@ -1,4 +1,4 @@
-package steiner;
+package steiner.BermanRamaiyer;
 
 public class TreeEdge {
     public Tree from;

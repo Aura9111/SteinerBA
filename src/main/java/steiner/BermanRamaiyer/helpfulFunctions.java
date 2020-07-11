@@ -1,4 +1,4 @@
-package steiner;
+package steiner.BermanRamaiyer;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -72,51 +72,6 @@ public class helpfulFunctions {
             dublicates.remove(t.node);
             if (!dublicates.isEmpty()) {
                 for (Node n : dublicates) {
-                    Tree x = both.findNode(n);
-                    for (Tree c : x.children) {
-                        out.addChild(n, c, c.cost);
-                    }
-                    both = both.removeNode(n);
-                }
-            }
-            if (both != null)
-                out.addChild(t.node, both, both.cost);
-        }
-        return out;
-    }
-
-    public static Tree unMetricTree(MyGraph g, Tree t) {
-        Tree out = new Tree(t.node);
-        for (Tree child : t.children) {
-            int iTree = Integer.parseInt(t.node.getName()) - 1;
-            int iChild = Integer.parseInt(child.node.getName()) - 1;
-            Tree djikstra = g.djikstra(iTree, iChild);
-            double cost = djikstra.findNode(child.node).cost;
-            Tree leadingToChild = djikstra.children.iterator().next();
-            Tree rec = unMetricTree(g, child);
-            rec.changeCostOfN(child.node, cost);
-            HashSet<Node> dublicates = leadingToChild.getNodes();
-            dublicates.retainAll(rec.getNodes());
-            dublicates.remove(child.node);
-            if (!dublicates.isEmpty()) {
-                for (Node n : dublicates) {
-                    Tree inRec = rec.findNode(n);
-                    for (Tree c : inRec.children) {
-                        leadingToChild.addChild(n, c, c.cost);
-                    }
-                    rec = rec.removeNode(n);
-                }
-            }
-            Tree both = leadingToChild.replace(child.node, rec);
-            dublicates = out.getNodes();
-            dublicates.retainAll(both.getNodes());
-            dublicates.remove(child.node);
-            dublicates.remove(t.node);
-            if (!dublicates.isEmpty()) {
-                for (Node n : dublicates) {
-                    if (both == null) {
-                        break;
-                    }
                     Tree x = both.findNode(n);
                     for (Tree c : x.children) {
                         out.addChild(n, c, c.cost);
@@ -422,10 +377,5 @@ public class helpfulFunctions {
             }
         }
         return out;
-    }
-
-    public static double loss(MyGraph g, Tree t, HashSet<Node> terminals) throws Exception {
-        Forest f = g.kruskal(t.getNodes(), g.getShortestPaths());
-        return f.totalCost();
     }
 }
