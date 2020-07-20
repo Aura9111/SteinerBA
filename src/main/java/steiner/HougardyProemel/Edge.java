@@ -8,17 +8,17 @@ public class Edge {
     public double cost;
 
     public Edge(Node n1, Node n2, double cost) {
-        this.name = n1.id+"-"+n2.id;
+        this.name = n1.id + "-" + n2.id;
         this.first = n1;
         this.second = n2;
         this.cost = cost;
     }
 
-    public void reverse(){
-        Node tmp=first;
-        first=second;
-        second=tmp;
-        name=first+"-"+second;
+    public void reverse() {
+        Node tmp = first;
+        first = second;
+        second = tmp;
+        name = first.id + "-" + second.id;
     }
 
     public String toString() {
@@ -38,7 +38,7 @@ public class Edge {
 
     @Override
     public int hashCode() {
-        return name.hashCode();
+        return first.hashCode() + second.hashCode();
     }
 
     public boolean contains(Node n) {
@@ -51,5 +51,9 @@ public class Edge {
 
     public Node opposite(Node node) {
         return first.equals(node) ? second : first;
+    }
+
+    public Edge copy() {
+        return new Edge(first, second, cost);
     }
 }

@@ -205,14 +205,66 @@ public class MyTree {
         computeShortestPaths();
     }
 
-    public boolean isFull() {
+    public boolean isFull(HashSet<Node> terminals) {
+        if (nodes.size() == 1)
+            return terminals.contains(nodes.iterator().next());
+        if (nodes.size() == 2)
+            return false;
         for (Node n : nodes) {
-            if (n.terminal && getEdgesOfNode(n).size() > 1)
+            if (terminals.contains(n) && getEdgesOfNode(n).size() > 1)
                 return false;
-            if (!n.terminal && getEdgesOfNode(n).size() <= 1)
+            if (!terminals.contains(n) && getEdgesOfNode(n).size() <= 1)
                 return false;
         }
         return true;
+    }
+
+    public HashSet<Node> getSteinerNodes(HashSet<Node> terminals) {
+        HashSet<Node> out = new HashSet<>();
+        for (Node n : nodes) {
+            if (!terminals.contains(n))
+                out.add(n);
+        }
+        return out;
+    }
+
+    public MyTree removeEdge(Edge e) {
+        if (!edges.contains(e))
+            e.reverse();
+        edges.remove(e);
+        HashMap<Pair<Node, Node>, Pair<HashSet<Edge>, Double>> map = new HashMap<>();
+        for (Pair<Node, Node> p : shortestPaths.keySet()) {
+            if (!shortestPaths.get(p).first.contains(e))
+                map.put(p, shortestPaths.get(p));
+        }
+        shortestPaths = map;
+        computeShortestPaths();
+        HashSet<Node> nodeSet = new HashSet<>();
+        for (Node n : nodes) {
+            if (shortestPaths.containsKey(new Pair<Node, Node>(e.second, n)))
+                nodeSet.add(n);
+        }
+        nodes.removeAll(nodeSet);
+        HashSet<Edge> edgeSet = new HashSet<>();
+        for (Edge edge : edges) {
+            if (nodeSet.contains(edge.first) || nodeSet.contains(edge.second))
+                edgeSet.add(edge);
+        }
+        for (Edge remove : edgeSet) {
+            edges.remove(remove);
+        }
+        if (nodeSet.size() == 1)
+            return new MyTree(nodeSet.iterator().next());
+        return new MyTree(edgeSet);
+    }
+
+    public HashSet<Node> getTerminalNodes(HashSet<Node> terminals) {
+        HashSet<Node> out = new HashSet<>();
+        for (Node n : nodes) {
+            if (terminals.contains(n))
+                out.add(n);
+        }
+        return out;
     }
 
 }

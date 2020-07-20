@@ -38,7 +38,7 @@ public class MyForest {
         trees.add(t);
     }
 
-    public MyTree getMyTreeWithNode(Node n) {
+    public MyTree getTreeWithNode(Node n) {
         for (MyTree t : trees) {
             if (t.nodes.contains(n))
                 return t;
@@ -47,8 +47,8 @@ public class MyForest {
     }
 
     public void addEdgeWithNewNode(Edge e) throws Exception {
-        MyTree from = getMyTreeWithNode(e.first);
-        MyTree to = getMyTreeWithNode(e.second);
+        MyTree from = getTreeWithNode(e.first);
+        MyTree to = getTreeWithNode(e.second);
         if (from == null && to == null)
             throw new Exception("Forest doesn't contain required nodes");
         if (to == null) {
@@ -133,8 +133,8 @@ public class MyForest {
     public void addEdge(Edge e) {
         if (e.first.equals(e.second))
             return;
-        MyTree from = getMyTreeWithNode(e.first);
-        MyTree to = getMyTreeWithNode(e.second);
+        MyTree from = getTreeWithNode(e.first);
+        MyTree to = getTreeWithNode(e.second);
         if (to == null) {
             to = new MyTree(e.second);
             trees.add(to);
@@ -148,5 +148,55 @@ public class MyForest {
         to.makeRoot(e.second);
         from.addTree(e, to);
         trees.remove(to);
+    }
+
+    public void splitIntoFullComponents(HashSet<Node> terminals) {
+        // while (!isFull(terminals))
+        for (Edge e : toEdgeSet()) {
+            if (terminals.contains(e.first)) {
+                removeEdge(e);
+                // break;
+            }
+        }
+    }
+
+    public void removeEdge(Edge e) {
+        if (e.first.equals(e.second))
+            return;
+        MyTree from = getTreeWithEdge(e);
+        if (from == null)
+            return;
+        trees.remove(from);
+        MyTree to = from.removeEdge(e);
+        trees.add(from);
+        trees.add(to);
+    }
+
+    private MyTree getTreeWithEdge(Edge e) {
+        for (MyTree t : trees) {
+            if (t.edges.contains(e))
+                return t;
+        }
+        return null;
+    }
+
+    public boolean isFull(HashSet<Node> terminals) {
+        for (MyTree t : trees) {
+            if (!t.isFull(terminals))
+                return false;
+        }
+        return true;
+    }
+
+    public int degree(Node n) {
+        return getTreeWithNode(n).getEdgesOfNode(n).size();
+    }
+
+    public HashSet<Node> toNodeSet() {
+        HashSet<Node> out = new HashSet<>();
+        for (MyTree t : trees) {
+            out.addAll(t.nodes);
+        }
+        return out;
     }
 }

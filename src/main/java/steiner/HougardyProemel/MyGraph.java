@@ -9,20 +9,26 @@ public class MyGraph {
     public String name;
     public Node[] nodes;
     public double[][] edges;
-    public double[][] shortestPaths;
     public HashMap<Pair<Node, Node>, Pair<HashSet<Edge>, Double>> shortestPathMap;
     public double optimal;
+
+    public MyGraph(String name, Node[] nodes, double[][] edges,
+            HashMap<Pair<Node, Node>, Pair<HashSet<Edge>, Double>> shortestPathMap, double optimal) {
+        this.name = name;
+        this.nodes = nodes;
+        this.edges = edges;
+        this.shortestPathMap = shortestPathMap;
+        this.optimal = optimal;
+    }
 
     public MyGraph(String name, int size) {
         this.name = name;
         nodes = new Node[size];
         edges = new double[size][size];
-        shortestPaths = new double[size][size];
         shortestPathMap = new HashMap<>();
         for (int i = 0; i < size; i++) {
             for (int j = 0; j < size; j++) {
                 edges[i][j] = i == j ? 0 : Double.POSITIVE_INFINITY;
-                shortestPaths[i][j] = i == j ? 0 : Double.POSITIVE_INFINITY;
             }
         }
     }
@@ -42,9 +48,14 @@ public class MyGraph {
                 int n2 = e.second.id;
                 edges[n1][n2] = e.cost;
                 edges[n2][n1] = e.cost;
+                HashSet<Edge> tmp = new HashSet<>();
+                tmp.add(e);
+                shortestPathMap.put(new Pair<Node, Node>(e.first, e.second),
+                        new Pair<HashSet<Edge>, Double>(tmp, e.cost));
+                shortestPathMap.put(new Pair<Node, Node>(e.second, e.first),
+                        new Pair<HashSet<Edge>, Double>(tmp, e.cost));
             }
         }
-        floydWarshal();
         computeShortestPaths();
     }
 
@@ -77,105 +88,30 @@ public class MyGraph {
         return out;
     }
 
-    public HashSet<Node> getSteinerNodes() {
-        HashSet<Node> out = new HashSet<>();
-        for (int n1 = 0; n1 < nodes.length; n1++) {
-            if (nodes[n1] != null) {
-                if (!nodes[n1].terminal)
-                    out.add(nodes[n1]);
-            }
-        }
-        return out;
-    }
-
-    public double shortestPathCost(Integer n1, Integer n2) {
-        if (djikstra(n1, n2) != null) {
-            return djikstra(n1, n2).totalCost();
-        }
-        return 0;
-    }
-
-    public Tree djikstra(Integer n1, Integer n2) {
-        HashSet<Integer> todo = new HashSet<>();
-        HashMap<Integer, Pair<Integer, Double>> map = new HashMap<>();
-        map.put(n1, new Pair<Integer, Double>(null, 0.0));
-        todo.add(n1);
-        while (!todo.isEmpty()) {
-            HashSet<Integer> tmp = new HashSet<>();
-            for (Integer n : todo) {
-                for (Node node : getNodes()) {
-                    int i = node.id;
-                    double newCost = map.get(n).second + edges[n][i];
-                    if (map.containsKey(i)) {
-                        if (map.get(i).second > newCost) {
-                            map.put(i, new Pair<Integer, Double>(n, newCost));
-                        }
-                    } else {
-                        map.put(i, new Pair<Integer, Double>(n, newCost));
-                        tmp.add(i);
-                    }
-                }
-            }
-            todo = tmp;
-        }
-        int i = n2;
-        Integer j = null;
-        Tree t1 = new Tree(nodes[i]);
-        if (!map.containsKey(n2))
-            return null; // n2 is in different component-> unreachable
-        if (map.get(n2).first != null)
-            j = map.get(n2).first;
-        while (j != null) {
-            Tree t2 = new Tree(nodes[j]);
-            double cost = map.get(i).second - map.get(j).second;
-            t2.addChild(nodes[j], t1, cost);
-            t1 = t2;
-            i = j;
-            j = map.get(j).first;
-        }
-        return t1;
-    }
+    /*
+     * public HashSet<Node> getSteinerNodes() { HashSet<Node> out = new HashSet<>();
+     * for (int n1 = 0; n1 < nodes.length; n1++) { if (nodes[n1] != null) { if
+     * (!nodes[n1].terminal) out.add(nodes[n1]); } } return out; }
+     */
 
     /*
-     * public HashSet<Edge> djikstraP(Integer n1, Integer n2) { HashSet<Integer>
-     * todo = new HashSet<>(); HashMap<Integer, Pair<Integer, HashSet<Edge>>> map =
-     * new HashMap<>(); map.put(n1, new Pair<Integer, HashSet<Edge>>(null, new
-     * HashSet<Edge>())); todo.add(n1); while (!todo.isEmpty()) { HashSet<Integer>
-     * tmp = new HashSet<>(); for (Integer n : todo) { for (Node node : getNodes())
-     * { int i = node.id; double newCost = 0; for (Edge e : map.get(n).second) {
-     * newCost += e.cost; } newCost += edges[n][i]; HashSet<Edge> newPath = new
-     * HashSet<>(); if (map.containsKey(i)) { double oldCost = 0; for (Edge e :
-     * map.get(i).second) { oldCost += e.cost; } if (oldCost > newCost) {
-     * HashSet<Edge> oldPath = map.get(i).second; newPath.addAll(oldPath);
-     * newPath.add(new Edge(nodes[n], nodes[i], edges[n][i])); map.put(i, new
-     * Pair<Integer, HashSet<Edge>>(n, newPath)); } } else { newPath.add(new
-     * Edge(nodes[n], nodes[i], edges[n][i])); tmp.add(i); } } } todo = tmp; }
-     * return map.get(n2).second; }
+     * public Tree djikstra(Integer n1, Integer n2) { HashSet<Integer> todo = new
+     * HashSet<>(); HashMap<Integer, Pair<Integer, Double>> map = new HashMap<>();
+     * map.put(n1, new Pair<Integer, Double>(null, 0.0)); todo.add(n1); while
+     * (!todo.isEmpty()) { HashSet<Integer> tmp = new HashSet<>(); for (Integer n :
+     * todo) { for (Node node : getNodes()) { int i = node.id; double newCost =
+     * map.get(n).second + edges[n][i]; if (map.containsKey(i)) { if
+     * (map.get(i).second > newCost) { map.put(i, new Pair<Integer, Double>(n,
+     * newCost)); } } else { map.put(i, new Pair<Integer, Double>(n, newCost));
+     * tmp.add(i); } } } todo = tmp; } int i = n2; Integer j = null; Tree t1 = new
+     * Tree(nodes[i]); if (!map.containsKey(n2)) return null; // n2 is in different
+     * component-> unreachable if (map.get(n2).first != null) j = map.get(n2).first;
+     * while (j != null) { Tree t2 = new Tree(nodes[j]); double cost =
+     * map.get(i).second - map.get(j).second; t2.addChild(nodes[j], t1, cost); t1 =
+     * t2; i = j; j = map.get(j).first; } return t1; }
      */
-    public void floydWarshal() {
-        shortestPaths = new double[nodes.length][nodes.length];
-        for (int i = 0; i < nodes.length; i++) {
-            for (int j = 0; j < nodes.length; j++) {
-                shortestPaths[i][j] = edges[i][j];
-            }
-        }
-        for (int k = 0; k < nodes.length; k++) {
-            for (int i = 0; i < nodes.length; i++) {
-                for (int j = 0; j < nodes.length; j++) {
-                    if (shortestPaths[i][k] + shortestPaths[k][j] < shortestPaths[i][j])
-                        shortestPaths[i][j] = shortestPaths[i][k] + shortestPaths[k][j];
-                }
-            }
-        }
-    }
 
     public void computeShortestPaths() {
-        for (Edge e : getEdges()) {
-            HashSet<Edge> path = new HashSet<Edge>();
-            path.add(e);
-            shortestPathMap.put(new Pair<Node, Node>(e.first, e.second), new Pair<HashSet<Edge>, Double>(path, e.cost));
-            shortestPathMap.put(new Pair<Node, Node>(e.second, e.first), new Pair<HashSet<Edge>, Double>(path, e.cost));
-        }
         for (Node n : nodes) {
             shortestPathMap.put(new Pair<Node, Node>(n, n), new Pair<HashSet<Edge>, Double>(new HashSet<>(), 0.0));
         }
@@ -202,21 +138,19 @@ public class MyGraph {
         }
     }
 
-    public Tree MSTAlgorithm(HashSet<Node> set) throws Exception {
-        return MSTAlgorithm(set, getShortestPaths());
-    }
+    /*
+     * public Tree MSTAlgorithm(HashSet<Node> set) throws Exception { return
+     * MSTAlgorithm(set, getShortestPaths()); }
+     */
 
-    public Tree MSTAlgorithm(HashSet<Node> set, HashSet<Edge> edges) throws Exception {
-        Forest f = kruskal(set, edges);
-        if (f.size() > 1)
-            throw new Exception("cant construct mst. forest has " + f.size() + " components");
-        Tree t = f.giveSingleTree();
-        t = unMetricTree(t);
-        if (!t.getSteinerNodes().isEmpty()) {
-            t = t.makeRoot(t.getSteinerNodes().iterator().next());
-        }
-        return t;
-    }
+    /*
+     * public Tree MSTAlgorithm(HashSet<Node> set, HashSet<Edge> edges) throws
+     * Exception { Forest f = kruskal(set, edges); if (f.size() > 1) throw new
+     * Exception("cant construct mst. forest has " + f.size() + " components"); Tree
+     * t = f.giveSingleTree(); t = unMetricTree(t); if
+     * (!t.getSteinerNodes().isEmpty()) { t =
+     * t.makeRoot(t.getSteinerNodes().iterator().next()); } return t; }
+     */
 
     public ArrayList<Edge> sortEdges(HashSet<Edge> set) {
         ArrayList<Edge> out = new ArrayList<>();
@@ -236,32 +170,6 @@ public class MyGraph {
                 out.add(index, e);
         }
         return out;
-    }
-
-    public Forest kruskal(HashSet<Node> nodeSet, HashSet<Edge> edgeSet) throws Exception {
-        Forest forest = new Forest();
-        for (Node n : nodeSet) {
-            forest.addTree(new Tree(n));
-        }
-        ArrayList<Edge> sortedEdges = sortEdges(edgeSet);
-        Iterator<Edge> it = sortedEdges.iterator();
-        while (forest.size() > 1 && it.hasNext()) {
-            Edge e = it.next();
-            int i = 0;
-            int indexFirst = -1;
-            int indexSecond = -1;
-            for (Tree t : forest.getTrees()) {
-                if (t.containsNode(e.first))
-                    indexFirst = i;
-                if (t.containsNode(e.second))
-                    indexSecond = i;
-                i++;
-            }
-            if (indexFirst >= 0 && indexSecond >= 0 && indexFirst != indexSecond) {
-                forest.addEdgeWithNewNode(e);
-            }
-        }
-        return forest;
     }
 
     public MyForest minimumSpanningForest(HashSet<Node> nodeSet, HashSet<Edge> edgeSet) throws Exception {
@@ -293,72 +201,83 @@ public class MyGraph {
 
     public MyTree MstApproximation(HashSet<Node> terminals) throws Exception {
         MyForest f = minimumSpanningForest(terminals, getShortestPaths());
-        if (f.trees.size() == 1)
-            return f.trees.iterator().next();
+        if (f.trees.size() == 1) {
+            MyTree t = f.trees.iterator().next();
+            if (!t.getSteinerNodes(terminals).isEmpty())
+                t.makeRoot(t.getSteinerNodes(terminals).iterator().next());
+            return t;
+        }
         return null;
     }
 
-    public Tree minimumSpanningTree(HashSet<Node> nodeSet, HashSet<Edge> edgeSet) throws Exception {
-        Forest f = kruskal(nodeSet, edgeSet);
-        if (f.size() > 1)
-            throw new Exception("cant construct mst. forest has " + f.size() + " components");
-        return f.giveSingleTree();
+    public MyTree fullTreeApprox(HashSet<Node> terminals, HashSet<Node> nodeSet) throws Exception {
+        MyForest f = fullForestApprox(terminals, nodeSet);
+        if (f.trees.size() == 1)
+            return f.giveSingleMyTree();
+        else
+            return null;
     }
 
-    public HashSet<Edge> getEdges() {
-        HashSet<Edge> out = new HashSet<>();
-        for (int n1 = 0; n1 < nodes.length; n1++) {
-            if (nodes[n1] != null) {
-                for (int n2 = n1; n2 < nodes.length; n2++) {
-                    if (nodes[n2] != null) {
-                        if (edges[n1][n2] != Double.POSITIVE_INFINITY) {
-                            out.add(new Edge(nodes[n1], nodes[n2], edges[n1][n2]));
-                        }
-                    }
+    public MyForest fullForestApprox(HashSet<Node> terminals, HashSet<Node> nodeSet) {
+        MyForest forest = new MyForest();
+        for (Node n : nodeSet) {
+            forest.trees.add(new MyTree(n));
+        }
+        ArrayList<Edge> sortedEdges = sortEdges(getShortestPaths());
+        Iterator<Edge> it = sortedEdges.iterator();
+        while (forest.size() > 1 && it.hasNext()) {
+            Edge e = it.next();
+            int i = 0;
+            int indexFirst = -1;
+            int indexSecond = -1;
+            for (MyTree t : forest.trees) {
+                if (t.nodes.contains(e.first))
+                    indexFirst = i;
+                if (t.nodes.contains(e.second))
+                    indexSecond = i;
+                i++;
+            }
+            if (indexFirst >= 0 && indexSecond >= 0 && indexFirst != indexSecond) {
+                boolean makesTermInner = false;
+                for (Edge edge : shortestPathMap.get(new Pair<Node, Node>(e.first, e.second)).first) {
+                    if (nodeSet.contains(edge.first) && forest.degree(edge.first) > 0)
+                        makesTermInner = true;
+                    if (nodeSet.contains(edge.second) && forest.degree(edge.second) > 0)
+                        makesTermInner = true;
+                    if (terminals.contains(edge.first) && terminals.contains(edge.second) && e.cost > 0)
+                        makesTermInner = true;
+                }
+                if (!makesTermInner) {
+                    for (Edge edge : shortestPathMap.get(new Pair<Node, Node>(e.first, e.second)).first)
+                        forest.addEdge(edge);
+                    it = sortedEdges.iterator();
                 }
             }
         }
-        return out;
+        return forest;
     }
-
-    public void printEdges() {
-        String out = "";
-        for (int i = 0; i < nodes.length; i++) {
-            if (nodes[i] != null) {
-                for (int j = 0; j < nodes.length; j++) {
-                    if (nodes[j] != null) {
-                        if (edges[i][j] < Double.POSITIVE_INFINITY)
-                            out = out + (i + 1) + "-" + (j + 1) + ": " + edges[i][j] + ", ";
-                    }
-                }
-            }
-        }
-        System.out.println(out);
-    }
-
-    public void printShortestPaths() {
-        String out = "";
-        for (int i = 0; i < nodes.length; i++) {
-            if (nodes[i] != null) {
-                for (int j = 0; j < nodes.length; j++) {
-                    if (nodes[j] != null) {
-                        if (shortestPaths[i][j] < Double.POSITIVE_INFINITY)
-                            out = out + (i + 1) + "-" + (j + 1) + ": " + shortestPaths[i][j] + ", ";
-                    }
-                }
-            }
-        }
-        System.out.println(out);
-
-    }
+    /*
+     * public HashSet<Edge> getEdges() { HashSet<Edge> out = new HashSet<>(); for
+     * (int n1 = 0; n1 < nodes.length; n1++) { if (nodes[n1] != null) { for (int n2
+     * = n1; n2 < nodes.length; n2++) { if (nodes[n2] != null) { if (edges[n1][n2]
+     * != Double.POSITIVE_INFINITY) { out.add(new Edge(nodes[n1], nodes[n2],
+     * edges[n1][n2])); } } } } } return out; }
+     */
 
     public void contractSet(HashSet<Node> set) {
         for (Node n1 : set) {
             for (Node n2 : set) {
                 edges[n1.id][n2.id] = 0;
+                edges[n2.id][n1.id] = 0;
+                Edge e = new Edge(n1, n2, 0);
+                HashSet<Edge> tmp = new HashSet<>();
+                tmp.add(e);
+                shortestPathMap.put(new Pair<Node, Node>(e.first, e.second),
+                        new Pair<HashSet<Edge>, Double>(tmp, e.cost));
+                shortestPathMap.put(new Pair<Node, Node>(e.second, e.first),
+                        new Pair<HashSet<Edge>, Double>(tmp, e.cost));
             }
         }
-        floydWarshal();
         computeShortestPaths();
     }
 
@@ -368,8 +287,9 @@ public class MyGraph {
             if (nodes[n1] != null) {
                 for (int n2 = n1; n2 < nodes.length; n2++) {
                     if (nodes[n2] != null) {
-                        if (shortestPaths[n1][n2] != Double.POSITIVE_INFINITY) {
-                            out.add(new Edge(nodes[n1], nodes[n2], shortestPaths[n1][n2]));
+                        if (shortestPathMap.get(new Pair<Node, Node>(nodes[n1], nodes[n2])) != null) {
+                            out.add(new Edge(nodes[n1], nodes[n2],
+                                    shortestPathMap.get(new Pair<Node, Node>(nodes[n1], nodes[n2])).second));
                         }
                     }
                 }
@@ -385,77 +305,61 @@ public class MyGraph {
     public void addEdge(Edge e) {
         edges[e.first.id][e.second.id] = e.cost;
         edges[e.second.id][e.first.id] = e.cost;
-        floydWarshal();
+        HashSet<Edge> tmp = new HashSet<>();
+        tmp.add(e);
+        shortestPathMap.put(new Pair<Node, Node>(e.first, e.second), new Pair<HashSet<Edge>, Double>(tmp, e.cost));
+        shortestPathMap.put(new Pair<Node, Node>(e.second, e.first), new Pair<HashSet<Edge>, Double>(tmp, e.cost));
+        computeShortestPaths();
     }
 
     public void addEdgeNoUpdate(Edge e) {
         edges[e.first.id][e.second.id] = e.cost;
         edges[e.second.id][e.first.id] = e.cost;
-    }
-
-    public HashSet<Edge> getShortestPathsContracted(HashSet<Node> set) {
-        HashSet<Edge> out = new HashSet<>();
-        for (int n1 = 0; n1 < nodes.length; n1++) {
-            if (nodes[n1] != null) {
-                for (int n2 = n1; n2 < nodes.length; n2++) {
-                    if (nodes[n2] != null) {
-                        if (shortestPaths[n1][n2] != Double.POSITIVE_INFINITY) {
-                            if (!set.contains(nodes[n1]) || !set.contains(nodes[n2]))
-                                out.add(new Edge(nodes[n1], nodes[n2], shortestPaths[n1][n2]));
-                            else
-                                out.add(new Edge(nodes[n1], nodes[n2], 0));
-                        }
-                    }
-                }
-            }
-        }
-        return out;
+        HashSet<Edge> tmp = new HashSet<>();
+        tmp.add(e);
+        shortestPathMap.put(new Pair<Node, Node>(e.first, e.second), new Pair<HashSet<Edge>, Double>(tmp, e.cost));
+        shortestPathMap.put(new Pair<Node, Node>(e.second, e.first), new Pair<HashSet<Edge>, Double>(tmp, e.cost));
     }
 
     public MyGraph copy() {
-        return new MyGraph(this, getNodes());
+        HashMap<Pair<Node, Node>, Pair<HashSet<Edge>, Double>> newShortestPathMap = new HashMap<>();
+        double[][] newEdges = new double[nodes.length][nodes.length];
+        Node[] newNodes = new Node[nodes.length];
+        for (int i = 0; i < nodes.length; i++) {
+            newNodes[i] = nodes[i].copy();
+            for (int j = 0; j < nodes.length; j++) {
+                newEdges[i][j] = edges[i][j];
+                Pair<Node, Node> nodePair = new Pair<>(nodes[i], nodes[j]);
+                Pair<HashSet<Edge>, Double> resultPair = shortestPathMap.get(nodePair);
+                if (resultPair != null) {
+                    HashSet<Edge> tmp = new HashSet<>();
+                    for (Edge e : resultPair.first) {
+                        Edge newE = e.copy();
+                        tmp.add(newE);
+                    }
+                    newShortestPathMap.put(nodePair, new Pair<HashSet<Edge>, Double>(tmp, resultPair.second));
+                }
+            }
+        }
+        return new MyGraph(name, newNodes, newEdges, newShortestPathMap, optimal);
     }
 
-    public Tree unMetricTree(Tree t) {
-        Tree out = new Tree(t.node);
-        for (Tree child : t.children) {
-            Tree djikstra = djikstra(t.node.id, child.node.id);
-            double cost = djikstra.findNode(child.node).cost;
-            Tree leadingToChild = djikstra.children.iterator().next();
-            Tree rec = unMetricTree(child);
-            rec.changeCostOfN(child.node, cost);
-            HashSet<Node> dublicates = leadingToChild.getNodes();
-            dublicates.retainAll(rec.getNodes());
-            dublicates.remove(child.node);
-            if (!dublicates.isEmpty()) {
-                for (Node n : dublicates) {
-                    Tree inRec = rec.findNode(n);
-                    for (Tree c : inRec.children) {
-                        leadingToChild.addChild(n, c, c.cost);
-                    }
-                    rec = rec.removeNode(n);
-                }
-            }
-            Tree both = leadingToChild.replace(child.node, rec);
-            dublicates = out.getNodes();
-            dublicates.retainAll(both.getNodes());
-            dublicates.remove(child.node);
-            dublicates.remove(t.node);
-            if (!dublicates.isEmpty()) {
-                for (Node n : dublicates) {
-                    if (both == null) {
-                        break;
-                    }
-                    Tree x = both.findNode(n);
-                    for (Tree c : x.children) {
-                        out.addChild(n, c, c.cost);
-                    }
-                    both = both.removeNode(n);
-                }
-            }
-            if (both != null)
-                out.addChild(t.node, both, both.cost);
-        }
-        return out;
-    }
+    /*
+     * public Tree unMetricTree(Tree t) { Tree out = new Tree(t.node); for (Tree
+     * child : t.children) { Tree djikstra = djikstra(t.node.id, child.node.id);
+     * double cost = djikstra.findNode(child.node).cost; Tree leadingToChild =
+     * djikstra.children.iterator().next(); Tree rec = unMetricTree(child);
+     * rec.changeCostOfN(child.node, cost); HashSet<Node> dublicates =
+     * leadingToChild.getNodes(); dublicates.retainAll(rec.getNodes());
+     * dublicates.remove(child.node); if (!dublicates.isEmpty()) { for (Node n :
+     * dublicates) { Tree inRec = rec.findNode(n); for (Tree c : inRec.children) {
+     * leadingToChild.addChild(n, c, c.cost); } rec = rec.removeNode(n); } } Tree
+     * both = leadingToChild.replace(child.node, rec); dublicates = out.getNodes();
+     * dublicates.retainAll(both.getNodes()); dublicates.remove(child.node);
+     * dublicates.remove(t.node); if (!dublicates.isEmpty()) { for (Node n :
+     * dublicates) { if (both == null) { break; } Tree x = both.findNode(n); for
+     * (Tree c : x.children) { out.addChild(n, c, c.cost); } both =
+     * both.removeNode(n); } } if (both != null) out.addChild(t.node, both,
+     * both.cost); } return out; }
+     */
 }

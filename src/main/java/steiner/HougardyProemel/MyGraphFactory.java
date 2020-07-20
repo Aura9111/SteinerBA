@@ -9,58 +9,58 @@ public class MyGraphFactory {
 
     public static void main(String[] args) throws Exception {
         for (MyGraph g : getAllGraphs()) {
-            Tree t = g.MSTAlgorithm(g.getTerminalNodes());
+            MyTree t = g.MstApproximation(g.getTerminalNodes());
             t.printGraph(g.name);
-            System.out.println(t.totalCost()+"/"+g.optimal);
+            System.out.println(t.totalCost() + "/" + g.optimal);
         }
     }
 
     public static HashSet<MyGraph> getAllGraphs() throws IOException {
         HashSet<MyGraph> out = new HashSet<>();
-        MyGraph g=makeMyGraphMethods("011");
-        g.optimal=1479;
+        MyGraph g = makeMyGraphMethods("011");
+        g.optimal = 1479;
         out.add(g);
-        g=makeMyGraphMethods("012");
-        g.optimal=1484 ;
+        g = makeMyGraphMethods("012");
+        g.optimal = 1484;
         out.add(g);
-        g=makeMyGraphMethods("013");
-        g.optimal=1381 ;
+        g = makeMyGraphMethods("013");
+        g.optimal = 1381;
         out.add(g);
-        g=makeMyGraphMethods("014");
-        g.optimal=1397 ;
+        g = makeMyGraphMethods("014");
+        g.optimal = 1397;
         out.add(g);
-        g=makeMyGraphMethods("015");
-        g.optimal=1495 ;
+        g = makeMyGraphMethods("015");
+        g.optimal = 1495;
         out.add(g);
-        g=makeMyGraphMethods("021");
-        g.optimal=1175 ;
+        g = makeMyGraphMethods("021");
+        g.optimal = 1175;
         out.add(g);
-        g=makeMyGraphMethods("022");
-        g.optimal=1178 ;
+        g = makeMyGraphMethods("022");
+        g.optimal = 1178;
         out.add(g);
-        g=makeMyGraphMethods("023");
-        g.optimal=1174 ;
+        g = makeMyGraphMethods("023");
+        g.optimal = 1174;
         out.add(g);
-        g=makeMyGraphMethods("024");
-        g.optimal=1161 ;
+        g = makeMyGraphMethods("024");
+        g.optimal = 1161;
         out.add(g);
-        g=makeMyGraphMethods("025");
-        g.optimal=1162 ;
+        g = makeMyGraphMethods("025");
+        g.optimal = 1162;
         out.add(g);
-        g=makeMyGraphMethods("041");
-        g.optimal=1276 ;
+        g = makeMyGraphMethods("041");
+        g.optimal = 1276;
         out.add(g);
-        g=makeMyGraphMethods("042");
-        g.optimal=1287 ;
+        g = makeMyGraphMethods("042");
+        g.optimal = 1287;
         out.add(g);
-        g=makeMyGraphMethods("043");
-        g.optimal=1295 ;
+        g = makeMyGraphMethods("043");
+        g.optimal = 1295;
         out.add(g);
-        g=makeMyGraphMethods("044");
-        g.optimal=1366 ;
+        g = makeMyGraphMethods("044");
+        g.optimal = 1366;
         out.add(g);
-        g=makeMyGraphMethods("045");
-        g.optimal=1310 ;
+        g = makeMyGraphMethods("045");
+        g.optimal = 1310;
         out.add(g);
         return out;
     }
@@ -105,7 +105,6 @@ public class MyGraphFactory {
                 g.addEdgeNoUpdate(e);
             }
         }
-        g.floydWarshal();
         g.computeShortestPaths();
         scanner.close();
         return g;

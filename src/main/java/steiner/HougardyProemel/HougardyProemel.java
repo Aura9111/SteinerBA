@@ -1,78 +1,96 @@
 package steiner.HougardyProemel;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Iterator;
 
 public class HougardyProemel {
 
     public static void main(String[] args) throws Exception {
-        // double alphas[] = { 0.360, 0.264, 0.183, 0.114, 0.0053, 0 };
+        double[] alphas = { 0.698, 0.248, 0 };
+        // double[] alphas = { 1.365, 1.026, 0.792, 0.615, 0.474, 0.360, 0.264, 0.183,
+        // 0.114, 0.053, 0.0 };
         for (MyGraph g : MyGraphFactory.getAllGraphs()) {
-            MyTree t = kRGHalpha(g, g.getTerminalNodes(), 6, 1);
+            MyTree t = hougardyProemel(g, alphas, 3);
             System.out.println(t.totalCost() + "/" + g.optimal);
+            t.printGraph("hougardy" + g.name);
         }
-
     }
 
-    public static Tree hougardyProemel(MyGraph g, int k, double[] alphas) throws Exception {
-
-        // TODO
-
-        return null;
+    public static MyTree hougardyProemel(MyGraph g, double[] alphas, int k) throws Exception {
+        MyGraph og = g.copy();
+        HashSet<Node> set = g.getTerminalNodes();
+        for (double alpha : alphas) {
+            MyForest result = kRGHalpha(g, set, k, alpha);
+            set.addAll(result.toNodeSet());
+        }
+        return og.MstApproximation(set);
     }
 
-    public static MyTree kRGHalpha(MyGraph g, HashSet<Node> terminals, int k, double alpha) throws Exception {
-        MyGraph workingG = g.copy();
-        HashSet<Node> workingSet = new HashSet<>();
-        for (Node t : terminals) {
-            workingSet.add(t);
-        }
+    public static MyForest kRGHalpha(MyGraph g, HashSet<Node> terminals, int k, double alpha) throws Exception {
         HashSet<MyTree> LIST = new HashSet<>();
-        MyTree mst = workingG.MstApproximation(terminals);
+        MyTree mst = g.MstApproximation(terminals);
         while (mst.totalCost() > 0) {
             double min = Double.POSITIVE_INFINITY;
             MyTree minTree = null;
-            HashSet<MyTree> classK = getAllKRestrictedSteinerTrees(workingG, workingSet, k);
+            HashSet<MyTree> classK = getAllKRestrictedTrees(g, terminals, k);
             for (MyTree b : classK) {
-                MyGraph tmpContracted = workingG.copy();
-                tmpContracted.contractSet(b.nodes);
-                MyTree mstWithBContracted = tmpContracted.MstApproximation(workingSet);
-                double contractedCost = mstWithBContracted.totalCost();
-                double f = b.totalCost() + (alpha * loss(workingG, b, workingSet)) / (mst.totalCost() - contractedCost);
-                if (f < min && min >= 0) {
+                MyGraph tmpContracted = g.copy();
+                tmpContracted.contractSet(b.getTerminalNodes(terminals));
+                MyTree mstWithBContracted = tmpContracted.MstApproximation(terminals);
+                double m = mst.totalCost() - mstWithBContracted.totalCost();
+                if (m < 0)
+                    throw new Exception("constructing nodes somehow increased the treecost");
+                double f = b.totalCost() + (alpha * loss(b, terminals)) / m;
+                if (f < min) {
                     min = f;
                     minTree = b;
                 }
             }
-            if (minTree == null) {
-                int i = 0;
-            }
+            if (minTree == null)
+                minTree = mst;
             LIST.add(minTree);
-            workingG.contractSet(minTree.nodes);
-            workingSet.removeAll(minTree.getTerminalNodes());
-            if (workingSet.isEmpty())
-                break;
-            mst = workingG.MstApproximation(workingSet);
+            g.contractSet(minTree.getTerminalNodes(terminals));
+            mst = g.MstApproximation(terminals);
         }
-        HashSet<Node> allCombined = new HashSet<>();
+
+        MyForest allCombined = new MyForest();
         for (MyTree tree : LIST) {
-            allCombined.addAll(tree.nodes);
+            for (Edge e : tree.edges) {
+                allCombined.addEdge(e);
+            }
         }
-        allCombined.addAll(terminals);
-        return g.MstApproximation(allCombined);
+        return allCombined;
     }
 
-    private static HashSet<MyTree> getAllKRestrictedSteinerTrees(MyGraph g, HashSet<Node> terminals, int k)
-            throws Exception {
+    private static HashSet<MyTree> getAllKRestrictedTrees(MyGraph g, HashSet<Node> terminals, int k) throws Exception {
         HashSet<MyTree> out = new HashSet<>();
-        for (int x = 2; x <= k; x++) {
-            for (HashSet<Node> set : getXElementSubsets(terminals, x)) {
-                MyTree smt = g.MstApproximation(set);
-                if (smt.isFull())
-                    out.add(smt);
+        for (int i = k; i > 1; i--) {
+            for (HashSet<Node> set : getXElementSubsets(terminals, i)) {
+                MyTree t = g.fullTreeApprox(terminals, set);
+                if (t != null)
+                    out.add(t);
             }
         }
         return out;
     }
+
+    /*
+     * private static HashSet<MyTree> getAllKRestrictedSteinerTrees(MyGraph g,
+     * HashSet<Node> terminals, int k) throws Exception { HashMap<HashSet<Node>,
+     * MyTree> map = new HashMap<>(); for (int i = k; i > 1; i--) { for
+     * (HashSet<Node> set : getXElementSubsets(terminals, i)) { if
+     * (!map.containsKey(set)) { MyTree mst = g.MstApproximation(set); if
+     * (mst.isFull(terminals)) { map.put(set, mst); } else { MyForest f = new
+     * MyForest(mst); f.splitIntoFullComponents(terminals); for (MyTree t : f.trees)
+     * { HashSet<Node> subset = new HashSet<>(); subset.addAll(t.nodes);
+     * subset.retainAll(terminals); if (!map.containsKey(subset)) { map.put(subset,
+     * t); } else if (map.get(subset).totalCost() > t.totalCost()) map.put(subset,
+     * t);
+     * 
+     * } } } } } HashSet<MyTree> out = new HashSet<>(); out.addAll(map.values());
+     * return out; }
+     */
 
     public static HashSet<HashSet<Node>> getXElementSubsets(HashSet<Node> in, int x) {
         return getXElementSubsets(x, new MyImmutableHashSet<Node>(in), new MyImmutableHashSet<Node>());
@@ -91,9 +109,56 @@ public class HougardyProemel {
         return setOfSets;
     }
 
-    public static double loss(MyGraph g, MyTree t, HashSet<Node> terminals) throws Exception {
-        MyForest f = g.minimumSpanningForest(t.nodes, g.getShortestPaths());
-        return f.totalCost();
+    public static double loss(MyTree t, HashSet<Node> terminals) throws Exception {
+        MyForest forest = new MyForest();
+        for (Node n : t.nodes) {
+            forest.trees.add(new MyTree(n));
+        }
+        ArrayList<Edge> sortedEdges = sortEdges(t.edges);
+        Iterator<Edge> it = sortedEdges.iterator();
+        boolean done = false;
+        while (!done && it.hasNext()) {
+            Edge e = it.next();
+            int i = 0;
+            int indexFirst = -1;
+            int indexSecond = -1;
+            for (MyTree tree : forest.trees) {
+                if (tree.nodes.contains(e.first))
+                    indexFirst = i;
+                if (tree.nodes.contains(e.second))
+                    indexSecond = i;
+                i++;
+            }
+            if (indexFirst >= 0 && indexSecond >= 0 && indexFirst != indexSecond) {
+                forest.addEdge(e);
+            }
+            done = true;
+            for (Node n : t.getSteinerNodes(terminals)) {
+                MyTree tmp = forest.getTreeWithNode(n);
+                if (tmp.getTerminalNodes(terminals).isEmpty())
+                    done = false;
+            }
+        }
+        return forest.totalCost();
     }
 
+    public static ArrayList<Edge> sortEdges(HashSet<Edge> set) {
+        ArrayList<Edge> out = new ArrayList<>();
+        for (Edge e : set) {
+            if (out.isEmpty())
+                out.add(e);
+            int index = -1;
+            for (Edge comp : out) {
+                if (comp.cost >= e.cost) {
+                    index = out.indexOf(comp);
+                    break;
+                }
+            }
+            if (index < 0)
+                out.add(e);
+            else
+                out.add(index, e);
+        }
+        return out;
+    }
 }
