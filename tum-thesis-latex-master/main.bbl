@@ -1,0 +1,357 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.1 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{BeRa94}{article}{}
+      \name{author}{2}{}{%
+        {{hash=652dfc09347fd952ec7c580fff3f85e2}{%
+           family={Berman},
+           familyi={B\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod}}}%
+        {{hash=82299dc8ac8ea1ea654f58aa95a0ef75}{%
+           family={Ramaiyer},
+           familyi={R\bibinitperiod},
+           given={V.},
+           giveni={V\bibinitperiod}}}%
+      }
+      \strng{namehash}{0c60a3df0149030500c3c96cc553a771}
+      \strng{fullhash}{0c60a3df0149030500c3c96cc553a771}
+      \strng{bibnamehash}{0c60a3df0149030500c3c96cc553a771}
+      \strng{authorbibnamehash}{0c60a3df0149030500c3c96cc553a771}
+      \strng{authornamehash}{0c60a3df0149030500c3c96cc553a771}
+      \strng{authorfullhash}{0c60a3df0149030500c3c96cc553a771}
+      \field{sortinit}{B}
+      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Algorithms 17}
+      \field{title}{{Improved Approximations for the Steiner Tree Problem}}
+      \field{year}{1994}
+      \field{pages}{381\bibrangedash 408}
+      \range{pages}{28}
+    \endentry
+    \entry{BlNi07}{article}{}
+      \name{author}{2}{}{%
+        {{hash=d22a7ec2285e7273f975a389c90c95d8}{%
+           family={Blumrosen},
+           familyi={B\bibinitperiod},
+           given={Liad},
+           giveni={L\bibinitperiod}}}%
+        {{hash=dd03ed102537d5040adaf7ede9bad0ec}{%
+           family={Nisan},
+           familyi={N\bibinitperiod},
+           given={Noam},
+           giveni={N\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge University Press New York}%
+      }
+      \strng{namehash}{04441c2919e8ed3abf226a750eca69e1}
+      \strng{fullhash}{04441c2919e8ed3abf226a750eca69e1}
+      \strng{bibnamehash}{04441c2919e8ed3abf226a750eca69e1}
+      \strng{authorbibnamehash}{04441c2919e8ed3abf226a750eca69e1}
+      \strng{authornamehash}{04441c2919e8ed3abf226a750eca69e1}
+      \strng{authorfullhash}{04441c2919e8ed3abf226a750eca69e1}
+      \field{sortinit}{B}
+      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Algorithmic game theory}
+      \field{title}{Combinatorial auctions}
+      \field{volume}{267}
+      \field{year}{2007}
+      \field{pages}{300}
+      \range{pages}{1}
+    \endentry
+    \entry{HoPr99}{article}{}
+      \name{author}{2}{}{%
+        {{hash=d6629c6db7786a757697df0598188ca5}{%
+           family={Hougardy},
+           familyi={H\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+        {{hash=ffb499fe8470fc361ecf8ffed655e9c6}{%
+           family={Prömel},
+           familyi={P\bibinitperiod},
+           given={H.},
+           giveni={H\bibinitperiod}}}%
+      }
+      \strng{namehash}{f82f7d4db4767ae5411e15c61548dc40}
+      \strng{fullhash}{f82f7d4db4767ae5411e15c61548dc40}
+      \strng{bibnamehash}{f82f7d4db4767ae5411e15c61548dc40}
+      \strng{authorbibnamehash}{f82f7d4db4767ae5411e15c61548dc40}
+      \strng{authornamehash}{f82f7d4db4767ae5411e15c61548dc40}
+      \strng{authorfullhash}{f82f7d4db4767ae5411e15c61548dc40}
+      \field{sortinit}{H}
+      \field{sortinithash}{6db6145dae8dc9e1271a8d556090b50a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Proceedings of the Tenth Annual ACM-SIAM Symposium on Discrete Algorithms}
+      \field{title}{{A 1.598 Approximation Algorithm for the Steiner Problem in Graphs}}
+      \field{year}{1999}
+      \field{pages}{448\bibrangedash 453}
+      \range{pages}{6}
+    \endentry
+    \entry{hougardy2010floyd}{article}{}
+      \name{author}{1}{}{%
+        {{hash=045d31e1d5df8777f0f467ff00e71753}{%
+           family={Hougardy},
+           familyi={H\bibinitperiod},
+           given={Stefan},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{045d31e1d5df8777f0f467ff00e71753}
+      \strng{fullhash}{045d31e1d5df8777f0f467ff00e71753}
+      \strng{bibnamehash}{045d31e1d5df8777f0f467ff00e71753}
+      \strng{authorbibnamehash}{045d31e1d5df8777f0f467ff00e71753}
+      \strng{authornamehash}{045d31e1d5df8777f0f467ff00e71753}
+      \strng{authorfullhash}{045d31e1d5df8777f0f467ff00e71753}
+      \field{sortinit}{H}
+      \field{sortinithash}{6db6145dae8dc9e1271a8d556090b50a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Information Processing Letters}
+      \field{number}{8-9}
+      \field{title}{The Floyd--Warshall algorithm on graphs with negative cycles}
+      \field{volume}{110}
+      \field{year}{2010}
+      \true{nocite}
+      \field{pages}{279\bibrangedash 281}
+      \range{pages}{3}
+    \endentry
+    \entry{karp1972reducibility}{incollection}{}
+      \name{author}{1}{}{%
+        {{hash=5290385c419686f6312edeb3578dc9cf}{%
+           family={Karp},
+           familyi={K\bibinitperiod},
+           given={Richard\bibnamedelima M},
+           giveni={R\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{5290385c419686f6312edeb3578dc9cf}
+      \strng{fullhash}{5290385c419686f6312edeb3578dc9cf}
+      \strng{bibnamehash}{5290385c419686f6312edeb3578dc9cf}
+      \strng{authorbibnamehash}{5290385c419686f6312edeb3578dc9cf}
+      \strng{authornamehash}{5290385c419686f6312edeb3578dc9cf}
+      \strng{authorfullhash}{5290385c419686f6312edeb3578dc9cf}
+      \field{sortinit}{K}
+      \field{sortinithash}{d3edc18d54b9438a72c24c925bfb38f4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Complexity of computer computations}
+      \field{title}{Reducibility among combinatorial problems}
+      \field{year}{1972}
+      \field{pages}{85\bibrangedash 103}
+      \range{pages}{19}
+    \endentry
+    \entry{KaZe97}{article}{}
+      \name{author}{2}{}{%
+        {{hash=897c3f7cdf9e014c1de0b7dfd28c3e06}{%
+           family={Karpinski},
+           familyi={K\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=f2148fd31fa0180fe151b0b5f491f844}{%
+           family={Zelikovsky},
+           familyi={Z\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{72a09c1aeb36dfbd85a7faf7dc35f56d}
+      \strng{fullhash}{72a09c1aeb36dfbd85a7faf7dc35f56d}
+      \strng{bibnamehash}{72a09c1aeb36dfbd85a7faf7dc35f56d}
+      \strng{authorbibnamehash}{72a09c1aeb36dfbd85a7faf7dc35f56d}
+      \strng{authornamehash}{72a09c1aeb36dfbd85a7faf7dc35f56d}
+      \strng{authorfullhash}{72a09c1aeb36dfbd85a7faf7dc35f56d}
+      \field{extraname}{1}
+      \field{sortinit}{K}
+      \field{sortinithash}{d3edc18d54b9438a72c24c925bfb38f4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Combinatorial Optimization 1}
+      \field{title}{{New approximation algorithms for the Steiner problems}}
+      \field{year}{1997}
+      \field{pages}{47\bibrangedash 65}
+      \range{pages}{19}
+    \endentry
+    \entry{karpinski1997new}{article}{}
+      \name{author}{2}{}{%
+        {{hash=5482fd910692daec95489dd87da34892}{%
+           family={Karpinski},
+           familyi={K\bibinitperiod},
+           given={Marek},
+           giveni={M\bibinitperiod}}}%
+        {{hash=ac16f72e4e54b00dda6c24d29ac1d254}{%
+           family={Zelikovsky},
+           familyi={Z\bibinitperiod},
+           given={Alexander},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{8dcf4c67b8cda5acf4d5bf59619f27b7}
+      \strng{fullhash}{8dcf4c67b8cda5acf4d5bf59619f27b7}
+      \strng{bibnamehash}{8dcf4c67b8cda5acf4d5bf59619f27b7}
+      \strng{authorbibnamehash}{8dcf4c67b8cda5acf4d5bf59619f27b7}
+      \strng{authornamehash}{8dcf4c67b8cda5acf4d5bf59619f27b7}
+      \strng{authorfullhash}{8dcf4c67b8cda5acf4d5bf59619f27b7}
+      \field{extraname}{2}
+      \field{sortinit}{K}
+      \field{sortinithash}{d3edc18d54b9438a72c24c925bfb38f4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Combinatorial Optimization}
+      \field{number}{1}
+      \field{title}{New approximation algorithms for the Steiner tree problems}
+      \field{volume}{1}
+      \field{year}{1997}
+      \true{nocite}
+      \field{pages}{47\bibrangedash 65}
+      \range{pages}{19}
+    \endentry
+    \entry{kruskal1956shortest}{article}{}
+      \name{author}{1}{}{%
+        {{hash=569f9ff2dff516524ca08370ba81ba29}{%
+           family={Kruskal},
+           familyi={K\bibinitperiod},
+           given={Joseph\bibnamedelima B},
+           giveni={J\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {JSTOR}%
+      }
+      \strng{namehash}{569f9ff2dff516524ca08370ba81ba29}
+      \strng{fullhash}{569f9ff2dff516524ca08370ba81ba29}
+      \strng{bibnamehash}{569f9ff2dff516524ca08370ba81ba29}
+      \strng{authorbibnamehash}{569f9ff2dff516524ca08370ba81ba29}
+      \strng{authornamehash}{569f9ff2dff516524ca08370ba81ba29}
+      \strng{authorfullhash}{569f9ff2dff516524ca08370ba81ba29}
+      \field{sortinit}{K}
+      \field{sortinithash}{d3edc18d54b9438a72c24c925bfb38f4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Proceedings of the American Mathematical society}
+      \field{number}{1}
+      \field{title}{On the shortest spanning subtree of a graph and the traveling salesman problem}
+      \field{volume}{7}
+      \field{year}{1956}
+      \true{nocite}
+      \field{pages}{48\bibrangedash 50}
+      \range{pages}{3}
+    \endentry
+    \entry{lu2003full}{article}{}
+      \name{author}{3}{}{%
+        {{hash=a57e681c2811c7bd697b2d710274757f}{%
+           family={Lu},
+           familyi={L\bibinitperiod},
+           given={Chin\bibnamedelima Lung},
+           giveni={C\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+        {{hash=eb282fbb9d581e32bbc4fd414c3adb77}{%
+           family={Tang},
+           familyi={T\bibinitperiod},
+           given={Chuan\bibnamedelima Yi},
+           giveni={C\bibinitperiod\bibinitdelim Y\bibinitperiod}}}%
+        {{hash=f6ea1398807c4834373ee756e3fd13b0}{%
+           family={Lee},
+           familyi={L\bibinitperiod},
+           given={Richard\bibnamedelima Chia-Tung},
+           giveni={R\bibinitperiod\bibinitdelim C\bibinithyphendelim T\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{74d006dbdc0d10957dbf5a09447f4a07}
+      \strng{fullhash}{74d006dbdc0d10957dbf5a09447f4a07}
+      \strng{bibnamehash}{74d006dbdc0d10957dbf5a09447f4a07}
+      \strng{authorbibnamehash}{74d006dbdc0d10957dbf5a09447f4a07}
+      \strng{authornamehash}{74d006dbdc0d10957dbf5a09447f4a07}
+      \strng{authorfullhash}{74d006dbdc0d10957dbf5a09447f4a07}
+      \field{sortinit}{L}
+      \field{sortinithash}{dad3efd0836470093a7b4a7bb756eb8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Theoretical Computer Science}
+      \field{number}{1-3}
+      \field{title}{The full Steiner tree problem}
+      \field{volume}{306}
+      \field{year}{2003}
+      \true{nocite}
+      \field{pages}{55\bibrangedash 67}
+      \range{pages}{13}
+    \endentry
+    \entry{takahashi1980approximate}{article}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{1}{}{%
+        {{hash=12a126b66d21a176b33effd1df23f784}{%
+           family={Takahashi},
+           familyi={T\bibinitperiod},
+           given={Hiromitsu},
+           giveni={H\bibinitperiod}}}%
+      }
+      \strng{namehash}{16d3efe399992b5df9a184cb21aca2f6}
+      \strng{fullhash}{16d3efe399992b5df9a184cb21aca2f6}
+      \strng{bibnamehash}{16d3efe399992b5df9a184cb21aca2f6}
+      \strng{authorbibnamehash}{16d3efe399992b5df9a184cb21aca2f6}
+      \strng{authornamehash}{16d3efe399992b5df9a184cb21aca2f6}
+      \strng{authorfullhash}{16d3efe399992b5df9a184cb21aca2f6}
+      \field{sortinit}{T}
+      \field{sortinithash}{51f9faf24c60c62ca764a77f78cf5666}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{An approximate solution for the Steiner problem in graphs}
+      \field{year}{1980}
+    \endentry
+    \entry{tumthesistemplate}{online}{}
+      \name{author}{1}{}{%
+        {{hash=fd2a2bbfbd384dc46ca308fe5c9a67ed}{%
+           family={Walch},
+           familyi={W\bibinitperiod},
+           given={Florian},
+           giveni={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{fd2a2bbfbd384dc46ca308fe5c9a67ed}
+      \strng{fullhash}{fd2a2bbfbd384dc46ca308fe5c9a67ed}
+      \strng{bibnamehash}{fd2a2bbfbd384dc46ca308fe5c9a67ed}
+      \strng{authorbibnamehash}{fd2a2bbfbd384dc46ca308fe5c9a67ed}
+      \strng{authornamehash}{fd2a2bbfbd384dc46ca308fe5c9a67ed}
+      \strng{authorfullhash}{fd2a2bbfbd384dc46ca308fe5c9a67ed}
+      \field{sortinit}{W}
+      \field{sortinithash}{1af34bd8c148ffb32de1494636b49713}
+      \field{labelnamesource}{author}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://github.com/fwalch/tum-thesis-latex
+      \endverb
+      \verb{url}
+      \verb https://github.com/fwalch/tum-thesis-latex
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

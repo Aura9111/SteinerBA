@@ -1,0 +1,31 @@
+% !TeX root = ../main.tex
+% Add the above to each chapter to make compiling the PDF easier in some editors.
+
+\chapter{Implementation}\label{chapter:implementation}
+
+\section{MST-Algorithm}
+
+To implement the MST-Algorithm we first build the metric closure $\bar{G}$ of the input Graph G. Then we take the subgraph $\bar{G}_T$ of this metric closure containing all required terminal nodes T. Using the subgraph as input for a minimum spanning tree algorithm, we receive a tree which now consists of only terminals and edges, that represent the shortest paths between them. In this implementation we are going to use Joseph Kruskal's minimum spanning tree algorithm \cite{kruskal1956shortest}, since it's simple, intuitive and is also easily reusable for building the minimum spanning forest we need to compute the loss of a Steiner tree. The final step is for us to replace the edges of the tree by the corresponding shortest paths in G and the outcome is our Steiner tree approximation.
+\begin{figure}[htbp]
+  \centering
+  \begin{tabular}{c}
+  \begin{lstlisting}[language=Java]
+    Graph  G_T=subgraph(metricClosure(G), T);
+    Tree t=kruskal(G_T);
+    for(Edge (u, v) : t){
+     List<Edge> path= G.getShortestPath(u, v);
+     t.remove((u,v));
+     t.addAll(path) 
+    }
+  \end{lstlisting}
+  \end{tabular}
+  \caption[mstPseudo]{MST-Approximation using kruskal}\label{fig:mstPseudo}
+\end{figure}
+
+\section{Berman-Ramaiyer-Algorithm}
+
+The approximation algorithm by Berman and Ramaiyer is split into two phases which both maintain a spanning tree of T, which is initialized to the output of our MST-Algorithm. The first phase is called the evaluation phase and it uses the prepareChange procedure, which we are going to look at shortly, to compute two sets of edges called the Add-Set and the Remove-Set for every subset $\tau \subseteq$ T. It then uses these sets to compute a \textit{gain} of $\tau$, by subtracting the cost of a SMT($\tau$) from the cost of the Remove-Set. if this \textit{gain}
+
+\section{Hougardy-Proemel-Algorithm}
+
+

@@ -1,0 +1,15 @@
+digraph {
+3[color=red]
+4[color=red]
+2[color=red]
+1[color=red]
+69[color=black]
+6[color=red]
+69->6[label=192.00]
+1->69[label=199.00]
+2->1[label=282.00]
+5[color=red]
+2->5[label=306.00]
+4->2[label=295.00]
+3->4[label=304.00]
+}

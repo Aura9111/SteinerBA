@@ -1,0 +1,39 @@
+% !TeX root = ../main.tex
+% Add the above to each chapter to make compiling the PDF easier in some editors.
+
+\chapter{Problem}\label{chapter:problem}
+
+\section{Setting}
+
+In the following we are going to model a Network Auction, where the participants bid on edges within the network. The single-minded bidders are supposed to form a network containing a certain set of nodes. In order to achieve this they can submit bids on any connection between two nodes. The true valuations of these connections are known only by the provider of it.  The goal is to minimize the cost, by buying the cheapest set of edges, that spans the required nodes. This is in essence the Steiner Tree Problem in Graphs, which is NP-Complete and has multiple greedy Approximation Algorithms presented for it. In order to find out a decent approximation, that suits our additional needs for incentive compatibility and welfare optimization, we are going to implement two advanced Approximation Algorithms and try and prove that they are incentive compatible by using the Lemma 1.9 by Blumrosen and Nisan \cite{BlNi07}. In order to meet the requirements we will have to prove Monotonicity, as well as finding critical payments for every edge included in the approximated solution.
+
+\section{Steiner Tree Problem in Graphs}
+
+The Steiner Problem, which was named after Jakob Steiner, has application in a lot of settings, but the most common setting is the Steiner Tree Problem in Graphs. It takes an connected, undirected, weighted Graph with non-negative edge-weights, as well as a set of vertices called "terminals" or "terminal points" and askes for the minimum weights tree connecting all terminals, called a Steiner Minimum Tree (SMT). Vertices that aren't terminals are called Steiner points and they can be included in a Steiner Tree, but their inclusion is optional as opposed to terminal points. The Steiner Tree Problem in Graphs is one of Karp's 21 NP-complete problems \cite{karp1972reducibility} and we will therefore only look at Approximation Algorithms for it. The input Graph for the Steiner Tree Problem is assumed to be complete and the cost of each edge between two vertices u and v is assumed to be the the length of the shortest path between u and v. This assumption is without loss of generality since if a connected Graph doesn't fulfill these criteria, we can just use the metric closure of it.
+
+\section{Definitions}
+The Environment for the Steiner Tree Problem in Graphs is a weighted undirected Graph G = (V, E), where V is the set of vertices in the Graph and E the set of edges. The set T $ \subseteq$ V marks the terminal vertices of G and V$\backslash$T is the set of Steiner points. The length of a given set of edges E or a given Tree X d(E)/d(X) is the sum of all edge costs. For any Set of vertices S any tree connecting S is called a Steiner Tree for S. The minimum spanning tree of S is denoted by MST(S) and its length by mst(S). Similarly a Steiner minimal tree for S is denoted by SMT(S) and its length by smt(S). A Steiner Tree is called full if all terminals are leaves in the tree and a k-restricted Steiner Tree is a full Steiner Tree that has at most k terminals. The loss of a Steiner Tree X l(X) is the length of a minimum forest spanning all vertices of X, where every component of the forest contains at least one terminal node. The contraction of a set of vertices S means to set the length of edges between vertices in S to zero. The Optimal Solution is denoted by OPT(S) and its cost by opt(S). Finally the performance ratio of an approximation algorithm is the supremum on the length of the minimum Steiner tree found by the algorithm divided by the length of an optimal solution.
+\begin{equation} 
+  Performance Ratio=sup(\frac{smt(T)}{opt(T)})
+\end{equation}
+
+\section{Known Algorithms and their Performance Ratios}
+The first approximation for the Steiner Tree problem, which reached a performance ratio of 2 is the MST-Approximation-Algortihm by Takahashi and Hiromitsu \cite{takahashi1980approximate}. Since all other algorithms have built upon the existing Foundation and therefore every other approximation algortihm is built around this MST-Approximation. 
+For a full overview of the approximation algorithm leading up to Hougardy and Proemel's approximation algorithm and their respective performance ratios see \autoref{tab:pr}
+\begin{table}[htbp]
+  \caption[Known Perfomance Ratios]{Known Approximation Algorithms and their Performance Ratios \cite{HoPr99}}\label{tab:pr}
+  \centering
+  \begin{tabular}{l l l}
+    \toprule
+      Author(s) & Performance Ratio & Year \\
+    \midrule
+      Takahashi, Hiromitsu & 2.000 & 1980 \\
+      Zelikovsky & 1.834 & 1993 \\
+      Berman, Ramaiyer & 1.734 & 1994 \\
+      Zelikovsky & 1.694 & 1995 \\
+      Proemel, Steger & 1.667 & 1997 \\
+      Karpinski, Zelikovsky & 1.644 & 1997 \\
+      Hougardy, Proemel & 1.598 & 1998 \\    
+\bottomrule
+  \end{tabular}
+\end{table}

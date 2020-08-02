@@ -498,7 +498,7 @@ public class Tree {
         Tree newSelf = new Tree(node);
         for (Tree child : children) {
             Tree newChild = child.copyWithSetContracted(set);
-            if (set.contains(node)&&set.contains(child.node)) {
+            if (set.contains(node) && set.contains(child.node)) {
 
             } else {
                 newChild.cost = child.cost;
@@ -536,5 +536,25 @@ public class Tree {
             out.addAll(child.getSteinerNodes());
         }
         return out;
+    }
+
+    public boolean containsEdge(Edge e) {
+        if (this.node.equals(e.first)) {
+            for (Tree child : children) {
+                if (child.node.equals(e.second))
+                    return true;
+            }
+        }
+        if (this.node.equals(e.second)) {
+            for (Tree child : children) {
+                if (child.node.equals(e.first))
+                    return true;
+            }
+        }
+        for (Tree child : children) {
+            if (child.containsEdge(e))
+                return true;
+        }
+        return false;
     }
 }

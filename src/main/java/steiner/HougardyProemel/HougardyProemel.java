@@ -8,8 +8,6 @@ public class HougardyProemel {
 
     public static void main(String[] args) throws Exception {
         double[] alphas = { 0.698, 0.248, 0 };
-        // double[] alphas = { 1.365, 1.026, 0.792, 0.615, 0.474, 0.360, 0.264, 0.183,
-        // 0.114, 0.053, 0.0 };
         for (MyGraph g : MyGraphFactory.getAllGraphs()) {
             MyTree t = hougardyProemel(g, alphas, 3);
             System.out.println(t.totalCost() + "/" + g.optimal);

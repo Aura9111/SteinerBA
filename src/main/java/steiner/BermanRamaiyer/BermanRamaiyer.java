@@ -9,20 +9,19 @@ import java.util.Stack;
 public class BermanRamaiyer {
 
     public static void main(String[] args) throws Exception {
-        Graph g = GraphFactory.g043();
-
-        Tree Smt = helpfulFunctions.smt(g, g.getAllTerminalNodes());
-        Smt.printGraph("smt");
-        System.out.println(Smt.totalCost());
-        Tree mst = helpfulFunctions.mst(g, g.getAllTerminalNodes());
-        mst.printGraph("mst");
-        System.out.println(mst.totalCost());
-        Tree trim = helpfulFunctions.trimmedMst(g, g.getAllTerminalNodes());
-        trim.printGraph("trim");
-        System.out.println(trim.totalCost());
-        Tree berman = bermanRamaiyer(g, g.getAllTerminalNodes(), g.getAllTerminalNodes().size());
-        berman.printGraph("berman");
-        System.out.println(berman.totalCost());
+        Graph g = GraphFactory.g041();
+        Tree t = bermanRamaiyer(g, g.getAllTerminalNodes(), 6);
+        Graph copy = g.copy();
+        for (Edge e : t.toEdgeSet()) {
+            copy.removeEdge(e.first.name, e.second.name);
+            copy.addEdge(e.first.name, e.second.name, e.cost - 1);
+            Tree copyTree = bermanRamaiyer(copy, copy.getAllTerminalNodes(), 6);
+            if (!copyTree.containsEdge(e)) {
+                t.printGraph("t");
+                copyTree.printGraph("copy");
+                System.out.println(g.path + "  " + e.getName());
+            }
+        }
     }
 
     public static Tree bermanRamaiyer(Graph g, HashSet<Node> terminals, int k) throws Exception {
@@ -34,7 +33,6 @@ public class BermanRamaiyer {
             Node n2 = it.next();
             return g.djikstra(n1.getName(), n2.getName());
         }
-        System.out.println(g.path);
         Tree M = helpfulFunctions.smt(g, terminals);
         double ogCost = M.totalCost();
         // Evaluation Phase
@@ -103,7 +101,6 @@ public class BermanRamaiyer {
             }
 
         }
-        System.out.println(ogCost + "->" + n.totalCost());
         return n;
     }
 
