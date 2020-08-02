@@ -24,7 +24,31 @@ To implement the MST-Algorithm we first build the metric closure $\bar{G}$ of th
 
 \section{Berman-Ramaiyer-Algorithm}
 
-The approximation algorithm by Berman and Ramaiyer is split into two phases which both maintain a spanning tree of T, which is initialized to the output of our MST-Algorithm. The first phase is called the evaluation phase and it uses the prepareChange procedure, which we are going to look at shortly, to compute two sets of edges called the Add-Set and the Remove-Set for every subset $\tau \subseteq$ T. It then uses these sets to compute a \textit{gain} of $\tau$, by subtracting the cost of a SMT($\tau$) from the cost of the Remove-Set. if this \textit{gain}
+The approximation algorithm by Berman and Ramaiyer is split into two phases which both maintain a spanning tree M of T, which is initialized to the output of our MST-Algorithm. The first phase is called the evaluation phase and it uses the prepareChange procedure, which we are going to look at shortly, to compute two sets of edges called the Add-Set and the Remove-Set for every j-element subset $\tau \subseteq$ T, with j being increased up to a maximum size bounded by the input number k. It then uses these sets to compute a \textit{gain} of $\tau$, by subtracting the cost of a SMT($\tau$) from the cost of the Remove-Set. If this \textit{gain} is greater than zero the Remove-Set is removed from M and every edge of the AddSet has its cost reduced by \textit{gain} and is added to M right afterwards. This marks a tentative preference to add SMT($\tau$). The subset $\tau$, the Remove-Set and the Add-Set are added to a stack $\sigma_j$ to be read in the construction phase.
+\begin{figure}[htbp]
+  \centering
+  \begin{tabular}{c}
+  \begin{lstlisting}[mathescape]
+M = SMT(T)
+for j=3 to k {											
+  $\sigma_j$=$\emptyset$								
+}													
+for j=3 to k {											
+  for each j-element subset $\tau$ $\subseteq$ T {			
+    prepareChange(M, $\tau$, R, A);						
+    gain= cost(R) - smt($\tau$);					
+    if gain>0 {									
+      Decrease the cost of each edge if A by $\textit{gain}$;
+      M = M $\backslash$ R $\cup$ A
+      $\sigma_j$.push($\tau$, R, A);
+    }
+  }
+}
+    }
+  \end{lstlisting}
+  \end{tabular}
+  \caption[evaluation]{Evaluation Phase from Berman, Ramaiyer \cite{BeRa94}}\label{fig:evaPseudo}
+\end{figure}
 
 \section{Hougardy-Proemel-Algorithm}
 
