@@ -1,8 +1,58 @@
 % !TeX root = ../main.tex
 % Add the above to each chapter to make compiling the PDF easier in some editors.
 
+\newtheorem{lemma}{Lemma}
 \chapter{Monotonicity and Critical Payments}\label{chapter:monotonicity&criticalpayment}
 
+
+To be a good solution for our proposed problem setting an approximation algorithm needs to be stragtegy proof. In order to prove this we are going to use the following Lemma by Blumrosen and Nisan \cite{BlNi07}, which we adapt to our setting in which the single minded players aren't buyers, but sellers.
+\begin{lemma}
+A mechanism for single-minded sellers in which losers get 0 is incentive compatible if and only if it satisfies the following two conditions:
+\begin{enumerate}[label=\roman*)]
+            \item \textbf{Monotonicity}: A seller who wins and sells at price $v_i^*$ keeps winning for any $v'_i<v_i^*$ (with the other sellers offers staying the same)
+            \item \textbf{Critical Payment}: A seller who wins earns the maximum of all values $v'_i$ such that he still wins
+\end{enumerate}
+\end{lemma} 
+
 \section{Monotonicity}
+
+In order to prove that the Monotonicity criterium is fulfilled for our algorithm we need to guarantee for every Edge $e$, if $e$ is included in the output solution and we lower the cost of $e$ ($d(e)'=d(e)-\epsilon$ with $\epsilon > 0$) it stays included in the solution tree we obtain from running the algorithm again. To do this we are going to define $t$ as the approximated solution of the algorithm in question and $e, e'$ as two edges connecting the same nodes with cost $d(e)>d(e')$. With these definitions the monotonicity proof looks like this: 
+\begin{proof}
+$\forall e, e'$: $e\in t \implies e'\in t$
+\end{proof}
+
+\subsection{MST-Approximation}
+
+To prove monotonicity for the MST-approximation we are going to walk through our implementation and check every step, where edge cost influences the algorithm and check what change a reduction in said cost could induce and whether this change could cause the solution to include different edges.
+The point where edge cost affects the algorithm are:
+\begin{enumerate}
+\item creation of the metric closure using Floyd-Warshall 
+\item creation of MST using Kruskal
+\end{enumerate}
+If both of these algorithm implement monotonicity we can safely deduce that the MST-approximation also implements Monotonicity.
+
+Within the creation of the metric closure we used Floyd-Warshall's all-pairs-shortest-path algorithm, which checks for every triple of nodes $a,b,c$, whether the sum of the shortest paths $a\to b$ and $b\to c$ is less than the cost of the current shortest path $a\to c$ and updates it accordingly. Within every shortest path that includes $e$ and made it into the metric closure, the substitution of $e$ by $e'$ causes this path to be cheaper by $\epsilon$. Since every other shortest path will have its cost either unchanged or also reduced by $\epsilon$, if it also includes $e$/$e'$, there is no way for the shortest path to change in that case. Floyd-Warshall therefore implements for our case. It's possible for a shortest path that doesn't include $e$ to be replaced by a different one that includes $e'$, but this only improves the chances for $e'$ to appear in the solution tree.
+
+The second point to look at is Kruskal's algorithm \cite{kruskal1956shortest}. Replacing the edge $e$ with $e'$ causes every edge that corresponds to a shortest path, which includes $e$ to be cheaper and therefore appear earlier in the sorted list. If $e$ was included in the output tree, than there aren't any cheaper edges in the metric closure, that connect the two components that $e$ connects. Since $d(e')<d(e)$ there can't be any cheaper edge than $e'$ either and therefore Kruskal's algorithm implements monotonicity and since Floyd-Warshall does so too we can conclude that the MST-approximation fulfills monotonicity.
+
+\subsection{Berman-Ramaiyer}
+
+For the algorithm by Berman and Ramaiyer we are going to procede like we did with MST and find the points, where the changed edge cost affects the algorithm.
+
+The point where edge cost could potetially affects the algorithm are:
+\begin{enumerate}
+\item initialization of M to an MST-approximation
+\item inclusion of $e$ in the remove-set
+\item price of artificial edges in the add-set
+\item MST-approximation of subsets $\tau$
+\item replacement of remaining artificial edges in $N$
+\end{enumerate}
+
+We can quickly prove the first and fourth point since we already proved that the MST-approximation implements monotonicity. That means if the initial tree $M$ included $e$ it must include $e'$ and if it didn't then one of the $SMT(\tau)$ of subsets $\tau$ had to include $e$, since it has to be included in the final solution. If one of these trees $SMT(\tau)$ included $e$ it also has to include $e'$. Therefore the only thing we need to prove now is that the other three points at which the algorithm is affected don't lead to different subsets being included. 
+Within the prepareChange a lot of changes might occur. Since the prepareChange splits the input tree at the maximum cost edge and adds this edge to the remove-set it's possible that $e$ could be included in a remove-set, while $e'$ isn't. But this only changes the fact, that now the cost of the remove-set may potentially assume any value within the range $d(R) \to d(R)-\epsilon$. Since $e$ ended up in the solution tree, the set originally either wasn't removed or $e$ was added in a subset tree $SMT(\tau)$. Therefore $e'$ not being in this remove-set doesn't change its inclusion into the solution tree.  
+
+
+\subsection{Hougardy-Proemel}
+
 \section{Critical Payments}
 \section{Incentive Compatibility}

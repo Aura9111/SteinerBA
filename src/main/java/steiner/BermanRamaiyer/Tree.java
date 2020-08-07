@@ -375,10 +375,26 @@ public class Tree {
 
     public boolean containsAllTreeEdges(HashSet<TreeEdge> set) {
         for (TreeEdge e : set) {
-            if (!containsTreeEdge(e))
+            if (!containsTreeEdgeUndirected(e))
                 return false;
         }
         return true;
+    }
+
+    private boolean containsTreeEdgeUndirected(TreeEdge e) {
+        if (this.equals(e.from)) {
+            if (children.contains(e.to))
+                return true;
+        }
+        if (this.equals(e.to)) {
+            if (children.contains(e.from))
+                return true;
+        }
+        for (Tree child : children) {
+            if (child.containsTreeEdgeUndirected(e))
+                return true;
+        }
+        return false;
     }
 
     private boolean containsTreeEdge(TreeEdge e) {
@@ -404,11 +420,9 @@ public class Tree {
     public HashSet<Edge> toEdgeSet() {
         HashSet<Edge> out = new HashSet<>();
         for (Tree child : children) {
-            for (Edge e : node.getEdges()) {
-                if (e.opposite(node).equals(child.node)) {
-                    out.add(e);
-                }
-            }
+            String edgeName = (this.node.name.compareTo(child.node.name) < 0) ? this.node.name + "--" + child.node.name
+                    : child.node.name + "--" + this.node.name;
+            out.add(new Edge(edgeName, this.node, child.node, child.cost));
             out.addAll(child.toEdgeSet());
         }
         return out;

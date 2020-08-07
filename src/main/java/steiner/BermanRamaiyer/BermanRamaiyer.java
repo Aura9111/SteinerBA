@@ -6,22 +6,57 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Stack;
 
+import steiner.HougardyProemel.HougardyProemel;
+
 public class BermanRamaiyer {
 
     public static void main(String[] args) throws Exception {
-        Graph g = GraphFactory.g041();
-        Tree t = bermanRamaiyer(g, g.getAllTerminalNodes(), 6);
-        Graph copy = g.copy();
-        for (Edge e : t.toEdgeSet()) {
-            copy.removeEdge(e.first.name, e.second.name);
-            copy.addEdge(e.first.name, e.second.name, e.cost - 1);
-            Tree copyTree = bermanRamaiyer(copy, copy.getAllTerminalNodes(), 6);
-            if (!copyTree.containsEdge(e)) {
-                t.printGraph("t");
-                copyTree.printGraph("copy");
-                System.out.println(g.path + "  " + e.getName());
+        for (Graph g : GraphFactory.allGraphs()) {
+            Tree t = bermanRamaiyer(g, g.getAllTerminalNodes(), 6);
+            t.printGraph(g.path+"default");
+            HashSet<Edge> set = new HashSet<>();
+            HashSet<Edge> treeSet=t.toEdgeSet();
+            for (Edge e : treeSet) {
+                double upper=upperBoundForBinarySearch(e, g);
+                double crit=binarySearch(e, g, upper);
+                System.out.println("ogCost: "+e.cost+" -> crit: "+crit);
+                Edge criticalEdge=new Edge(e.getName(), e.first, e.second, crit);
+                set.add(criticalEdge);
             }
+            HougardyProemel.printHashSetOfEdge(g, set);
         }
+    }
+
+    public static double upperBoundForBinarySearch(Edge edge, Graph original) throws Exception {
+        Graph g = original.copy();
+        double out = edge.cost;
+        Tree t;
+        do {
+            out = 2 * out;
+            g.removeEdge(edge);
+            if (g.containsEdge(edge))
+                System.out.println("rip");
+            g.addEdge(edge.first.name, edge.second.name, out);
+            t=bermanRamaiyer(g, g.getAllTerminalNodes(), 6);
+        } while (t.containsEdge(edge));
+        return out;
+    }
+
+    public static double binarySearch(Edge e, Graph original, double upper) throws Exception {
+        Graph g = original.copy();
+        double l = e.cost;
+        double r = upper;
+        while (l < r) {
+            double m = Math.floor((l + r) / 2);
+            g.removeEdge(e);
+            g.addEdge(e.first.name, e.second.name, m);
+            if (bermanRamaiyer(g, g.getAllTerminalNodes(), 6).containsEdge(e))
+                l = m + 1;
+            else
+                r = m;
+        }
+        //l==r==the price at which edge isnt included anymore
+        return l-1; //<- this is the price at which it is still included
     }
 
     public static Tree bermanRamaiyer(Graph g, HashSet<Node> terminals, int k) throws Exception {
@@ -45,7 +80,6 @@ public class BermanRamaiyer {
                 HashSet<TreeEdge> removeSet = pair.first;
                 HashSet<TreeEdge> addSet = pair.second;
                 double gain = helpfulFunctions.cost(removeSet) - helpfulFunctions.scost(g, nodeSet, k);
-                // System.out.println("gain: " + gain + "\ncostRemove: " + cost(removeSet));
                 if (gain > 0) {
                     Forest forest = new Forest(M);
                     for (TreeEdge e : removeSet) {
@@ -101,6 +135,7 @@ public class BermanRamaiyer {
             }
 
         }
+        //System.out.println(ogCost + "->" + n.totalCost());
         return n;
     }
 
@@ -126,5 +161,4 @@ public class BermanRamaiyer {
         resultFrom.second.add(f);
         return resultFrom;
     }
-
 }

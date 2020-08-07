@@ -272,8 +272,8 @@ public class Graph {
     }
 
     public Tree djikstra(String nodeFrom, String nodeTo) {
-        Node from=getNode(nodeFrom).get();
-        Node to=getNode(nodeTo).get();
+        Node from = getNode(nodeFrom).get();
+        Node to = getNode(nodeTo).get();
         HashMap<Node, Pair<Node, Double>> map = new HashMap<>();
         map.put(from, new Pair<Node, Double>(null, 0.0));
         HashSet<Node> todo = new HashSet<>();
@@ -296,33 +296,52 @@ public class Graph {
             }
             todo = tmp;
         }
-        Node n1=to;
-        Node n2=null;
+        Node n1 = to;
+        Node n2 = null;
         if (map.get(to).first != null)
             n2 = map.get(to).first;
-        Tree t1=new Tree(n1);
+        Tree t1 = new Tree(n1);
         while (n2 != null) {
-            Tree t2=new Tree(n2);
-            double cost=map.get(n1).second-map.get(n2).second;
+            Tree t2 = new Tree(n2);
+            double cost = map.get(n1).second - map.get(n2).second;
             t2.addChild(n2, t1, cost);
-            t1=t2;
-            n1=n2;
-            n2=map.get(n2).first;
+            t1 = t2;
+            n1 = n2;
+            n2 = map.get(n2).first;
         }
         return t1;
     }
 
-	public void contractSet(HashSet<Node> set) {
-        for (Component c: components){
+    public void contractSet(HashSet<Node> set) {
+        for (Component c : components) {
             c.contractSet(set);
         }
-	}
+    }
 
-	public Graph copy() {
-        Graph g=new Graph(path+"C");
-        for (Component c: components){
+    public Graph copy() {
+        Graph g = new Graph(path + "C");
+        for (Component c : components) {
             g.addComponent(c.copy());
         }
         return g;
-	}
+    }
+
+    public void removeEdge(Edge edge) {
+        for (Component c : components) {
+            if (c.containsEdge(edge)) {
+                Optional<Component> opt = c.removeEdge(edge);
+                if (opt.isPresent())
+                    components.add(opt.get());
+            }
+        }
+    }
+
+    public boolean containsEdge(Edge edge) {
+        for (Component c : components) {
+            if (c.containsEdge(edge)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

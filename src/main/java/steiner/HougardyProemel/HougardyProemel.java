@@ -1,5 +1,6 @@
 package steiner.HougardyProemel;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -7,12 +8,23 @@ import java.util.Iterator;
 public class HougardyProemel {
 
     public static void main(String[] args) throws Exception {
-        double[] alphas = { 0.698, 0.248, 0 };
-        for (MyGraph g : MyGraphFactory.getAllGraphs()) {
-            MyTree t = hougardyProemel(g, alphas, 3);
-            System.out.println(t.totalCost() + "/" + g.optimal);
-            t.printGraph("hougardy" + g.name);
+        System.out.println(MyGraphFactory.makeMyGraphMethods("041").shortestPathString());
+        /*
+         * double[] alphas = { 0.698, 0.248, 0 }; for (MyGraph g :
+         * MyGraphFactory.getAllGraphs()) { MyTree t = hougardyProemel(g, alphas, 3);
+         * System.out.println(t.totalCost() + "/" + g.optimal); t.printGraph("hougardy"
+         * + g.name); }
+         */
+    }
+
+    public static void printHashSetOfEdge(steiner.BermanRamaiyer.Graph g, HashSet<steiner.BermanRamaiyer.Edge> set)
+            throws IOException {
+        HashSet<Edge> niceSet = new HashSet<>();
+        for (steiner.BermanRamaiyer.Edge e : set) {
+            niceSet.add(new Edge(new Node(e.first.id + 1, e.first.isTerminal()),
+                    new Node(e.second.id + 1, e.second.isTerminal()), e.cost));
         }
+        new MyTree(niceSet).printGraph(g.path + "crit");
     }
 
     public static MyTree hougardyProemel(MyGraph g, double[] alphas, int k) throws Exception {

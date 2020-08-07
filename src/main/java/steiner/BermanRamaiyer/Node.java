@@ -99,12 +99,12 @@ public class Node {
     public boolean equals(Object o) {
         if (!this.getClass().equals(o.getClass()))
             return false;
-        return this.name.equals(((Node) o).name);
+        return this.id==((Node) o).id;
     }
 
     @Override
     public int hashCode() {
-        return name.hashCode();
+        return id;
     }
 
     public boolean stillInComponentWithTerminal(Edge e) {

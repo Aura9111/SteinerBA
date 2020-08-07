@@ -344,6 +344,30 @@ public class MyGraph {
         return new MyGraph(name, newNodes, newEdges, newShortestPathMap, optimal);
     }
 
+    public String edgeString(){
+        String s="";
+        for (int i=0;i<nodes.length;i++){
+            s+=Double.toString(edges[i][0]);
+            for (int j=1;j<nodes.length;j++){
+                s+=","+Double.toString(edges[i][j]);
+            }
+            s+="\n";
+        }
+        return s;
+    }
+
+    public String shortestPathString(){
+        String s="";
+        for (int i=0;i<nodes.length;i++){
+            s+=Double.toString(shortestPathMap.get(new Pair<Node,Node>(nodes[i], nodes[0])).second);
+            for (int j=1;j<nodes.length;j++){
+                s+=","+Double.toString(shortestPathMap.get(new Pair<Node,Node>(nodes[i], nodes[j])).second);
+            }
+            s+="\n";
+        }
+        return s;
+    }
+
     /*
      * public Tree unMetricTree(Tree t) { Tree out = new Tree(t.node); for (Tree
      * child : t.children) { Tree djikstra = djikstra(t.node.id, child.node.id);

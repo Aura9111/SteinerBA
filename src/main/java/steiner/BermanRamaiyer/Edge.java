@@ -25,13 +25,13 @@ public class Edge {
         if (o.getClass() != this.getClass())
             return false;
         Edge other = (Edge) o;
-        return ((this.first == other.first && this.second == other.second)
-                || (this.first == other.second && this.second == other.first));
+        return ((this.first.equals(other.first) && this.second.equals(other.second))
+                || (this.first.equals(other.second) && this.second.equals(other.first)));
     }
 
     @Override
     public int hashCode() {
-        return name.hashCode();
+        return first.hashCode()+second.hashCode();
     }
 
     public boolean contains(Node n) {

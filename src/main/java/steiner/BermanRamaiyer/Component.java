@@ -241,24 +241,55 @@ public class Component {
         this.path = path;
     }
 
-	public void contractSet(HashSet<Node> set) {
-        for (Edge e: edges.values()){
-            if (set.contains(e.first)&&set.contains(e.second)){
-                e.cost=0;
+    public void contractSet(HashSet<Node> set) {
+        for (Edge e : edges.values()) {
+            if (set.contains(e.first) && set.contains(e.second)) {
+                e.cost = 0;
             }
         }
-	}
+    }
 
-	public Component copy() {
-        HashMap<String, Node> newNodes=new HashMap<>();
-        HashMap<String, Edge> newEdges=new HashMap<>();
-        Component newComp=new Component(newNodes, newEdges, path+"C");
-        for (Node n: nodes.values()){
+    public Component copy() {
+        HashMap<String, Node> newNodes = new HashMap<>();
+        HashMap<String, Edge> newEdges = new HashMap<>();
+        Component newComp = new Component(newNodes, newEdges, path + "C");
+        for (Node n : nodes.values()) {
             newComp.nodes.put(n.name, new Node(n.name, n.isTerminal()));
         }
-        for (Edge e: edges.values()){
+        for (Edge e : edges.values()) {
             newComp.addEdge(e.first.name, e.second.name, e.cost);
         }
         return newComp;
-	}
+    }
+
+    public boolean containsEdge(Edge edge) {
+        return edges.containsValue(edge);
+    }
+
+    public Optional<Component> removeEdge(Edge e) {
+        Edge edge = edges.get(e.getName());
+        nodes.get(edge.first.name).removeEdge(edge);
+        nodes.get(edge.second.name).removeEdge(edge);
+        edges.remove(e.getName());
+        HashSet<Node> nodeSet = nodes.get(e.second.name).getNodesInComponent(new HashSet<Node>());
+        if (nodeSet.contains(nodes.get(e.first.name)))
+            return Optional.empty();
+
+        // split into 2 Components
+        HashMap<String, Node> newNodes = new HashMap<String, Node>();
+        HashMap<String, Edge> newEdges = new HashMap<String, Edge>();
+        for (Node n : nodeSet) {
+            for (Edge f : n.getEdges()) {
+                newEdges.put(f.getName(), edges.get(f.getName()));
+            }
+            newNodes.put(n.getName(), nodes.get(n.getName()));
+        }
+        for (String nKey : newNodes.keySet()) {
+            nodes.remove(nKey);
+        }
+        for (String eKey : newEdges.keySet()) {
+            edges.remove(eKey);
+        }
+        return Optional.of(new Component(newNodes, newEdges, path));
+    }
 }
