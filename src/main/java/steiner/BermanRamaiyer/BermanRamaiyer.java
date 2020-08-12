@@ -11,20 +11,22 @@ import steiner.HougardyProemel.HougardyProemel;
 public class BermanRamaiyer {
 
     public static void main(String[] args) throws Exception {
-        for (Graph g : GraphFactory.allGraphs()) {
-            Tree t = bermanRamaiyer(g, g.getAllTerminalNodes(), 6);
-            t.printGraph(g.path+"default");
-            HashSet<Edge> set = new HashSet<>();
-            HashSet<Edge> treeSet=t.toEdgeSet();
-            for (Edge e : treeSet) {
-                double upper=upperBoundForBinarySearch(e, g);
-                double crit=binarySearch(e, g, upper);
-                System.out.println("ogCost: "+e.cost+" -> crit: "+crit);
-                Edge criticalEdge=new Edge(e.getName(), e.first, e.second, crit);
-                set.add(criticalEdge);
-            }
-            HougardyProemel.printHashSetOfEdge(g, set);
-        }
+        Graph g = GraphFactory.g041();
+        // for (Graph g : GraphFactory.allGraphs()) {
+        Tree t = bermanRamaiyer(g, g.getAllTerminalNodes(), 6);
+        t.printGraph(g.path + "default");
+        HashSet<Edge> set = new HashSet<>();
+        HashSet<Edge> treeSet = t.toEdgeSet();
+        for (Edge e : treeSet) {
+            double upper = upperBoundForBinarySearch(e, g);
+            double crit = binarySearch(e, g, upper);
+            System.out.println("ogCost: " + e.cost + " -> crit: " + crit);
+            Edge criticalEdge = new Edge(e.getName(), e.first, e.second, crit);
+            set.add(criticalEdge);
+        //}
+        HougardyProemel.printHashSetOfEdge(g, set, t.node.id+1);
+    }
+
     }
 
     public static double upperBoundForBinarySearch(Edge edge, Graph original) throws Exception {
@@ -37,7 +39,7 @@ public class BermanRamaiyer {
             if (g.containsEdge(edge))
                 System.out.println("rip");
             g.addEdge(edge.first.name, edge.second.name, out);
-            t=bermanRamaiyer(g, g.getAllTerminalNodes(), 6);
+            t = bermanRamaiyer(g, g.getAllTerminalNodes(), 6);
         } while (t.containsEdge(edge));
         return out;
     }
@@ -55,8 +57,8 @@ public class BermanRamaiyer {
             else
                 r = m;
         }
-        //l==r==the price at which edge isnt included anymore
-        return l-1; //<- this is the price at which it is still included
+        // l==r==the price at which edge isnt included anymore
+        return l - 1; // <- this is the price at which it is still included
     }
 
     public static Tree bermanRamaiyer(Graph g, HashSet<Node> terminals, int k) throws Exception {
@@ -135,7 +137,7 @@ public class BermanRamaiyer {
             }
 
         }
-        //System.out.println(ogCost + "->" + n.totalCost());
+        // System.out.println(ogCost + "->" + n.totalCost());
         return n;
     }
 

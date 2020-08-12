@@ -8,23 +8,34 @@ import java.util.Iterator;
 public class HougardyProemel {
 
     public static void main(String[] args) throws Exception {
-        System.out.println(MyGraphFactory.makeMyGraphMethods("041").shortestPathString());
-        /*
-         * double[] alphas = { 0.698, 0.248, 0 }; for (MyGraph g :
-         * MyGraphFactory.getAllGraphs()) { MyTree t = hougardyProemel(g, alphas, 3);
-         * System.out.println(t.totalCost() + "/" + g.optimal); t.printGraph("hougardy"
-         * + g.name); }
-         */
+
+        double[] alphas = { 0.698, 0.248, 0 };
+        MyGraph g = MyGraphFactory.makeMyGraphMethods("041");
+        // for (MyGraph g : MyGraphFactory.getAllGraphs()) {
+        MyTree t = hougardyProemel(g, alphas, 3);
+        System.out.println(t.totalCost() + "/" + g.optimal);
+        t.printGraph("hougardy" + g.name);
+        // }
+
     }
 
-    public static void printHashSetOfEdge(steiner.BermanRamaiyer.Graph g, HashSet<steiner.BermanRamaiyer.Edge> set)
-            throws IOException {
+    public static void printHashSetOfEdge(steiner.BermanRamaiyer.Graph g, HashSet<steiner.BermanRamaiyer.Edge> set,
+            int id) throws IOException {
         HashSet<Edge> niceSet = new HashSet<>();
+        Node n = null;
         for (steiner.BermanRamaiyer.Edge e : set) {
-            niceSet.add(new Edge(new Node(e.first.id + 1, e.first.isTerminal()),
-                    new Node(e.second.id + 1, e.second.isTerminal()), e.cost));
+            Node n1 = new Node(e.first.id + 1, e.first.isTerminal());
+            Node n2 = new Node(e.second.id + 1, e.second.isTerminal());
+            if (n1.id == id)
+                n = n1;
+            if (n2.id == id)
+                n = n2;
+            niceSet.add(new Edge(n1, n2, e.cost));
         }
-        new MyTree(niceSet).printGraph(g.path + "crit");
+        MyTree t = new MyTree(niceSet);
+        t.makeRoot(n);
+        t.printGraph(g.path + "crit");
+
     }
 
     public static MyTree hougardyProemel(MyGraph g, double[] alphas, int k) throws Exception {

@@ -81,6 +81,57 @@
       \field{pages}{300}
       \range{pages}{1}
     \endentry
+    \entry{Dui93}{thesis}{}
+      \name{author}{1}{}{%
+        {{hash=d14ab976f2f19085adac5c7214f1eadb}{%
+           family={Duin},
+           familyi={D\bibinitperiod},
+           given={C.},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {University of Amsterdam}%
+      }
+      \strng{namehash}{d14ab976f2f19085adac5c7214f1eadb}
+      \strng{fullhash}{d14ab976f2f19085adac5c7214f1eadb}
+      \strng{bibnamehash}{d14ab976f2f19085adac5c7214f1eadb}
+      \strng{authorbibnamehash}{d14ab976f2f19085adac5c7214f1eadb}
+      \strng{authornamehash}{d14ab976f2f19085adac5c7214f1eadb}
+      \strng{authorfullhash}{d14ab976f2f19085adac5c7214f1eadb}
+      \field{sortinit}{D}
+      \field{sortinithash}{c438b3d5d027251ba63f5ed538d98af5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{Steiner} Problems in Graphs}
+      \field{type}{phdthesis}
+      \field{year}{1993}
+      \true{nocite}
+    \endentry
+    \entry{guggenbichler20}{thesis}{}
+      \name{author}{1}{}{%
+        {{hash=ed9492c6ae7359efc6d087c993ba80e9}{%
+           family={Guggenbichler},
+           familyi={G\bibinitperiod},
+           given={Andreas},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Technical Univerity Munich}%
+      }
+      \strng{namehash}{ed9492c6ae7359efc6d087c993ba80e9}
+      \strng{fullhash}{ed9492c6ae7359efc6d087c993ba80e9}
+      \strng{bibnamehash}{ed9492c6ae7359efc6d087c993ba80e9}
+      \strng{authorbibnamehash}{ed9492c6ae7359efc6d087c993ba80e9}
+      \strng{authornamehash}{ed9492c6ae7359efc6d087c993ba80e9}
+      \strng{authorfullhash}{ed9492c6ae7359efc6d087c993ba80e9}
+      \field{sortinit}{G}
+      \field{sortinithash}{62eb2aa29549e4fdbd3cb154ec5711cb}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Loss Contraction Mechanisms for Steiner Trees}
+      \field{year}{2020}
+      \true{nocite}
+    \endentry
     \entry{HoPr99}{article}{}
       \name{author}{2}{}{%
         {{hash=d6629c6db7786a757697df0598188ca5}{%
@@ -259,7 +310,6 @@
       \field{title}{On the shortest spanning subtree of a graph and the traveling salesman problem}
       \field{volume}{7}
       \field{year}{1956}
-      \true{nocite}
       \field{pages}{48\bibrangedash 50}
       \range{pages}{3}
     \endentry
@@ -350,6 +400,29 @@
       \verb{url}
       \verb https://github.com/fwalch/tum-thesis-latex
       \endverb
+    \endentry
+    \entry{zelikovsky1996better}{article}{}
+      \name{author}{1}{}{%
+        {{hash=ac16f72e4e54b00dda6c24d29ac1d254}{%
+           family={Zelikovsky},
+           familyi={Z\bibinitperiod},
+           given={Alexander},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{ac16f72e4e54b00dda6c24d29ac1d254}
+      \strng{fullhash}{ac16f72e4e54b00dda6c24d29ac1d254}
+      \strng{bibnamehash}{ac16f72e4e54b00dda6c24d29ac1d254}
+      \strng{authorbibnamehash}{ac16f72e4e54b00dda6c24d29ac1d254}
+      \strng{authornamehash}{ac16f72e4e54b00dda6c24d29ac1d254}
+      \strng{authorfullhash}{ac16f72e4e54b00dda6c24d29ac1d254}
+      \field{sortinit}{Z}
+      \field{sortinithash}{8f7b480688e809b50b6f6577b16f3db5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{University of Virginia, Charlottesville, VA}
+      \field{title}{Better approximation bounds for the network and Euclidean Steiner tree problems}
+      \field{year}{1996}
+      \true{nocite}
     \endentry
   \enddatalist
 \endrefsection

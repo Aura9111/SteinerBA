@@ -175,7 +175,7 @@ public class MyTree {
             out.newLine();
         }
         for (Edge e : edges) {
-            out.write(e.first.id + "->" + e.second.id + "[label=" + String.format("%.2f", e.cost) + "]");
+            out.write(e.first.id + "->" + e.second.id + "[label=" + Math.round(e.cost) + "]");
             out.newLine();
         }
     }

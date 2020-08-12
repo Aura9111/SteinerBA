@@ -129,7 +129,7 @@ public class Tree {
         for (Tree child : children) {
             child.writeDotRec(out);
             out.write(
-                    node.getName() + "->" + child.node.getName() + "[label=" + String.format("%.2f", child.cost) + "]");
+                    node.getName() + "->" + child.node.getName() + "[label=" + Math.round(child.cost) + "]");
             out.newLine();
         }
     }
