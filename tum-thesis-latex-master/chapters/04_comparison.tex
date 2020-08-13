@@ -3,13 +3,13 @@
 
 \chapter{Comparison}\label{chapter:04_comparison}
 
-In this section we are going to analyse the results of the first 15 testcases we got from the SteinerLib. We are going to constrast the solutions from the respective approximation with the optimal solution cost, which is referenced in the testcase database \cite{Dui93}. We are also going to look at the solution tree of testcase 41, its solution for the three algorithms differs substantially enough to nicely showcase their different approaches. The trees were output as a .dot file and visualized using the open source software "graphviz". 
+In this section we are going to analyse the results of the first 15 testcases we got from the SteinLib. We are going to constrast the solutions from the respective approximation with the optimal solution cost, which is referenced in the testcase database \cite{Dui93}. We are also going to look at the solution tree of testcase 41. Its solution for the three algorithms differs substantially enough to nicely showcase their different approaches. The trees were output as a .dot file and visualized using the open source software $graphviz$. The nodes that have a red outline in the visualization are terminal nodes and the ones with black outlines are Steiner nodes.
 
 \section{MST approximation}
 
-In the table \ref{tab:MSTResults} we can see the results of MST approximation for the 15 testcases, that we are going to compare between the different algorithm. While these results all within close proximity to the optimal solution, with the biggest difference being the 441 difference for testcase 45. Overall the average performance for MST is quite good, but the problem with it is the bad worst case performance. Since MST only looks at the shortest paths between pairs of nodes it doesn't consider adding Steiner nodes, that have a largely reduced shortest cost to multiple terminals, if they don't appear in a shortest path directly. It is therefore largely dependant on the input graph and whilst it produces mostly good results it doesn't pick up on some potential cost reducing Steiner nodes, what the other algorithms improve on. We see this reflected in the output tree \ref{fig:MSTTree41}, that consists of direct connections between terminals and just one Steiner node, which is in the shortest path between the two respective nodes. 
+In the table \ref{tab:MSTResults} we can see the results of MST approximation for the 15 testcases, that we are going to compare between the different algorithm. While these results are all within close proximity to the optimal solution, with the biggest difference being the cost of the approximation for testcase 45 being 441 larger than the optimal solution. Overall the average performance for MST is quite good, but its main problem is its bad worst-case-performance. Since MST only looks at the shortest paths between pairs of nodes it does not consider adding Steiner nodes, that have a largely reduced shortest cost to multiple terminals, if they do not appear in a shortest path directly. It is therefore largely dependant on the input graph and whilst it produces mostly good results it does not pick up on some potential cost reducing Steiner nodes, on which the other algorithms improve on. We see this reflected in the output tree \ref{fig:MSTTree41}, that consists of direct connections between terminals and just one Steiner node, which is in the shortest path between the two respective nodes. 
 \begin{table}[htbp]
- \caption{Results of MST for 15 testcases from SteinerLib \cite{Dui93}}\label{tab:MSTResults} 	
+ \caption{Results of MST for 15 testcases from SteinLib \cite{Dui93}}\label{tab:MSTResults} 	
  \centering
  \begin{tabular}{l l l l}
 \toprule
@@ -39,14 +39,14 @@ Graph & Opt & MST & MST-Opt \\
 \begin{figure}[htbp]
 \centering
 \includegraphics[scale=0.15]{figures/MST.png}
-\caption{Output tree of the MST-approximation algorithm for Graph 41}\label{fig:MSTTree41}
+\caption{Output tree of the MST-approximation algorithm for graph 41}\label{fig:MSTTree41}
 \end{figure}
 
 \section{Berman and Ramaiyer}
 
-If we look at the results for the Berman, Ramaiyer algorithm (ref. \ref{tab:BeRaResults}) and contrast them with the MST results (ref. \ref{tab:MSTResults}) we can see that a lot of solutions have the same total treecost. This is to be expected because the Berman, Ramaiyer algorithm uses a MST-approximation as its input, which it tries to improve. So everytime it's unable to find such an improvement its output tree is identical to MST. Since Berman, Ramaiyer looks at subsets of terminals and checks whether the solution tree of that subset and the subsequent removal of redundant edges would lower the cost directly, its treecost is always lower than MST. It is also more dependable when it comes to the worst case performance with a PR of 1.734, but it still misses out on Steiner nodes that efficiently connect other Steiner nodes. When we look at the output tree \ref{BeRaTree41} we can see that it has included an additional Steiner node that connects 3 terminals and reduces the total tree cost by 22.
+If we look at the results for the Berman, Ramaiyer algorithm (ref. \ref{tab:BeRaResults}) and contrast them with the MST results (ref. \ref{tab:MSTResults}) we can see that a lot of solutions have the same total treecost. This is to be expected because the Berman, Ramaiyer algorithm uses a MST-approximation as its input, which it tries to improve. So everytime it is unable to find such an improvement, its output tree is identical to MST. Since Berman, Ramaiyer looks at subsets of terminals and checks whether the solution tree of that subset and the subsequent removal of redundant edges would lower the cost directly, its treecost is always lower than MST. It is also more dependable when it comes to the worst case performance with a PR of 1.734, but it still misses out on Steiner nodes that efficiently connect other Steiner nodes. When we look at the output tree (fig. \ref{fig:BeRaTree41}) we can see that it has included an additional Steiner node that connects 3 terminals and reduces the total tree cost by 22.
 \begin{table}[htbp]
- \caption{Results of Berman, Ramaiyer for 15 testcases from SteinerLib \cite{Dui93}}\label{tab:BeRaResults} 	
+ \caption{Results of Berman, Ramaiyer for 15 testcases from SteinLib \cite{Dui93}}\label{tab:BeRaResults} 	
  \centering
  \begin{tabular}{l l l l l}
 \toprule
@@ -76,15 +76,15 @@ Graph & Opt & BeRa & BeRa\% & BeRa-Opt \\
 \begin{figure}[htbp]
 \centering
 \includegraphics[scale=0.25]{figures/BermanRamaiyer.png}
-\caption{Output tree of the Berman, Ramaiyer algorithm for Graph 41}\label{fig:BeRaTree41}
+\caption{Output tree of the Berman, Ramaiyer algorithm for graph 41}\label{fig:BeRaTree41}
 \end{figure}
 
 \section{Hougardy and Proemel}
 
-The results of Hougardy and Proemel's $IRGH$-algorithm (ref. \ref{tab:HoPrResults}) we can see that the treecosts aren't strictly better than the MST-approximation. This is due to the fact, that IRGH uses a heuristic that allows even the inclusion of subtrees, that have a negative effect on the tree cost to create more opportunities in the next iteration. This leads to its results being either significantly better than Berman,Ramaiyer or even worse than MST. Its performance ratio is also the best out of the three, since it is less likely to miss good Steiner nodes to include, because upon every addition of Steiner nodes it commences to check for additional Steiner nodes to connect the recently added ones. This strong incentive to include Steiner nodes is also visible in the output tree of testcase 41 (ref. \ref{fig:HoPrTree41}). It also shows, that $IRGH$ doesn't stick close to the solution of the initial MST-approximation like Berman, Ramaiyer does. There isn't a single edge belonging to the initial MST-approximation left in the output tree of $IRGH$.
+In the results of Hougardy and Proemel's $IRGH$-algorithm (ref. \ref{tab:HoPrResults}) we can see that the treecosts are not strictly better than the MST-approximation. This is due to the fact, that IRGH uses a heuristic that allows even the inclusion of subtrees, that have a negative effect on the tree cost to create more opportunities in the next iteration. This leads to its results being either significantly better than Berman, Ramaiyer or even worse than MST. Its performance ratio is also the best out of the three, since it is less likely to miss good Steiner nodes to include, because upon every addition of Steiner nodes it commences to check for additional Steiner nodes to connect the recently added ones. This strong incentive to include Steiner nodes is also visible in the output tree of testcase 41 (ref. \ref{fig:HoPrTree41}). It also shows, that $IRGH$ does not stick close to the solution of the initial MST-approximation like Berman, Ramaiyer does. There is not a single edge belonging to the initial MST-approximation left in the output tree of $IRGH$.
 
 \begin{table}[htbp]
- \caption{Results of $IRGH$ for 15 testcases from SteinerLib \cite{Dui93}}\label{tab:HoPrResults} 	
+ \caption{Results of $IRGH$ for 15 testcases from SteinLib \cite{Dui93}}\label{tab:HoPrResults} 	
  \centering
  \begin{tabular}{l l l l l}
 \toprule
@@ -114,5 +114,5 @@ Graph & Opt & HoPr & HoPr\% & HoPr-Opt \\
 \begin{figure}[htbp]
 \centering
 \includegraphics[scale=0.40]{figures/HougardyProemel.png}
-\caption{Output tree of the $IRGH$-approximation algorithm for Graph 41}\label{fig:HoPrTree41}
+\caption{Output tree of the $IRGH$-approximation algorithm for graph 41}\label{fig:HoPrTree41}
 \end{figure}
