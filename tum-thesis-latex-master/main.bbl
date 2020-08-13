@@ -353,6 +353,31 @@
       \field{pages}{55\bibrangedash 67}
       \range{pages}{13}
     \endentry
+    \entry{githublink}{online}{}
+      \name{author}{1}{}{%
+        {{hash=6b2c698445bb90d12660e3f4910ae7e2}{%
+           family={Sauter},
+           familyi={S\bibinitperiod},
+           given={Philipp},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{6b2c698445bb90d12660e3f4910ae7e2}
+      \strng{fullhash}{6b2c698445bb90d12660e3f4910ae7e2}
+      \strng{bibnamehash}{6b2c698445bb90d12660e3f4910ae7e2}
+      \strng{authorbibnamehash}{6b2c698445bb90d12660e3f4910ae7e2}
+      \strng{authornamehash}{6b2c698445bb90d12660e3f4910ae7e2}
+      \strng{authorfullhash}{6b2c698445bb90d12660e3f4910ae7e2}
+      \field{sortinit}{S}
+      \field{sortinithash}{c319cff79d99c853d775f88277d4e45f}
+      \field{labelnamesource}{author}
+      \true{nocite}
+      \verb{urlraw}
+      \verb https://github.com/Aura9111/SteinerBA
+      \endverb
+      \verb{url}
+      \verb https://github.com/Aura9111/SteinerBA
+      \endverb
+    \endentry
     \entry{takahashi1980approximate}{article}{}
       \true{moreauthor}
       \true{morelabelname}
