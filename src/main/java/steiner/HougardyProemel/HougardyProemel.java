@@ -8,15 +8,12 @@ import java.util.Iterator;
 public class HougardyProemel {
 
     public static void main(String[] args) throws Exception {
-
         double[] alphas = { 0.698, 0.248, 0 };
-        MyGraph g = MyGraphFactory.makeMyGraphMethods("041");
-        // for (MyGraph g : MyGraphFactory.getAllGraphs()) {
-        MyTree t = hougardyProemel(g, alphas, 3);
-        System.out.println(t.totalCost() + "/" + g.optimal);
-        t.printGraph("hougardy" + g.name);
-        // }
-
+        for (MyGraph g : MyGraphFactory.getAllGraphs()) {
+            MyTree t = hougardyProemel(g, alphas, 3);
+            System.out.println(g.name +" "+ t.totalCost());
+            t.printGraph("hougardy" + g.name);
+        }
     }
 
     public static void printHashSetOfEdge(steiner.BermanRamaiyer.Graph g, HashSet<steiner.BermanRamaiyer.Edge> set,
