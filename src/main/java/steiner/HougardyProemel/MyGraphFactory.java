@@ -2,6 +2,7 @@ package steiner.HougardyProemel;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
 
@@ -15,14 +16,16 @@ public class MyGraphFactory {
         }
     }
 
-    public static HashSet<MyGraph> getAllGraphs() throws IOException {
-        HashSet<MyGraph> out = new HashSet<>();
-        for(int i=0;i<=3;i++){
-            for(int j=1;j<=5;j++){
-                out.add(makeMyGraphMethods(i+"1"+j));
-                out.add(makeMyGraphMethods(i+"2"+j));
-                out.add(makeMyGraphMethods(i+"4"+j));
-            }
+    public static ArrayList<MyGraph> getAllGraphs() throws IOException {
+        ArrayList<MyGraph> out = new ArrayList<>();
+        for (int j = 1; j <= 5; j++) {
+            out.add(makeMyGraphMethods("01" + j));
+        }
+        for (int j = 1; j <= 5; j++) {
+            out.add(makeMyGraphMethods("02" + j));
+        }
+        for (int j = 1; j <= 5; j++) {
+            out.add(makeMyGraphMethods("04" + j));
         }
         return out;
     }

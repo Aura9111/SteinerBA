@@ -9,11 +9,47 @@ public class HougardyProemel {
 
     public static void main(String[] args) throws Exception {
         double[] alphas = { 0.698, 0.248, 0 };
-        for (MyGraph g : MyGraphFactory.getAllGraphs()) {
-            MyTree t = hougardyProemel(g, alphas, 3);
-            System.out.println(g.name +" "+ t.totalCost());
-            t.printGraph("hougardy" + g.name);
+        // for (MyGraph g : MyGraphFactory.getAllGraphs()) {
+        MyGraph g = MyGraphFactory.makeMyGraphMethods("045");
+        MyTree t = hougardyProemel(g, alphas, 3);
+        double total = 0;
+        for (Edge e : t.edges) {
+            total += binarySearch(e, g, upperBoundForBinarySearch(e, g));
         }
+        System.out.println(g.name + " " + total);
+        // }
+
+    }
+
+    public static double upperBoundForBinarySearch(Edge edge, MyGraph original) throws Exception {
+        MyGraph g = original.copy();
+        double[] alphas = { 0.698, 0.248, 0 };
+        double out = edge.cost;
+        MyTree t;
+        do {
+            out = 2 * out;
+            g.edges[edge.first.id][edge.second.id] = out;
+            t = hougardyProemel(g, alphas, 3);
+        } while (t.edges.contains(edge));
+        return out;
+    }
+
+    public static double binarySearch(Edge e, MyGraph original, double upper) throws Exception {
+        MyGraph g = original.copy();
+        double[] alphas = { 0.698, 0.248, 0 };
+        double l = e.cost;
+        double r = upper;
+        while (l < r) {
+            double m = Math.floor((l + r) / 2);
+            g.edges[e.first.id][e.second.id] = m;
+            g.computeShortestPaths();
+            if (hougardyProemel(g, alphas, 3).edges.contains(e))
+                l = m + 1;
+            else
+                r = m;
+        }
+        // l==r==the price at which edge isnt included anymore
+        return l - 1; // <- this is the price at which it is still included
     }
 
     public static void printHashSetOfEdge(steiner.BermanRamaiyer.Graph g, HashSet<steiner.BermanRamaiyer.Edge> set,

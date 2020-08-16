@@ -2,14 +2,15 @@ package steiner.BermanRamaiyer;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Scanner;
 
 public class GraphFactory {
 
-    public static HashSet<Graph> allGraphs() throws IOException {
+    public static ArrayList<Graph> allGraphs() throws IOException {
 
-        HashSet<Graph> out = new HashSet<>();
+        ArrayList<Graph> out = new ArrayList<>();
 
         File folder = new File("D:\\I080\\");
         File[] listOfFiles = folder.listFiles();
