@@ -1,0 +1,13 @@
+digraph {
+2[color=red]
+4[color=red]
+1[color=red]
+3[color=red]
+5[color=red]
+3->5[label=297]
+1->3[label=285]
+4->1[label=296]
+2->4[label=298]
+6[color=red]
+2->6[label=297]
+}

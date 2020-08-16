@@ -1,5 +1,6 @@
 package steiner.BermanRamaiyer;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -11,21 +12,22 @@ import steiner.HougardyProemel.HougardyProemel;
 public class BermanRamaiyer {
 
     public static void main(String[] args) throws Exception {
-        Graph g = GraphFactory.g041();
         // for (Graph g : GraphFactory.allGraphs()) {
-        Tree t = bermanRamaiyer(g, g.getAllTerminalNodes(), 6);
-        t.printGraph(g.path + "default");
-        HashSet<Edge> set = new HashSet<>();
-        HashSet<Edge> treeSet = t.toEdgeSet();
-        for (Edge e : treeSet) {
-            double upper = upperBoundForBinarySearch(e, g);
-            double crit = binarySearch(e, g, upper);
-            System.out.println("ogCost: " + e.cost + " -> crit: " + crit);
-            Edge criticalEdge = new Edge(e.getName(), e.first, e.second, crit);
-            set.add(criticalEdge);
-        //}
-        HougardyProemel.printHashSetOfEdge(g, set, t.node.id+1);
-    }
+        Graph g = GraphFactory.makeMyGraphMethods(new File("D:\\I080\\i080-343.stp"));
+        System.out.println(g.path + " " + bermanRamaiyer(g, g.getAllTerminalNodes(), 6).totalCost());
+         g = GraphFactory.makeMyGraphMethods(new File("D:\\I080\\i080-344.stp"));
+        System.out.println(g.path + " " + bermanRamaiyer(g, g.getAllTerminalNodes(), 6).totalCost());
+         g = GraphFactory.makeMyGraphMethods(new File("D:\\I080\\i080-345.stp"));
+        System.out.println(g.path + " " + bermanRamaiyer(g, g.getAllTerminalNodes(), 6).totalCost());
+        /*
+         * HashSet<Edge> set = new HashSet<>(); HashSet<Edge> treeSet = t.toEdgeSet();
+         * for (Edge e : treeSet) { double upper = upperBoundForBinarySearch(e, g);
+         * double crit = binarySearch(e, g, upper); System.out.println("ogCost: " +
+         * e.cost + " -> crit: " + crit); Edge criticalEdge = new Edge(e.getName(),
+         * e.first, e.second, crit); set.add(criticalEdge); }
+         * HougardyProemel.printHashSetOfEdge(g, set, t.node.id + 1);
+         */
+        // }
 
     }
 

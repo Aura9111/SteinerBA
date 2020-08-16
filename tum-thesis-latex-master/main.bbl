@@ -48,6 +48,49 @@
       \field{pages}{381\bibrangedash 408}
       \range{pages}{28}
     \endentry
+    \entry{bichler2020strategyproof}{article}{}
+      \name{author}{4}{}{%
+        {{hash=c5ea1029719080369a6a5151e48cc146}{%
+           family={Bichler},
+           familyi={B\bibinitperiod},
+           given={Martin},
+           giveni={M\bibinitperiod}}}%
+        {{hash=64c676e7c54fd2b39e7c008850cf6612}{%
+           family={Hao},
+           familyi={H\bibinitperiod},
+           given={Zhen},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=6ac5479c39b1a5a69524a5cb95db0fc2}{%
+           family={Littmann},
+           familyi={L\bibinitperiod},
+           given={Richard},
+           giveni={R\bibinitperiod}}}%
+        {{hash=6d903e81a2f4410005409682c4a65bfa}{%
+           family={Waldherr},
+           familyi={W\bibinitperiod},
+           given={Stefan},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{e590b1406639ecbae713bc556fd19451}
+      \strng{fullhash}{e590b1406639ecbae713bc556fd19451}
+      \strng{bibnamehash}{e590b1406639ecbae713bc556fd19451}
+      \strng{authorbibnamehash}{e590b1406639ecbae713bc556fd19451}
+      \strng{authornamehash}{e590b1406639ecbae713bc556fd19451}
+      \strng{authorfullhash}{e590b1406639ecbae713bc556fd19451}
+      \field{sortinit}{B}
+      \field{sortinithash}{8de16967003c7207dae369d874f1456e}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{OR Spectrum}
+      \field{title}{Strategyproof auction mechanisms for network procurement}
+      \field{year}{2020}
+      \true{nocite}
+      \field{pages}{1\bibrangedash 30}
+      \range{pages}{30}
+    \endentry
     \entry{BlNi07}{article}{}
       \name{author}{2}{}{%
         {{hash=d22a7ec2285e7273f975a389c90c95d8}{%
@@ -352,6 +395,36 @@
       \true{nocite}
       \field{pages}{55\bibrangedash 67}
       \range{pages}{13}
+    \endentry
+    \entry{mehlhorn1988faster}{article}{}
+      \name{author}{1}{}{%
+        {{hash=c2f239e3cf9c48b72ce5f4ca9b5e478e}{%
+           family={Mehlhorn},
+           familyi={M\bibinitperiod},
+           given={Kurt},
+           giveni={K\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{c2f239e3cf9c48b72ce5f4ca9b5e478e}
+      \strng{fullhash}{c2f239e3cf9c48b72ce5f4ca9b5e478e}
+      \strng{bibnamehash}{c2f239e3cf9c48b72ce5f4ca9b5e478e}
+      \strng{authorbibnamehash}{c2f239e3cf9c48b72ce5f4ca9b5e478e}
+      \strng{authornamehash}{c2f239e3cf9c48b72ce5f4ca9b5e478e}
+      \strng{authorfullhash}{c2f239e3cf9c48b72ce5f4ca9b5e478e}
+      \field{sortinit}{M}
+      \field{sortinithash}{2e5c2f51f7fa2d957f3206819bf86dc3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Information Processing Letters}
+      \field{number}{3}
+      \field{title}{A faster approximation algorithm for the Steiner problem in graphs}
+      \field{volume}{27}
+      \field{year}{1988}
+      \true{nocite}
+      \field{pages}{125\bibrangedash 128}
+      \range{pages}{4}
     \endentry
     \entry{githublink}{online}{}
       \name{author}{1}{}{%
