@@ -22,6 +22,7 @@ public class MyTree {
     public HashSet<Edge> edges;
     public HashMap<Pair<Node, Node>, Pair<HashSet<Edge>, Double>> shortestPaths;
 
+
     public MyTree() {
         nodes = new HashSet<>();
         edges = new HashSet<>();

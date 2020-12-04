@@ -1,13 +1,26 @@
 package steiner.HougardyProemel;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 
+import guru.nidi.graphviz.engine.Format;
+import guru.nidi.graphviz.engine.Graphviz;
+import guru.nidi.graphviz.model.MutableGraph;
+import guru.nidi.graphviz.parse.Parser;
+
 public class HougardyProemel {
 
     public static void main(String[] args) throws Exception {
+        try (InputStream dot = new FileInputStream(("example/graph.dot"))) {
+            MutableGraph g = new Parser().read(dot);
+            Graphviz.fromGraph(g).width(840).render(Format.SVG).toFile(new File("example/graph.svg"));
+        }
+        /*
         double[] alphas = { 0.698, 0.248, 0 };
         // for (MyGraph g : MyGraphFactory.getAllGraphs()) {
         MyGraph g = MyGraphFactory.makeMyGraphMethods("045");
@@ -18,8 +31,7 @@ public class HougardyProemel {
         }
         System.out.println(g.name + " " + total);
         // }
-
-    }
+    */    }
 
     public static double upperBoundForBinarySearch(Edge edge, MyGraph original) throws Exception {
         MyGraph g = original.copy();

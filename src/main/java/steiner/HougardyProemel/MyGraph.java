@@ -12,6 +12,8 @@ public class MyGraph {
     public HashMap<Pair<Node, Node>, Pair<HashSet<Edge>, Double>> shortestPathMap;
     public double optimal;
 
+
+
     public MyGraph(String name, Node[] nodes, double[][] edges,
             HashMap<Pair<Node, Node>, Pair<HashSet<Edge>, Double>> shortestPathMap, double optimal) {
         this.name = name;
